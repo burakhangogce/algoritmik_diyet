@@ -1,0 +1,53 @@
+{
+    "helloWorld": "Hello World!",
+    "@helloWorld": {
+      "description": "The conventional newborn programmer greeting"
+    },
+
+    "boarding1_title": "Çek, senet  ve faturalarınızı hemen nakde çevirin!",
+    "boarding1_subtitle":"Faturalı çekinizin vadesini bekleyerek para ve zaman kaybetmeyin,Doruk Faktoring ile hemen nakde çevirin.",
+    "boarding_skipButton":"Atla",
+    "boarding2_title": "Çekinizin, faturanızın fotoğrafını gönderin.",
+    "boarding2_subtitle":"Çekinizin fotoğrafını çekin, QR ya da Qr kodunu okutun. İşte bu kadar kolay!",
+    "boarding3_title": "Dakikalar içinde onay durumunu öğrenin.",
+    "boarding3_subtitle":"Talepleriniz dakikalar içinde değerlendirilir ve size bildirilir.",
+    "boarding4_title": "Ödemeniz banka hesabınıza yatırılsın!",
+    "boarding4_subtitle":"Taleplerinizi ve ödemelerinizn durumunu tek elden takip edin!",
+    
+    "signin_title":"Hesap bilgilerinizle giriş yapabilir ya da yeni şirket kaydı oluşturabilirsiniz.",
+    "signin_email_placeholder":"E-posta adresiniz",
+    "signin_password_placeholder":"Şifreniz",
+    "signin_forgot_password":"Şifremi Unuttum",
+    "signin_login_button":"Giriş yapın",
+    "signin_company_question":"Şirket kaydınız yok mu?",
+    "signin_company_button":"Şirket kaydı oluşturun",
+    "signin_company_invalid_login":"Lütfen email adresinizi ve şifrenizi kontrol ediniz.",
+
+    "secondary_signin_header":"Teşekkürler, şifrenizi başarıyla güncelledik. Şimdi yeni şifrenizle giriş yapabilirsiniz.",
+    "secondary_signin_email_placeholder":"E-posta adresiniz",
+    "secondary_signin_password_placeholder":"Şifreniz",
+    "secondary_signin_login_button":"Giriş yapın",
+    "secondary_signin_forgot_password":"Şifremi Unuttum",
+
+    "new_password_create_password":"Yeni Şifre Oluştur",
+    "new_password_info_box":"Kimlik ve iletişim bilgilerinizi girerek yeni bir şifre oluşturabilirsiniz. Dilerseniz çağrı merkezimizden destek de alabilirsiniz.",
+    "new_password_header":"Yeni bir şifre oluşturmak için lütfen bilgilerinizi girin.",
+    "new_password_tckn_placeholder":"TC Kimlik Numaranız",
+    "new_password_email_placeholder":"E-posta Adresiniz",
+    "new_password_phone_placeholder":"Telefon Numaranız",
+    "new_password_continue_button":"Devam",
+    "new_password_callcenter_button":"Çağrı Merkezini Ara",
+    "new_password_divider":"Desteğe mi ihtiyacınız var?",
+
+    "create_password_header":"Şimdi yeni şifrenizi oluşturabilirsiniz.",
+    "create_password_warning_title":"Şifreniz;",
+    "create_password_warning_line1":"En az 6 karakterden oluşmalıdır.",
+    "create_password_warning_line2":"Son 3 şifrenizden farklı olmalıdır.",
+    "create_password_warning_line3":"123456 gibi ardışık sayılardan oluşmamalıdır.",
+    "create_password_warning_line4":"Doğum tarihi gibi tahmin edilmesi kolay kombinasyonlar içermemelidir.",
+    "create_password_warning_old_pass_placeholder":"Eski Şifreniz",
+    "create_password_warning_pass_placeholder":"Yeni Şifreniz",
+    "create_password_warning_pass_re_placheholder":"Yeni Şifreniz",
+    "create_password_warning_button":"Kaydet"
+    
+}

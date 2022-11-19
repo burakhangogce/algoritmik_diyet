@@ -347,30 +347,6 @@ class DietAddSecond extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      // SizedBox(
-                      //   height: 30,
-                      //   child: ListView.builder(
-                      //     physics: const AlwaysScrollableScrollPhysics(),
-                      //     itemCount: cnt.timeRangeList.length,
-                      //     scrollDirection: Axis.horizontal,
-                      //     itemBuilder: (context, index) {
-                      //       return Padding(
-                      //         padding: const EdgeInsets.symmetric(horizontal: 5),
-                      //         child: Container(
-                      //             decoration: BoxDecoration(
-                      //                 border: Border.all(
-                      //                   color: firstIconColor,
-                      //                 ),
-                      //                 borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                      //                 color: Colors.grey.shade300),
-                      //             child: Padding(
-                      //               padding: const EdgeInsets.symmetric(horizontal: 3),
-                      //               child: Center(child: Text(cnt.timeRangeList[index].toString())),
-                      //             )),
-                      //       );
-                      //     },
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 50,
                         child: ListWheelScrollView(

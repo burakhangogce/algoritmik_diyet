@@ -1,89 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import '../../../../constants/app_color.dart';
-import '../../../../constants/app_theme.dart';
-import '../../../commons/utils/validations.dart';
-import '../../../commons/widgets/textformfields/general_text_form_field.dart';
 import '../../../models/diet/diet_model.dart';
-
-class DietDetailWidget extends StatelessWidget {
-  DietDetailWidget({
-    Key? key,
-    required this.dietTitleTxt,
-    required this.dietDetailTxtList,
-  }) : super(key: key);
-  final TextEditingController dietTitleTxt;
-  final List<TextEditingController> dietDetailTxtList;
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: firstIconColor,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-              color: Colors.grey.shade100),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: GeneralTextFormField(
-                  dietTitleTxt,
-                  keyboardType: TextInputType.text,
-                  placeholder: "Öğün İsmi",
-                  validator: (value) => Validations.validateIsNotEmpty(value, null),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              dietDetailTxtList.isNotEmpty
-                  ? SizedBox(
-                      height: 60 + (dietDetailTxtList.length * 50),
-                      child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: dietDetailTxtList.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 15,
-                            ),
-                            child: GeneralTextFormField(
-                              dietDetailTxtList[index],
-                              keyboardType: TextInputType.text,
-                              placeholder: "Öğün Detayı",
-                              validator: (value) => Validations.validateIsNotEmpty(value, null),
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  : Container(),
-              TextButton(
-                onPressed: () {
-                  controller.addSetDietDetailTxt(dietDetailTxtList);
-                },
-                style: AppTheme.textButtonStyle,
-                child: const Text("Detay Ekle"),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
-        ),
-      );
-    });
-  }
-}
 
 class DietController with ChangeNotifier {
   PageController pageController = PageController();
@@ -126,6 +44,48 @@ class DietController with ChangeNotifier {
   Map<DateTime, List<DietMenuModel>> dietMap = {};
   List<DietMenuModel> copyList = [];
   DietMenuModel copyMenu = DietMenuModel("", "", true);
+  double dietWaterLoop = 1.0;
+  double dietWaterNotificationLoop = 3.0;
+  double dietCoffeeLoop = 1.0;
+  bool isWaterNotification = false;
+  bool isMenuNotification = false;
+  bool isExerciseNotification = false;
+  bool isCoffeePermission = false;
+  setNotification(bool value, String type) {
+    if (type == "water") {
+      isWaterNotification = value;
+    } else if (type == "menu") {
+      isMenuNotification = value;
+    } else if (type == "exercise") {
+      isExerciseNotification = value;
+    } else if (type == "coffee") {
+      isCoffeePermission = value;
+    }
+    notifyListeners();
+  }
+
+  clearDiet() {
+    dietMap.clear();
+    selectedDateList.clear();
+    diets.clear();
+    controllers.clear();
+    copyList.clear();
+  }
+
+  setDietCoffeeLoop(double value) {
+    dietCoffeeLoop = value;
+    notifyListeners();
+  }
+
+  setDietWaterLoop(double value) {
+    dietWaterLoop = value;
+    notifyListeners();
+  }
+
+  setDietWaterNotificationLoop(double value) {
+    dietWaterNotificationLoop = value;
+    notifyListeners();
+  }
 
   copyDietMenu(int index) {
     copyMenu = dietMap[selectedDateList[selectedDietDate]]![index];
@@ -240,7 +200,7 @@ class DietController with ChangeNotifier {
     notifyListeners();
     pageController.animateToPage(
       index,
-      duration: const Duration(milliseconds: 10),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInToLinear,
     );
   }

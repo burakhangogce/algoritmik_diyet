@@ -5,11 +5,7 @@ import '../../../../constants/app_theme.dart';
 import '../menu/menu_list_item.dart';
 
 class SettingsSwitchListItem extends StatefulWidget {
-  const SettingsSwitchListItem(
-      {required this.title,
-      required this.isSwitched,
-      required this.onChanged,
-      Key? key})
+  const SettingsSwitchListItem({required this.title, required this.isSwitched, required this.onChanged, Key? key})
       : super(key: key);
 
   final String title;
@@ -31,8 +27,7 @@ class _SettingsSwitchListItemState extends State<SettingsSwitchListItem> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(widget.isSwitched ? "Açık" : "Kapalı",
-                style: AppTheme.notoSansReg12PrimaryText),
+            Text(widget.isSwitched ? "Açık" : "Kapalı", style: AppTheme.notoSansReg12PrimaryText),
             const SizedBox(width: 10),
             Switch(
               activeTrackColor: primaryColor,
@@ -41,7 +36,7 @@ class _SettingsSwitchListItemState extends State<SettingsSwitchListItem> {
               }),
               value: widget.isSwitched,
               onChanged: (value) {
-                widget.onChanged.call();
+                widget.onChanged.call(value);
               },
             ),
           ],

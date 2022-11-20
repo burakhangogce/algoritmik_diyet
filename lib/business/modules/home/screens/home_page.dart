@@ -15,8 +15,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>
-    with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -75,10 +74,8 @@ class _HomePageState extends State<HomePage>
                 controller: _pageController,
                 physics: const PageScrollPhysics(),
                 children: [
-                  Image.network(
-                      "https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg"),
-                  Image.network(
-                      "https://cdn.pixabay.com/photo/2021/03/04/11/37/coast-6067736_960_720.jpg"),
+                  Image.network("https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg"),
+                  Image.network("https://cdn.pixabay.com/photo/2021/03/04/11/37/coast-6067736_960_720.jpg"),
                 ],
               ),
             ),
@@ -93,8 +90,7 @@ class _HomePageState extends State<HomePage>
                     dotWidth: 10,
                     radius: 7),
                 onDotClicked: (index) => _pageController.animateToPage(index,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.bounceOut),
+                    duration: const Duration(milliseconds: 500), curve: Curves.bounceOut),
               ),
             ),
             const SizedBox(
@@ -124,10 +120,8 @@ class _HomePageState extends State<HomePage>
                           height: 52,
                           width: 52,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: fistBorderColor),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(width: 1, color: fistBorderColor),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.analytics,
@@ -154,7 +148,7 @@ class _HomePageState extends State<HomePage>
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/homework');
+                    Navigator.pushNamed(context, '/creatediet');
                   },
                   child: Container(
                     height: pageHeight * 0.2,
@@ -173,10 +167,8 @@ class _HomePageState extends State<HomePage>
                           height: 52,
                           width: 52,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: fistBorderColor),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(width: 1, color: fistBorderColor),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.paperplane,
@@ -191,7 +183,7 @@ class _HomePageState extends State<HomePage>
                           style: AppTheme.notoSansSB16PrimaryText,
                         )),
                         const Text(
-                          "Tüm diyetlerim",
+                          "Diyet Oluştur",
                           style: AppTheme.notoSansMed14Primary2Text,
                         ),
                         const SizedBox(
@@ -230,10 +222,8 @@ class _HomePageState extends State<HomePage>
                           height: 52,
                           width: 52,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: fistBorderColor),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(width: 1, color: fistBorderColor),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.users,
@@ -279,10 +269,8 @@ class _HomePageState extends State<HomePage>
                           height: 52,
                           width: 52,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(width: 1, color: fistBorderColor),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20)),
+                              border: Border.all(width: 1, color: fistBorderColor),
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.school,

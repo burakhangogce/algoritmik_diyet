@@ -31,19 +31,19 @@ class DietAddSecond extends StatelessWidget {
               Row(
                 children: [
                   DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.utensilsalt,
+                      iconSource: IconFont.calendaredit,
                       firstColor: firstIconColor,
                       iconSize: 17,
                       secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.utensilsalt),
+                      iconSecondSource: SecondIconFont.calendaredit),
                   TextButton(
                     onPressed: () {
-                      //controller.addSetDietDetailWidget(controller.selectedDietDate);
-                      showAddDietSheet(controller);
+                      controller.onJumpPage(0);
+                      controller.clearDiet();
                     },
                     style: AppTheme.textButtonStyle,
                     child: const Text(
-                      "Ekle",
+                      "Tarih",
                       style: AppTheme.notoSansMed14PrimaryText,
                     ),
                   ),
@@ -52,18 +52,18 @@ class DietAddSecond extends StatelessWidget {
               Row(
                 children: [
                   DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.paste,
+                      iconSource: IconFont.applecrate,
                       firstColor: firstIconColor,
                       iconSize: 17,
                       secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.paste),
+                      iconSecondSource: SecondIconFont.applecrate),
                   TextButton(
                     onPressed: () {
-                      controller.pasteDietMenu(controller.selectedDietDate);
+                      controller.onNextPage(context);
                     },
                     style: AppTheme.textButtonStyle,
                     child: const Text(
-                      "Yapıştır",
+                      "Oluştur",
                       style: AppTheme.notoSansMed14PrimaryText,
                     ),
                   ),
@@ -111,159 +111,207 @@ class DietAddSecond extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          if (controller.dietMap.containsKey(controller.selectedDateList[controller.selectedDietDate]))
-            Expanded(
-              child: Form(
-                key: formKey,
-                child: ListView.builder(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.dietMap[controller.selectedDateList[controller.selectedDietDate]]!.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-                        child: GestureDetector(
-                          onTap: () {
-                            showAddDietSheet(controller,
-                                isUpdate: true,
-                                index: index,
-                                dietMenuModel: controller
-                                    .dietMap[controller.selectedDateList[controller.selectedDietDate]]![index]);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: firstIconColor,
-                                ),
-                                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                                color: Colors.transparent),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
+                children: [
+                  DuoToneFontAwesomeIcon(
+                      iconSource: IconFont.utensilsalt,
+                      firstColor: firstIconColor,
+                      iconSize: 17,
+                      secondColor: secondIconColor,
+                      iconSecondSource: SecondIconFont.utensilsalt),
+                  TextButton(
+                    onPressed: () {
+                      //controller.addSetDietDetailWidget(controller.selectedDietDate);
+                      showAddDietSheet(controller);
+                    },
+                    style: AppTheme.textButtonStyle,
+                    child: const Text(
+                      "Ekle",
+                      style: AppTheme.notoSansMed14PrimaryText,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  DuoToneFontAwesomeIcon(
+                      iconSource: IconFont.paste,
+                      firstColor: firstIconColor,
+                      iconSize: 17,
+                      secondColor: secondIconColor,
+                      iconSecondSource: SecondIconFont.paste),
+                  TextButton(
+                    onPressed: () {
+                      controller.pasteDietMenu(controller.selectedDietDate);
+                    },
+                    style: AppTheme.textButtonStyle,
+                    child: const Text(
+                      "Yapıştır",
+                      style: AppTheme.notoSansMed14PrimaryText,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          controller.dietMap.isNotEmpty &&
+                  controller.dietMap.containsKey(controller.selectedDateList[controller.selectedDietDate])
+              ? Expanded(
+                  child: Form(
+                    key: formKey,
+                    child: ListView.builder(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.dietMap[controller.selectedDateList[controller.selectedDietDate]]!.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                            child: GestureDetector(
+                              onTap: () {
+                                showAddDietSheet(controller,
+                                    isUpdate: true,
+                                    index: index,
+                                    dietMenuModel: controller
+                                        .dietMap[controller.selectedDateList[controller.selectedDietDate]]![index]);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: firstIconColor,
+                                    ),
+                                    borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                                    color: Colors.transparent),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Column(
                                     children: [
-                                      Center(
-                                        child: DuoToneFontAwesomeIcon(
-                                            iconSource: IconFont.utensilsalt,
-                                            firstColor: firstIconColor,
-                                            iconSize: 40,
-                                            secondColor: secondIconColor,
-                                            iconSecondSource: SecondIconFont.utensilsalt),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Column(
+                                        children: [
+                                          Center(
+                                            child: DuoToneFontAwesomeIcon(
+                                                iconSource: IconFont.utensilsalt,
+                                                firstColor: firstIconColor,
+                                                iconSize: 40,
+                                                secondColor: secondIconColor,
+                                                iconSecondSource: SecondIconFont.utensilsalt),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            "19:00 - 19:30",
+                                            style: AppTheme.notoSansMed18PrimaryText,
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Öğün Başlığı",
+                                            style: AppTheme.notoSansMed14PrimaryText,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            controller
+                                                .dietMap[controller.selectedDateList[controller.selectedDietDate]]![
+                                                    index]
+                                                .dietMenuTitle,
+                                            style: AppTheme.notoSansMed12Primary2Text,
+                                          ),
+                                        ],
                                       ),
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      Text(
-                                        "19:00 - 19:30",
-                                        style: AppTheme.notoSansMed18PrimaryText,
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Öğün Başlığı",
-                                        style: AppTheme.notoSansMed14PrimaryText,
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Öğün Detayı",
+                                            style: AppTheme.notoSansMed14PrimaryText,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            controller
+                                                .dietMap[controller.selectedDateList[controller.selectedDietDate]]![
+                                                    index]
+                                                .dietMenuDetail,
+                                            style: AppTheme.notoSansMed12Primary2Text,
+                                          ),
+                                        ],
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        height: 15,
                                       ),
-                                      Text(
-                                        controller
-                                            .dietMap[controller.selectedDateList[controller.selectedDietDate]]![index]
-                                            .dietMenuTitle,
-                                        style: AppTheme.notoSansMed12Primary2Text,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        "Öğün Detayı",
-                                        style: AppTheme.notoSansMed14PrimaryText,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        controller
-                                            .dietMap[controller.selectedDateList[controller.selectedDietDate]]![index]
-                                            .dietMenuDetail,
-                                        style: AppTheme.notoSansMed12Primary2Text,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      SizedBox(
-                                          width: pageWidht * 0.3,
-                                          child: ElevatedButton(
-                                            onPressed: () {
-                                              controller.copyDietMenu(index);
-                                            },
-                                            style: AppTheme.elevatedButtonStyle.copyWith(
-                                                fixedSize: MaterialStateProperty.resolveWith((states) {
-                                              if (states.contains(MaterialState.disabled)) {
-                                                return const Size(5, 5);
-                                              }
-                                              return const Size(5, 5);
-                                            })),
-                                            child: const Text("Kopyala"),
-                                          )),
-                                      SizedBox(
-                                        width: pageWidht * 0.3,
-                                        child: OutlinedButton(
-                                          style: OutlinedButton.styleFrom(
-                                              foregroundColor: loginGradientStartColor,
-                                              fixedSize: const Size(10, 10),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(15.0),
-                                              ),
-                                              side: const BorderSide(
-                                                width: 1.0,
-                                                color: loginGradientStartColor,
-                                                style: BorderStyle.solid,
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          SizedBox(
+                                              width: pageWidht * 0.3,
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  controller.copyDietMenu(index);
+                                                },
+                                                style: AppTheme.elevatedButtonStyle.copyWith(
+                                                    fixedSize: MaterialStateProperty.resolveWith((states) {
+                                                  if (states.contains(MaterialState.disabled)) {
+                                                    return const Size(5, 5);
+                                                  }
+                                                  return const Size(5, 5);
+                                                })),
+                                                child: const Text("Kopyala"),
                                               )),
-                                          onPressed: () {
-                                            controller.deleteDietMenu(index);
-                                          },
-                                          child: const Text("İptal Et"),
-                                        ),
-                                      )
+                                          SizedBox(
+                                            width: pageWidht * 0.3,
+                                            child: OutlinedButton(
+                                              style: OutlinedButton.styleFrom(
+                                                  foregroundColor: loginGradientStartColor,
+                                                  fixedSize: const Size(10, 10),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(15.0),
+                                                  ),
+                                                  side: const BorderSide(
+                                                    width: 1.0,
+                                                    color: loginGradientStartColor,
+                                                    style: BorderStyle.solid,
+                                                  )),
+                                              onPressed: () {
+                                                controller.deleteDietMenu(index);
+                                              },
+                                              child: const Text("İptal Et"),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        ));
-                  },
-                ),
-              ),
-            )
-          else
-            Container(),
+                            ));
+                      },
+                    ),
+                  ),
+                )
+              : Container(),
         ]);
       }),
     );
@@ -335,14 +383,6 @@ class DietAddSecond extends StatelessWidget {
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SettingsSwitchListItem(
-                        title: "Bildirim",
-                        isSwitched: isUpdate ? dietMenuModel!.isNotification : true,
-                        onChanged: () {},
                       ),
                       const SizedBox(
                         height: 20,

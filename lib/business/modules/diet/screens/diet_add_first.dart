@@ -13,30 +13,23 @@ class DietAddFirst extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<DietController>(context, listen: false);
-
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20, top: pageHeight / 5),
-      child: Consumer<DietController>(
-          builder: (BuildContext context, controller, Widget? child) {
+      child: Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
         return SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             GestureDetector(
               onTap: () {
                 controller.displayTimePicker(
-                    context,
-                    DateTime.now(),
-                    controller.dietFirstDate,
-                    DateTime.now().add(const Duration(days: 365)));
+                    context, DateTime.now(), controller.dietFirstDate, DateTime.now().add(const Duration(days: 365)));
               },
               child: TapTextFormField(
                 controller.dietFirstDate,
                 placeholder: 'Diyet Başlangıç Tarihi',
                 keyboardType: TextInputType.phone,
                 icon: const Icon(Icons.date_range),
-                validator: (value) =>
-                    Validations.validateIsNotEmpty(value, null),
+                validator: (value) => Validations.validateIsNotEmpty(value, null),
               ),
             ),
             const SizedBox(
@@ -47,21 +40,16 @@ class DietAddFirst extends StatelessWidget {
                     onTap: () {
                       controller.displayTimePicker(
                           context,
-                          DateFormat('dd-MM-yyyy')
-                              .parse(controller.dietFirstDate.text)
-                              .add(const Duration(days: 1)),
+                          DateFormat('dd-MM-yyyy').parse(controller.dietFirstDate.text).add(const Duration(days: 1)),
                           controller.dietLastDate,
-                          DateFormat('dd-MM-yyyy')
-                              .parse(controller.dietFirstDate.text)
-                              .add(const Duration(days: 6)));
+                          DateFormat('dd-MM-yyyy').parse(controller.dietFirstDate.text).add(const Duration(days: 6)));
                     },
                     child: TapTextFormField(
                       controller.dietLastDate,
                       placeholder: 'Diyet Bitiş Tarihi',
                       keyboardType: TextInputType.phone,
                       icon: const Icon(Icons.date_range),
-                      validator: (value) =>
-                          Validations.validateIsNotEmpty(value, null),
+                      validator: (value) => Validations.validateIsNotEmpty(value, null),
                     ),
                   )
                 : Container(),

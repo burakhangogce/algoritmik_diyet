@@ -5,6 +5,7 @@ import '../../../constants/app_color.dart';
 import '../../commons/utils/icon_font.dart';
 import '../../commons/utils/second_icon_font.dart';
 import '../../commons/widgets/duo_tone_font_Awesome_icon.dart';
+import '../client/controller/client_controller.dart';
 import '../home/controller/home_controller.dart';
 import '../home/screens/home_page.dart';
 import '../profile/screens/profile.dart';
@@ -24,7 +25,10 @@ class _DashboardPageState extends State<DashboardPage> {
       create: (_) => HomeController(),
       child: const HomePage(),
     ),
-    const Client(),
+    ChangeNotifierProvider(
+      create: (_) => ClientController(),
+      child: const Client(),
+    ),
     const Recipe(),
     const Profile(),
   ];

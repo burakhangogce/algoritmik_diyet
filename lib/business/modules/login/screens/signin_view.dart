@@ -1,5 +1,4 @@
 import 'package:algoritmik_diyet/business/modules/dashboard/dashboard_page.dart';
-import 'package:algoritmik_diyet/business/modules/home/screens/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

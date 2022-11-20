@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/app_color.dart';
-import '../../../models/diet/diet_model.dart';
+import '../../../models/diet/diet_day_model.dart';
 
 class DietController with ChangeNotifier {
   PageController pageController = PageController();
@@ -43,7 +43,7 @@ class DietController with ChangeNotifier {
   List<DateTime> selectedDateList = [];
   Map<DateTime, List<DietMenuModel>> dietMap = {};
   List<DietMenuModel> copyList = [];
-  DietMenuModel copyMenu = DietMenuModel("", "", true);
+  DietMenuModel copyMenu = DietMenuModel("", "", DateTime.now(), true, false);
   double dietWaterLoop = 1.0;
   double dietWaterNotificationLoop = 3.0;
   double dietCoffeeLoop = 1.0;

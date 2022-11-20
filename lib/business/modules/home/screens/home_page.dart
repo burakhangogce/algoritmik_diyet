@@ -202,9 +202,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/students');
-                  },
+                  onTap: () {},
                   child: Container(
                     height: pageHeight * 0.2,
                     width: pageWidht * 0.4,
@@ -249,9 +247,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/students');
-                  },
+                  onTap: () {},
                   child: Container(
                     height: pageHeight * 0.2,
                     width: pageWidht * 0.4,

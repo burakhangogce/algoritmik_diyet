@@ -26,12 +26,9 @@ class HomeWorkAddSecond extends StatelessWidget {
             "Diyet Detayı",
             style: AppTheme.notoSansReg24PrimaryText,
           ),
-          Text(
-              "Öğrencilerine göndermeden önce ödevin detaylarını belirtmelisin.",
-              style: AppTheme.notoSansMed14White
-                  .copyWith(color: primary2TextColor)),
-          Consumer<HomeWorkController>(
-              builder: (BuildContext context, controller, Widget? child) {
+          Text("Öğrencilerine göndermeden önce ödevin detaylarını belirtmelisin.",
+              style: AppTheme.notoSansMed14White.copyWith(color: primary2TextColor)),
+          Consumer<HomeWorkController>(builder: (BuildContext context, controller, Widget? child) {
             return Form(
               key: formKey,
               child: Column(
@@ -45,8 +42,7 @@ class HomeWorkAddSecond extends StatelessWidget {
                     controller.homeworkTitle,
                     keyboardType: TextInputType.text,
                     placeholder: "Diyet Başlığı",
-                    validator: (value) =>
-                        Validations.validateIsNotEmpty(value, null),
+                    validator: (value) => Validations.validateIsNotEmpty(value, null),
                   ),
                   const SizedBox(
                     height: 5,
@@ -55,8 +51,7 @@ class HomeWorkAddSecond extends StatelessWidget {
                     controller.homeworkDetails,
                     keyboardType: TextInputType.text,
                     placeholder: "Diyet Açıklaması",
-                    validator: (value) =>
-                        Validations.validateIsNotEmpty(value, null),
+                    validator: (value) => Validations.validateIsNotEmpty(value, null),
                   ),
                   const SizedBox(
                     height: 5,
@@ -69,7 +64,7 @@ class HomeWorkAddSecond extends StatelessWidget {
                     unSelectedTextColor: Colors.black,
                     spacing: 0,
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    buttons: ['günlük', 'haftalık', 'haftalık'],
+                    buttons: const ['günlük', 'haftalık', 'haftalık'],
                     onchanged: (int index) {},
                   ),
                   const SizedBox(
@@ -83,7 +78,7 @@ class HomeWorkAddSecond extends StatelessWidget {
                     unSelectedTextColor: Colors.black,
                     spacing: 0,
                     padding: const EdgeInsets.only(left: 10, right: 10),
-                    buttons: ['günlük', 'haftalık'],
+                    buttons: const ['günlük', 'haftalık'],
                     onchanged: (int index) {},
                   ),
                   controller.selectedId != -1
@@ -91,8 +86,7 @@ class HomeWorkAddSecond extends StatelessWidget {
                           width: pageWidht * 0.9,
                           child: PrimaryButton(
                             onPressed: () {
-                              bool valid =
-                                  formKey.currentState?.validate() ?? false;
+                              bool valid = formKey.currentState?.validate() ?? false;
                               if (valid) {
                                 controller.createHomeWork();
 

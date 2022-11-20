@@ -1,4 +1,4 @@
-import 'package:algoritmik_diyet/business/models/diet/diet_model.dart';
+import 'package:algoritmik_diyet/business/models/diet/diet_day_model.dart';
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +10,6 @@ import '../../../../main.dart';
 import '../../../commons/utils/icon_font.dart';
 import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/utils/validations.dart';
-import '../../../commons/widgets/buttons/settings_switch_list_item.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
 import '../../../commons/widgets/textformfields/general_text_form_field.dart';
 
@@ -418,13 +417,13 @@ class DietAddSecond extends StatelessWidget {
                                     bool valid = formKey.currentState?.validate() ?? false;
                                     if (valid) {
                                       if (isUpdate) {
-                                        DietMenuModel dietMenuModel =
-                                            DietMenuModel(cnt.dietMenuTitle.text, cnt.dietMenuDetail.text, true);
+                                        DietMenuModel dietMenuModel = DietMenuModel(cnt.dietMenuTitle.text,
+                                            cnt.dietMenuDetail.text, DateTime.now(), true, false);
                                         cnt.updateDietMenu(dietMenuModel, index!);
                                         Navigator.pop(context);
                                       } else {
-                                        DietMenuModel dietMenuModel =
-                                            DietMenuModel(cnt.dietMenuTitle.text, cnt.dietMenuDetail.text, true);
+                                        DietMenuModel dietMenuModel = DietMenuModel(cnt.dietMenuTitle.text,
+                                            cnt.dietMenuDetail.text, DateTime.now(), true, false);
                                         cnt.addDietMenu(dietMenuModel, cnt.selectedDietDate);
                                         Navigator.pop(context);
                                       }

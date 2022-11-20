@@ -8,16 +8,10 @@ class Validations {
     if (tckn == null || tckn.length != 11 || int.parse(tckn[0]) == 0) {
       return false;
     } else {
-      int tekler = int.parse(tckn[0]) +
-          int.parse(tckn[2]) +
-          int.parse(tckn[4]) +
-          int.parse(tckn[6]) +
-          int.parse(tckn[8]);
+      int tekler =
+          int.parse(tckn[0]) + int.parse(tckn[2]) + int.parse(tckn[4]) + int.parse(tckn[6]) + int.parse(tckn[8]);
 
-      int ciftler = int.parse(tckn[1]) +
-          int.parse(tckn[3]) +
-          int.parse(tckn[5]) +
-          int.parse(tckn[7]);
+      int ciftler = int.parse(tckn[1]) + int.parse(tckn[3]) + int.parse(tckn[5]) + int.parse(tckn[7]);
 
       var kalan = ((tekler * 7) - (ciftler)) % 10;
       var sonHane = ((tekler + ciftler + int.parse(tckn[9])) % 10);
@@ -55,20 +49,15 @@ class Validations {
   }
 
   static String? validateEmail(String? email) {
-    var regex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+    //var regex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
     // if (email == null || !regex.hasMatch(email.trim())) {
     //   return 'Lütfen geçerli bir E-posta adresi giriniz.';
     // }
     return null;
   }
 
-  static String? validatePasswordsAreSame(
-      String? pass, String? pass2, String? errorMessage) {
-    if (pass == null ||
-        pass.isEmpty ||
-        pass2 == null ||
-        pass2.isEmpty ||
-        pass != pass2) {
+  static String? validatePasswordsAreSame(String? pass, String? pass2, String? errorMessage) {
+    if (pass == null || pass.isEmpty || pass2 == null || pass2.isEmpty || pass != pass2) {
       return errorMessage ?? "Şifrelerin aynı oldugundan emin olunuz";
     }
     return null;

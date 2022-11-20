@@ -1,23 +1,17 @@
+import 'package:algoritmik_diyet/business/models/diet/diet_day_model.dart';
+
 class DietModel {
   int dietId;
-  DateTime dietTime;
-  List<DietMenuModel> dietMenus;
+  String dietTitle;
+  DateTime dietStartDate;
+  DateTime dietEndDate;
+  List<DietDayModel> dietDayModel;
 
   DietModel(
     this.dietId,
-    this.dietTime,
-    this.dietMenus,
-  );
-}
-
-class DietMenuModel {
-  String dietMenuTitle;
-  String dietMenuDetail;
-  bool isNotification;
-
-  DietMenuModel(
-    this.dietMenuTitle,
-    this.dietMenuDetail,
-    this.isNotification,
+    this.dietTitle,
+    this.dietStartDate,
+    this.dietEndDate,
+    this.dietDayModel,
   );
 }

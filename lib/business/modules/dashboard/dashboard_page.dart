@@ -1,4 +1,5 @@
 import 'package:algoritmik_diyet/business/modules/client/screens/client_page.dart';
+import 'package:algoritmik_diyet/business/modules/recipe/controller/recipe_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../constants/app_color.dart';
@@ -27,9 +28,12 @@ class _DashboardPageState extends State<DashboardPage> {
     ),
     ChangeNotifierProvider(
       create: (_) => ClientController(),
-      child: const Client(),
+      child: const ClientPage(),
     ),
-    const Recipe(),
+    ChangeNotifierProvider(
+      create: (_) => RecipeController(),
+      child: const Recipe(),
+    ),
     const Profile(),
   ];
 
@@ -86,36 +90,44 @@ class _DashboardPageState extends State<DashboardPage> {
           BottomNavigationBarItem(
             icon: DuoToneFontAwesomeIcon(
                 iconSource: IconFont.home,
-                firstColor: _selectedIndex == 0 ? firstIconColor : secondIconColor,
+                firstColor:
+                    _selectedIndex == 0 ? firstIconColor : secondIconColor,
                 iconSize: 20,
-                secondColor: _selectedIndex == 0 ? firstIconColor : secondIconColor,
+                secondColor:
+                    _selectedIndex == 0 ? firstIconColor : secondIconColor,
                 iconSecondSource: SecondIconFont.home),
             label: 'Ana Sayfa',
           ),
           BottomNavigationBarItem(
             icon: DuoToneFontAwesomeIcon(
                 iconSource: IconFont.walking,
-                firstColor: _selectedIndex == 1 ? firstIconColor : secondIconColor,
+                firstColor:
+                    _selectedIndex == 1 ? firstIconColor : secondIconColor,
                 iconSize: 20,
-                secondColor: _selectedIndex == 1 ? firstIconColor : secondIconColor,
+                secondColor:
+                    _selectedIndex == 1 ? firstIconColor : secondIconColor,
                 iconSecondSource: SecondIconFont.walking),
             label: 'Danışan',
           ),
           BottomNavigationBarItem(
             icon: DuoToneFontAwesomeIcon(
                 iconSource: IconFont.utensilsalt,
-                firstColor: _selectedIndex == 2 ? firstIconColor : secondIconColor,
+                firstColor:
+                    _selectedIndex == 2 ? firstIconColor : secondIconColor,
                 iconSize: 20,
-                secondColor: _selectedIndex == 2 ? firstIconColor : secondIconColor,
+                secondColor:
+                    _selectedIndex == 2 ? firstIconColor : secondIconColor,
                 iconSecondSource: SecondIconFont.utensilsalt),
             label: 'Tarif',
           ),
           BottomNavigationBarItem(
             icon: DuoToneFontAwesomeIcon(
                 iconSource: IconFont.useredit,
-                firstColor: _selectedIndex == 3 ? firstIconColor : secondIconColor,
+                firstColor:
+                    _selectedIndex == 3 ? firstIconColor : secondIconColor,
                 iconSize: 20,
-                secondColor: _selectedIndex == 3 ? firstIconColor : secondIconColor,
+                secondColor:
+                    _selectedIndex == 3 ? firstIconColor : secondIconColor,
                 iconSecondSource: SecondIconFont.useredit),
             label: 'Profil',
           ),

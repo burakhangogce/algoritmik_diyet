@@ -53,6 +53,7 @@ dependencies:
   build_runner: ^2.0.5
   flutter_svg: ^1.1.5
   shared_preferences: ^2.0.15
+  uuid: ^3.0.7
 
   mobkit_flutter_servicebase:
     git:
@@ -137,7 +138,6 @@ flutter:
         - asset: assets/fonts/fontAwesomePro/FontAwesomeBrandsRegular400.otf
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/icons/
     - assets/images/
     - assets/svg/
   #  - assets/ca/

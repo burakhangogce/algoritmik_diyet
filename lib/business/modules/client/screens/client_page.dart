@@ -1,5 +1,6 @@
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/business/modules/client/screens/clien_detail_page.dart';
+import 'package:algoritmik_diyet/business/modules/client/screens/client_create_page.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,8 +10,8 @@ import '../../../../constants/app_theme.dart';
 import '../../../commons/widgets/buttons/primary_button.dart';
 import '../../../models/client/client_model.dart';
 
-class Client extends StatelessWidget {
-  const Client({super.key});
+class ClientPage extends StatelessWidget {
+  const ClientPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,17 @@ class Client extends StatelessWidget {
           SizedBox(
             width: pageWidht * 0.9,
             child: PrimaryButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        ChangeNotifierProvider<ClientController>.value(
+                      value: controller,
+                      child: const ClientCreatePage(),
+                    ),
+                  ),
+                );
+              },
               text: "Danışan Ekle",
               textStyle: AppTheme.notoSansMed18White,
               style: AppTheme.elevatedButtonStyle,
@@ -37,7 +48,10 @@ class Client extends StatelessWidget {
             height: 12,
           ),
           Container(
-            height: 100 + (listClientModel.length.toDouble() < 2 ? 65 : 80 * listClientModel.length.toDouble()),
+            height: 100 +
+                (listClientModel.length.toDouble() < 2
+                    ? 65
+                    : 80 * listClientModel.length.toDouble()),
             decoration: BoxDecoration(
                 border: Border.all(
                   color: firstIconColor,
@@ -61,10 +75,14 @@ class Client extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   Expanded(
                     child: ListView.builder(
                         itemCount: listClientModel.length,
                         scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
@@ -73,7 +91,9 @@ class Client extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (BuildContext context) => ChangeNotifierProvider<ClientController>.value(
+                                    builder: (BuildContext context) =>
+                                        ChangeNotifierProvider<
+                                            ClientController>.value(
                                       value: controller,
                                       child: ClientDetailPage(
                                         clientModel: listClientModel[index],
@@ -87,13 +107,15 @@ class Client extends StatelessWidget {
                                   border: Border.all(
                                     color: firstIconColor,
                                   ),
-                                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
                                 ),
                                 child: ListTile(
                                   leading: CircleAvatar(
                                     backgroundColor: firstIconColor,
                                     child: Text(
-                                      listClientModel[index].clientName[0] + listClientModel[index].clientName[1],
+                                      listClientModel[index].clientName[0] +
+                                          listClientModel[index].clientName[1],
                                       style: AppTheme.notoSansSB16PrimaryText,
                                     ),
                                   ),

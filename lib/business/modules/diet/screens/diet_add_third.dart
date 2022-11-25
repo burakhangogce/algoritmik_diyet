@@ -95,15 +95,17 @@ class DietAddThird extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 10,),
                   SizedBox(
-                    height: controller.dietMap.length < 2 ? 55 : 50 * controller.dietMap.length.toDouble(),
+                    height: controller.dietMap.length < 2 ? 40 : 35 * controller.dietMap.length.toDouble(),
                     child: ListView.builder(
                       physics: const AlwaysScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
                       itemCount: controller.dietMap.length,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
-                        return SizedBox(
-                          height: 40,
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

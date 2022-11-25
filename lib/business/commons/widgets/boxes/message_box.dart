@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../constants/enums/message_box_state.dart';
+import '../../utils/icon_font.dart';
+import '../../utils/second_icon_font.dart';
+import '../duo_tone_font_Awesome_icon.dart';
 
 class MessageBox extends StatelessWidget {
   const MessageBox(
@@ -41,15 +44,12 @@ class MessageBox extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              state == MessageBoxState.success
-                  ? "assets/images/green_info.png"
-                  : state == MessageBoxState.unsuccess
-                      ? "assets/images/red_info.png"
-                      : "assets/images/info.png",
-              height: 25,
-              width: 25,
-            ),
+            DuoToneFontAwesomeIcon(
+                iconSource: IconFont.infocircle,
+                firstColor: firstIconColor,
+                iconSize: 25,
+                secondColor: secondIconColor,
+                iconSecondSource: SecondIconFont.infocircle),
             const SizedBox(width: 6),
             Expanded(
               child: Padding(

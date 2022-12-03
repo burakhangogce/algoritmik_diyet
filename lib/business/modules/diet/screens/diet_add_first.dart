@@ -1,4 +1,5 @@
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -15,21 +16,26 @@ class DietAddFirst extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20, top: pageHeight / 5),
-      child: Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
+      child: Consumer<DietController>(
+          builder: (BuildContext context, controller, Widget? child) {
         return SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             GestureDetector(
               onTap: () {
                 controller.displayTimePicker(
-                    context, DateTime.now(), controller.dietFirstDate, DateTime.now().add(const Duration(days: 365)));
+                    context,
+                    DateTime.now(),
+                    controller.dietFirstDate,
+                    DateTime.now().add(const Duration(days: 365)));
               },
               child: TapTextFormField(
                 controller.dietFirstDate,
                 placeholder: 'Diyet Başlangıç Tarihi',
                 keyboardType: TextInputType.phone,
                 icon: const Icon(Icons.date_range),
-                validator: (value) => Validations.validateIsNotEmpty(value, null),
+                validator: (value) =>
+                    Validations.validateIsNotEmpty(value, null),
               ),
             ),
             const SizedBox(
@@ -40,16 +46,21 @@ class DietAddFirst extends StatelessWidget {
                     onTap: () {
                       controller.displayTimePicker(
                           context,
-                          DateFormat('dd-MM-yyyy').parse(controller.dietFirstDate.text).add(const Duration(days: 1)),
+                          DateFormat('dd-MM-yyyy')
+                              .parse(controller.dietFirstDate.text)
+                              .add(const Duration(days: 1)),
                           controller.dietLastDate,
-                          DateFormat('dd-MM-yyyy').parse(controller.dietFirstDate.text).add(const Duration(days: 6)));
+                          DateFormat('dd-MM-yyyy')
+                              .parse(controller.dietFirstDate.text)
+                              .add(const Duration(days: 6)));
                     },
                     child: TapTextFormField(
                       controller.dietLastDate,
                       placeholder: 'Diyet Bitiş Tarihi',
                       keyboardType: TextInputType.phone,
                       icon: const Icon(Icons.date_range),
-                      validator: (value) => Validations.validateIsNotEmpty(value, null),
+                      validator: (value) =>
+                          Validations.validateIsNotEmpty(value, null),
                     ),
                   )
                 : Container(),
@@ -60,7 +71,7 @@ class DietAddFirst extends StatelessWidget {
                 ? SizedBox(
                     width: pageWidht * 0.9,
                     child: PrimaryButton(
-                      onPressed: () {
+                      onPressed: () async {
                         controller.setSelectedDateList();
                         controller.onNextPage(context);
                       },

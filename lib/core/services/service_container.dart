@@ -1,3 +1,5 @@
+import 'package:algoritmik_diyet/business/services/data/client_services.dart';
+import 'package:algoritmik_diyet/business/services/data/diet_services.dart';
 import 'package:algoritmik_diyet/business/services/data/identity_services.dart';
 import 'package:algoritmik_diyet/business/services/data/info_services.dart';
 import 'package:get_it/get_it.dart';
@@ -12,6 +14,8 @@ class ServiceContainer {
     GetIt.I.registerSingleton<SettingService>(SettingService());
     GetIt.I.registerSingleton<IdentityServices>(IdentityServices());
     GetIt.I.registerSingleton<InfoServices>(InfoServices());
+    GetIt.I.registerSingleton<DietServices>(DietServices());
+    GetIt.I.registerSingleton<ClientServices>(ClientServices());
     // GetIt.I.registerSingleton<AkisServices>(AkisServices());
     // GetIt.I.registerSingleton<FirmaServices>(FirmaServices());
     // GetIt.I.registerSingleton<FileServices>(FileServices());

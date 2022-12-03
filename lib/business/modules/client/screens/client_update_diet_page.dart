@@ -1,4 +1,5 @@
 import 'package:algoritmik_diyet/business/models/diet/diet_model.dart';
+import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
 
 class UpdateDietPage extends StatelessWidget {
   const UpdateDietPage({super.key, required this.dietModel});
-  final DietModel dietModel;
+  final DietOutputModel dietModel;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,8 @@ class UpdateDietPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Consumer<ClientController>(builder: (BuildContext context, controller, Widget? child) {
+        child: Consumer<ClientController>(
+            builder: (BuildContext context, controller, Widget? child) {
           return Column(children: [
             SizedBox(
               height: pageHeight / 50,
@@ -73,15 +75,21 @@ class UpdateDietPage extends StatelessWidget {
                             border: Border.all(
                               color: firstIconColor,
                             ),
-                            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                            color: controller.selectedDietDate == index ? Colors.grey.shade300 : Colors.transparent),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15.0)),
+                            color: controller.selectedDietDate == index
+                                ? Colors.grey.shade300
+                                : Colors.transparent),
                         child: Column(
                           children: [
                             Text(
-                              dietModel.dietDayModel[index].dietTime.day.toString(),
+                              dietModel.dietDayModel[index].dietTime.day
+                                  .toString(),
                               style: AppTheme.notoSansMed12PrimaryText,
                             ),
-                            Text(DateFormat('EE').format(dietModel.dietDayModel[index].dietTime),
+                            Text(
+                                DateFormat('EE').format(
+                                    dietModel.dietDayModel[index].dietTime),
                                 style: AppTheme.notoSansMed12Primary2Text),
                           ],
                         ),
@@ -96,10 +104,12 @@ class UpdateDietPage extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 physics: const AlwaysScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: dietModel.dietDayModel[controller.selectedDietDate].dietMenus.length,
+                itemCount: dietModel
+                    .dietDayModel[controller.selectedDietDate].dietMenus.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
                     child: GestureDetector(
                       onTap: () {},
                       child: Container(
@@ -107,7 +117,8 @@ class UpdateDietPage extends StatelessWidget {
                             border: Border.all(
                               color: firstIconColor,
                             ),
-                            borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15.0)),
                             color: Colors.transparent),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -124,14 +135,18 @@ class UpdateDietPage extends StatelessWidget {
                                         firstColor: firstIconColor,
                                         iconSize: 40,
                                         secondColor: secondIconColor,
-                                        iconSecondSource: SecondIconFont.utensilsalt),
+                                        iconSecondSource:
+                                            SecondIconFont.utensilsalt),
                                   ),
                                   const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
                                     DateFormat('hh:mm').format(dietModel
-                                        .dietDayModel[controller.selectedDietDate].dietMenus[index].dietMenuTime),
+                                        .dietDayModel[
+                                            controller.selectedDietDate]
+                                        .dietMenus[index]
+                                        .dietMenuTime),
                                     style: AppTheme.notoSansMed18PrimaryText,
                                   )
                                 ],
@@ -151,7 +166,11 @@ class UpdateDietPage extends StatelessWidget {
                                     width: 10,
                                   ),
                                   Text(
-                                    dietModel.dietDayModel[controller.selectedDietDate].dietMenus[index].dietMenuTitle,
+                                    dietModel
+                                        .dietDayModel[
+                                            controller.selectedDietDate]
+                                        .dietMenus[index]
+                                        .dietMenuTitle,
                                     style: AppTheme.notoSansMed12Primary2Text,
                                   ),
                                 ],
@@ -173,7 +192,10 @@ class UpdateDietPage extends StatelessWidget {
                                   Flexible(
                                     child: Text(
                                       dietModel
-                                          .dietDayModel[controller.selectedDietDate].dietMenus[index].dietMenuDetail,
+                                          .dietDayModel[
+                                              controller.selectedDietDate]
+                                          .dietMenus[index]
+                                          .dietMenuDetail,
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 20,
                                       style: AppTheme.notoSansMed12Primary2Text,
@@ -185,15 +207,19 @@ class UpdateDietPage extends StatelessWidget {
                                 height: 15,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
                                       width: pageWidht * 0.3,
                                       child: ElevatedButton(
                                         onPressed: () {},
-                                        style: AppTheme.elevatedButtonStyle.copyWith(
-                                            fixedSize: MaterialStateProperty.resolveWith((states) {
-                                          if (states.contains(MaterialState.disabled)) {
+                                        style: AppTheme.elevatedButtonStyle
+                                            .copyWith(fixedSize:
+                                                MaterialStateProperty
+                                                    .resolveWith((states) {
+                                          if (states.contains(
+                                              MaterialState.disabled)) {
                                             return const Size(5, 5);
                                           }
                                           return const Size(5, 5);
@@ -204,10 +230,12 @@ class UpdateDietPage extends StatelessWidget {
                                     width: pageWidht * 0.3,
                                     child: OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                          foregroundColor: loginGradientStartColor,
+                                          foregroundColor:
+                                              loginGradientStartColor,
                                           fixedSize: const Size(10, 10),
                                           shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(15.0),
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
                                           ),
                                           side: const BorderSide(
                                             width: 1.0,

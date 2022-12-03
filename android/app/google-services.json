@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "969014295401",
+    "project_id": "fitimapp",
+    "storage_bucket": "fitimapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969014295401:android:bc329be43ca7de22749bf8",
+        "android_client_info": {
+          "package_name": "com.example.algoritmik_diyet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969014295401-fcfue5522bh0rmmaqltg8kjikbefpgnp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.algoritmik_diyet",
+            "certificate_hash": "5263e33e4c023d404f2c362f928327f577653625"
+          }
+        },
+        {
+          "client_id": "969014295401-3qr273mrf6l572ffstu4a0gil1vmuu43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEQbDRh7R1Q8QQdOPPAloeF2IH814CJ_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969014295401-3qr273mrf6l572ffstu4a0gil1vmuu43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

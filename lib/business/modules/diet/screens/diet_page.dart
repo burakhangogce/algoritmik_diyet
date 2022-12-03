@@ -2,6 +2,7 @@ import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controlle
 import 'package:algoritmik_diyet/business/modules/diet/screens/diet_add_first.dart';
 import 'package:algoritmik_diyet/business/modules/diet/screens/diet_add_second.dart';
 import 'package:algoritmik_diyet/business/modules/diet/screens/diet_add_third.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../main.dart';
@@ -64,7 +65,8 @@ class _DietPageState extends State<DietPage> {
               DietAddThird(),
             ],
           ),
-          Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
+          Consumer<DietController>(
+              builder: (BuildContext context, controller, Widget? child) {
             return Positioned(
               height: pagerHeight,
               width: pageWidht,

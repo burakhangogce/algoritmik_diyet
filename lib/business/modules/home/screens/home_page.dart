@@ -15,7 +15,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -74,8 +75,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 controller: _pageController,
                 physics: const PageScrollPhysics(),
                 children: [
-                  Image.network("https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg"),
-                  Image.network("https://cdn.pixabay.com/photo/2021/03/04/11/37/coast-6067736_960_720.jpg"),
+                  Image.network(
+                      "https://cdn.pixabay.com/photo/2022/10/16/13/53/early-morning-7525151_960_720.jpg"),
+                  Image.network(
+                      "https://cdn.pixabay.com/photo/2021/03/04/11/37/coast-6067736_960_720.jpg"),
                 ],
               ),
             ),
@@ -90,22 +93,23 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     dotWidth: 10,
                     radius: 7),
                 onDotClicked: (index) => _pageController.animateToPage(index,
-                    duration: const Duration(milliseconds: 500), curve: Curves.bounceOut),
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.bounceOut),
               ),
             ),
             const SizedBox(
               height: 16,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/creatediet');
                   },
                   child: Container(
-                    height: pageHeight * 0.2,
-                    width: pageWidht * 0.4,
+                    height: pageHeight * 0.1,
+                    width: pageWidht * 0.25,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -113,35 +117,27 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
                         Container(
-                          height: 52,
-                          width: 52,
+                          height: 35,
+                          width: 35,
                           decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: fistBorderColor),
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              border:
+                                  Border.all(width: 1, color: fistBorderColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
-                              iconSource: IconFont.analytics,
+                              iconSource: IconFont.walking,
                               firstColor: firstIconColor,
-                              iconSize: 24,
+                              iconSize: 16,
                               secondColor: secondIconColor,
-                              iconSecondSource: SecondIconFont.analytics),
+                              iconSecondSource: SecondIconFont.walking),
                         ),
-                        Center(
+                        const Center(
                             child: Text(
                           "Danışan",
-                          style: AppTheme.notoSansSB16PrimaryText,
+                          style: AppTheme.notoSansMed10PrimaryText,
                         )),
-                        const Text(
-                          "Tüm danışanlarım",
-                          style: AppTheme.notoSansMed14Primary2Text,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
                       ],
                     ),
                   ),
@@ -151,8 +147,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     Navigator.pushNamed(context, '/creatediet');
                   },
                   child: Container(
-                    height: pageHeight * 0.2,
-                    width: pageWidht * 0.4,
+                    height: pageHeight * 0.1,
+                    width: pageWidht * 0.25,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -160,52 +156,36 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
                         Container(
-                          height: 52,
-                          width: 52,
+                          height: 35,
+                          width: 35,
                           decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: fistBorderColor),
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              border:
+                                  Border.all(width: 1, color: fistBorderColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
-                              iconSource: IconFont.paperplane,
+                              iconSource: IconFont.heartbeat,
                               firstColor: firstIconColor,
-                              iconSize: 24,
+                              iconSize: 16,
                               secondColor: secondIconColor,
-                              iconSecondSource: SecondIconFont.paperplane),
+                              iconSecondSource: SecondIconFont.heartbeat),
                         ),
-                        Center(
+                        const Center(
                             child: Text(
                           "Diyet",
-                          style: AppTheme.notoSansSB16PrimaryText,
+                          style: AppTheme.notoSansMed10PrimaryText,
                         )),
-                        const Text(
-                          "Diyet Oluştur",
-                          style: AppTheme.notoSansMed14Primary2Text,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
                       ],
                     ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    height: pageHeight * 0.2,
-                    width: pageWidht * 0.4,
+                    height: pageHeight * 0.1,
+                    width: pageWidht * 0.25,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -213,80 +193,28 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
                         Container(
-                          height: 52,
-                          width: 52,
+                          height: 35,
+                          width: 35,
                           decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: fistBorderColor),
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              border:
+                                  Border.all(width: 1, color: fistBorderColor),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20)),
                               color: background2Color),
                           child: DuoToneFontAwesomeIcon(
-                              iconSource: IconFont.users,
+                              iconSource: IconFont.alarmexclamation,
                               firstColor: firstIconColor,
-                              iconSize: 24,
+                              iconSize: 16,
                               secondColor: secondIconColor,
-                              iconSecondSource: SecondIconFont.users),
+                              iconSecondSource:
+                                  SecondIconFont.alarmexclamation),
                         ),
-                        Center(
+                        const Center(
                             child: Text(
                           "Etkileşim",
-                          style: AppTheme.notoSansSB16PrimaryText,
+                          style: AppTheme.notoSansMed10PrimaryText,
                         )),
-                        const Text(
-                          "Son etkileşimler",
-                          style: AppTheme.notoSansMed14Primary2Text,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    height: pageHeight * 0.2,
-                    width: pageWidht * 0.4,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: fistBorderColor),
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        Container(
-                          height: 52,
-                          width: 52,
-                          decoration: BoxDecoration(
-                              border: Border.all(width: 1, color: fistBorderColor),
-                              borderRadius: const BorderRadius.all(Radius.circular(20)),
-                              color: background2Color),
-                          child: DuoToneFontAwesomeIcon(
-                              iconSource: IconFont.school,
-                              firstColor: firstIconColor,
-                              iconSize: 24,
-                              secondColor: secondIconColor,
-                              iconSecondSource: SecondIconFont.school),
-                        ),
-                        Center(
-                            child: Text(
-                          "Hatırlatıcı",
-                          style: AppTheme.notoSansSB16PrimaryText,
-                        )),
-                        const Text(
-                          "Hatırlatıcılarım",
-                          style: AppTheme.notoSansMed14Primary2Text,
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
                       ],
                     ),
                   ),

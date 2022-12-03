@@ -4,6 +4,7 @@ import 'package:algoritmik_diyet/business/modules/homework/controller/homework_c
 import 'package:algoritmik_diyet/business/modules/homework/screens/homework_page.dart';
 import 'package:algoritmik_diyet/business/modules/students/screens/student_details_page.dart';
 import 'package:algoritmik_diyet/business/modules/students/screens/students_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -31,11 +32,14 @@ double pageWidht =
     MediaQuery.of(NavigationService.navigatorKey.currentContext!).size.width;
 
 bool isTest = false;
+bool isClient = false;
+int nutritionistId = 1;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   MobkitServiceBase.initialize('doruk');
+  await Firebase.initializeApp();
   await ServiceContainer.registerService();
   runApp(const MyApp());
 }

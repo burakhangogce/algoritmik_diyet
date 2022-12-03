@@ -22,7 +22,8 @@ class DietAddSecond extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.only(left: 10, right: 10, top: pageHeight / 6),
-      child: Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
+      child: Consumer<DietController>(
+          builder: (BuildContext context, controller, Widget? child) {
         return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,15 +90,20 @@ class DietAddSecond extends StatelessWidget {
                           border: Border.all(
                             color: firstIconColor,
                           ),
-                          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                          color: index == controller.selectedDietDate ? Colors.grey.shade300 : Colors.transparent),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15.0)),
+                          color: index == controller.selectedDietDate
+                              ? Colors.grey.shade300
+                              : Colors.transparent),
                       child: Column(
                         children: [
                           Text(
                             controller.selectedDateList[index].day.toString(),
                             style: AppTheme.notoSansMed12PrimaryText,
                           ),
-                          Text(DateFormat('EE').format(controller.selectedDateList[index]),
+                          Text(
+                              DateFormat('EE')
+                                  .format(controller.selectedDateList[index]),
                               style: AppTheme.notoSansMed12Primary2Text),
                         ],
                       ),
@@ -157,34 +163,42 @@ class DietAddSecond extends StatelessWidget {
             ],
           ),
           controller.dietMap.isNotEmpty &&
-                  controller.dietMap.containsKey(controller.selectedDateList[controller.selectedDietDate])
+                  controller.dietMap.containsKey(
+                      controller.selectedDateList[controller.selectedDietDate])
               ? Expanded(
                   child: Form(
                     key: formKey,
                     child: ListView.builder(
                       physics: const AlwaysScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: controller.dietMap[controller.selectedDateList[controller.selectedDietDate]]!.length,
+                      itemCount: controller
+                          .dietMap[controller
+                              .selectedDateList[controller.selectedDietDate]]!
+                          .length,
                       itemBuilder: (context, index) {
                         return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 4, vertical: 5),
                             child: GestureDetector(
                               onTap: () {
                                 showAddDietSheet(controller,
                                     isUpdate: true,
                                     index: index,
-                                    dietMenuModel: controller
-                                        .dietMap[controller.selectedDateList[controller.selectedDietDate]]![index]);
+                                    dietMenuModel: controller.dietMap[controller
+                                            .selectedDateList[
+                                        controller.selectedDietDate]]![index]);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
                                     border: Border.all(
                                       color: firstIconColor,
                                     ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15.0)),
                                     color: Colors.transparent),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   child: Column(
                                     children: [
                                       const SizedBox(
@@ -194,18 +208,21 @@ class DietAddSecond extends StatelessWidget {
                                         children: [
                                           Center(
                                             child: DuoToneFontAwesomeIcon(
-                                                iconSource: IconFont.utensilsalt,
+                                                iconSource:
+                                                    IconFont.utensilsalt,
                                                 firstColor: firstIconColor,
                                                 iconSize: 40,
                                                 secondColor: secondIconColor,
-                                                iconSecondSource: SecondIconFont.utensilsalt),
+                                                iconSecondSource:
+                                                    SecondIconFont.utensilsalt),
                                           ),
                                           const SizedBox(
                                             height: 10,
                                           ),
                                           Text(
                                             "19:00 - 19:30",
-                                            style: AppTheme.notoSansMed18PrimaryText,
+                                            style: AppTheme
+                                                .notoSansMed18PrimaryText,
                                           )
                                         ],
                                       ),
@@ -213,22 +230,29 @@ class DietAddSecond extends StatelessWidget {
                                         height: 20,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const Text(
                                             "Öğün Başlığı",
-                                            style: AppTheme.notoSansMed14PrimaryText,
+                                            style: AppTheme
+                                                .notoSansMed14PrimaryText,
                                           ),
                                           const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
                                             controller
-                                                .dietMap[controller.selectedDateList[controller.selectedDietDate]]![
+                                                .dietMap[
+                                                    controller.selectedDateList[
+                                                        controller
+                                                            .selectedDietDate]]![
                                                     index]
                                                 .dietMenuTitle,
-                                            style: AppTheme.notoSansMed12Primary2Text,
+                                            style: AppTheme
+                                                .notoSansMed12Primary2Text,
                                           ),
                                         ],
                                       ),
@@ -236,22 +260,29 @@ class DietAddSecond extends StatelessWidget {
                                         height: 10,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const Text(
                                             "Öğün Detayı",
-                                            style: AppTheme.notoSansMed14PrimaryText,
+                                            style: AppTheme
+                                                .notoSansMed14PrimaryText,
                                           ),
                                           const SizedBox(
                                             width: 10,
                                           ),
                                           Text(
                                             controller
-                                                .dietMap[controller.selectedDateList[controller.selectedDietDate]]![
+                                                .dietMap[
+                                                    controller.selectedDateList[
+                                                        controller
+                                                            .selectedDietDate]]![
                                                     index]
                                                 .dietMenuDetail,
-                                            style: AppTheme.notoSansMed12Primary2Text,
+                                            style: AppTheme
+                                                .notoSansMed12Primary2Text,
                                           ),
                                         ],
                                       ),
@@ -259,17 +290,24 @@ class DietAddSecond extends StatelessWidget {
                                         height: 15,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
                                         children: [
                                           SizedBox(
                                               width: pageWidht * 0.3,
                                               child: ElevatedButton(
                                                 onPressed: () {
-                                                  controller.copyDietMenu(index);
+                                                  controller
+                                                      .copyDietMenu(index);
                                                 },
-                                                style: AppTheme.elevatedButtonStyle.copyWith(
-                                                    fixedSize: MaterialStateProperty.resolveWith((states) {
-                                                  if (states.contains(MaterialState.disabled)) {
+                                                style: AppTheme
+                                                    .elevatedButtonStyle
+                                                    .copyWith(fixedSize:
+                                                        MaterialStateProperty
+                                                            .resolveWith(
+                                                                (states) {
+                                                  if (states.contains(
+                                                      MaterialState.disabled)) {
                                                     return const Size(5, 5);
                                                   }
                                                   return const Size(5, 5);
@@ -280,18 +318,23 @@ class DietAddSecond extends StatelessWidget {
                                             width: pageWidht * 0.3,
                                             child: OutlinedButton(
                                               style: OutlinedButton.styleFrom(
-                                                  foregroundColor: loginGradientStartColor,
+                                                  foregroundColor:
+                                                      loginGradientStartColor,
                                                   fixedSize: const Size(10, 10),
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(15.0),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.0),
                                                   ),
                                                   side: const BorderSide(
                                                     width: 1.0,
-                                                    color: loginGradientStartColor,
+                                                    color:
+                                                        loginGradientStartColor,
                                                     style: BorderStyle.solid,
                                                   )),
                                               onPressed: () {
-                                                controller.deleteDietMenu(index);
+                                                controller
+                                                    .deleteDietMenu(index);
                                               },
                                               child: const Text("İptal Et"),
                                             ),
@@ -316,7 +359,8 @@ class DietAddSecond extends StatelessWidget {
     );
   }
 
-  showAddDietSheet(DietController cnt, {bool isUpdate = false, DietMenuModel? dietMenuModel, int? index}) {
+  showAddDietSheet(DietController cnt,
+      {bool isUpdate = false, DietMenuModel? dietMenuModel, int? index}) {
     final formKey = GlobalKey<FormState>();
     if (isUpdate) {
       cnt.dietMenuTitle.text = dietMenuModel!.dietMenuTitle;
@@ -368,17 +412,23 @@ class DietAddSecond extends StatelessWidget {
                             GeneralTextFormField(
                               cnt.dietMenuTitle,
                               keyboardType: TextInputType.text,
-                              placeholder: isUpdate ? dietMenuModel!.dietMenuTitle : "Öğün Başlığı",
-                              validator: (value) => Validations.validateIsNotEmpty(value, null),
+                              placeholder: isUpdate
+                                  ? dietMenuModel!.dietMenuTitle
+                                  : "Öğün Başlığı",
+                              validator: (value) =>
+                                  Validations.validateIsNotEmpty(value, null),
                             ),
                             TextField(
                               controller: cnt.dietMenuDetail,
                               keyboardType: TextInputType.multiline,
                               maxLines: 4,
                               decoration: InputDecoration(
-                                  hintText: isUpdate ? dietMenuModel!.dietMenuDetail : "Öğün Detayı",
+                                  hintText: isUpdate
+                                      ? dietMenuModel!.dietMenuDetail
+                                      : "Öğün Detayı",
                                   focusedBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(width: 1, color: firstIconColor))),
+                                      borderSide: BorderSide(
+                                          width: 1, color: firstIconColor))),
                             ),
                           ],
                         ),
@@ -411,20 +461,37 @@ class DietAddSecond extends StatelessWidget {
                                     firstColor: firstIconColor,
                                     iconSize: 20,
                                     secondColor: secondIconColor,
-                                    iconSecondSource: SecondIconFont.utensilsalt),
+                                    iconSecondSource:
+                                        SecondIconFont.utensilsalt),
                                 TextButton(
                                   onPressed: () {
-                                    bool valid = formKey.currentState?.validate() ?? false;
+                                    bool valid =
+                                        formKey.currentState?.validate() ??
+                                            false;
                                     if (valid) {
                                       if (isUpdate) {
-                                        DietMenuModel dietMenuModel = DietMenuModel(cnt.dietMenuTitle.text,
-                                            cnt.dietMenuDetail.text, DateTime.now(), true, false);
-                                        cnt.updateDietMenu(dietMenuModel, index!);
+                                        DietMenuModel dietMenuModel =
+                                            DietMenuModel(
+                                                1,
+                                                cnt.dietMenuTitle.text,
+                                                cnt.dietMenuDetail.text,
+                                                DateTime.now(),
+                                                true,
+                                                false);
+                                        cnt.updateDietMenu(
+                                            dietMenuModel, index!);
                                         Navigator.pop(context);
                                       } else {
-                                        DietMenuModel dietMenuModel = DietMenuModel(cnt.dietMenuTitle.text,
-                                            cnt.dietMenuDetail.text, DateTime.now(), true, false);
-                                        cnt.addDietMenu(dietMenuModel, cnt.selectedDietDate);
+                                        DietMenuModel dietMenuModel =
+                                            DietMenuModel(
+                                                1,
+                                                cnt.dietMenuTitle.text,
+                                                cnt.dietMenuDetail.text,
+                                                DateTime.now(),
+                                                true,
+                                                false);
+                                        cnt.addDietMenu(dietMenuModel,
+                                            cnt.selectedDietDate);
                                         Navigator.pop(context);
                                       }
                                     }

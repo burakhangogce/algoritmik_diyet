@@ -1,6 +1,8 @@
+import 'package:algoritmik_diyet/business/services/data/diet_services.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/app_color.dart';
+import '../../../../main.dart';
 import '../../../models/diet/diet_day_model.dart';
 
 class DietController with ChangeNotifier {
@@ -9,33 +11,82 @@ class DietController with ChangeNotifier {
   TextEditingController dietLastDate = TextEditingController();
   TextEditingController dietMenuTitle = TextEditingController();
   TextEditingController dietMenuDetail = TextEditingController();
+  final DietServices _dietServices = getIt.get<DietServices>();
   int selectedPageIndex = 0;
   int selectedDietDate = 0;
   final List<Widget> timeRangeList = [
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('00:00 - 01:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('01:00 - 02:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('02:00 - 03:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('03:00 - 04:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('04:00 - 05:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('05:00 - 06:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('06:00 - 07:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('07:00 - 08:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('08:00 - 09:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('09:00 - 10:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('10:00 - 11:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('11:00 - 12:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('12:00 - 13:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('13:00 - 14:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('14:00 - 15:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('15:00 - 16:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('16:00 - 17:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('17:00 - 18:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('18:00 - 19:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('19:00 - 20:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('20:00 - 21:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('21:00 - 22:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('22:00 - 23:00')),
-    Container(margin: const EdgeInsets.symmetric(vertical: 5), child: const Text('23:00 - 00:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('00:00 - 01:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('01:00 - 02:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('02:00 - 03:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('03:00 - 04:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('04:00 - 05:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('05:00 - 06:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('06:00 - 07:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('07:00 - 08:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('08:00 - 09:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('09:00 - 10:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('10:00 - 11:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('11:00 - 12:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('12:00 - 13:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('13:00 - 14:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('14:00 - 15:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('15:00 - 16:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('16:00 - 17:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('17:00 - 18:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('18:00 - 19:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('19:00 - 20:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('20:00 - 21:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('21:00 - 22:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('22:00 - 23:00')),
+    Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        child: const Text('23:00 - 00:00')),
   ];
   List<Widget> textFields = [];
   List<List<TextEditingController>> diets = [];
@@ -43,7 +94,8 @@ class DietController with ChangeNotifier {
   List<DateTime> selectedDateList = [];
   Map<DateTime, List<DietMenuModel>> dietMap = {};
   List<DietMenuModel> copyList = [];
-  DietMenuModel copyMenu = DietMenuModel("", "", DateTime.now(), true, false);
+  DietMenuModel copyMenu =
+      DietMenuModel(1, "", "", DateTime.now(), true, false);
   double dietWaterLoop = 1.0;
   double dietWaterNotificationLoop = 3.0;
   double dietCoffeeLoop = 1.0;
@@ -159,8 +211,8 @@ class DietController with ChangeNotifier {
     return selectedDateList;
   }
 
-  Future displayTimePicker(
-      BuildContext context, DateTime dateTime, TextEditingController textEditingController, DateTime lastDate) async {
+  Future displayTimePicker(BuildContext context, DateTime dateTime,
+      TextEditingController textEditingController, DateTime lastDate) async {
     var time = await showDatePicker(
       context: context,
       firstDate: dateTime,
@@ -191,7 +243,9 @@ class DietController with ChangeNotifier {
     } else {
       selectedPageIndex++;
       notifyListeners();
-      pageController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.easeInToLinear);
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInToLinear);
     }
   }
 

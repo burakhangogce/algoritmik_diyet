@@ -1,3 +1,4 @@
+import 'package:algoritmik_diyet/business/models/client/my_clients_ouput_model.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/business/modules/client/screens/clien_detail_page.dart';
 import 'package:algoritmik_diyet/business/modules/client/screens/client_create_page.dart';
@@ -16,71 +17,36 @@ class ClientPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Provider.of<ClientController>(context, listen: false);
-    List<ClientModel> listClientModel = controller.createFakeDiet();
     return SingleChildScrollView(
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Column(
-        children: [
-          SizedBox(
-            height: pageHeight / 10,
-          ),
-          SizedBox(
-            width: pageWidht * 0.9,
-            child: PrimaryButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        ChangeNotifierProvider<ClientController>.value(
-                      value: controller,
-                      child: const ClientCreatePage(),
-                    ),
-                  ),
-                );
-              },
-              text: "Danışan Ekle",
-              textStyle: AppTheme.notoSansMed18White,
-              style: AppTheme.elevatedButtonStyle,
+      child: Consumer<ClientController>(
+          builder: (BuildContext context, controller, Widget? child) {
+        return Column(
+          children: [
+            SizedBox(
+              height: pageHeight / 10,
             ),
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Container(
-            height: 100 +
-                (listClientModel.length.toDouble() < 2
-                    ? 65
-                    : 80 * listClientModel.length.toDouble()),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: firstIconColor,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Danışanlarım",
+                  style: AppTheme.notoSansMed16PrimaryText,
                 ),
-                borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-                color: Colors.grey.shade300),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Danışanlarım",
-                        style: AppTheme.notoSansMed16PrimaryText,
-                      ),
-                      Text(
-                        "${listClientModel.length} Adet",
-                        style: AppTheme.notoSansMed16PrimaryText,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                        itemCount: listClientModel.length,
+                Text(
+                  "3 Adet",
+                  style: AppTheme.notoSansMed16PrimaryText,
+                ),
+              ],
+            ),
+            FutureBuilder<dynamic>(
+                future: controller.myClients(nutritionistId),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    List<MyClientsOutputModel> data = snapshot.data!;
+                    return ListView.builder(
+                        itemCount: data.length,
                         scrollDirection: Axis.vertical,
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
@@ -96,57 +62,107 @@ class ClientPage extends StatelessWidget {
                                             ClientController>.value(
                                       value: controller,
                                       child: ClientDetailPage(
-                                        clientModel: listClientModel[index],
+                                        clientModel: data[index],
                                       ),
                                     ),
                                   ),
                                 );
                               },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: firstIconColor,
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5.0)),
-                                ),
+                              child: SizedBox(
+                                height: 50,
                                 child: ListTile(
                                   leading: CircleAvatar(
                                     backgroundColor: firstIconColor,
                                     child: Text(
-                                      listClientModel[index].clientName[0] +
-                                          listClientModel[index].clientName[1],
+                                      data[index].clientName[0] +
+                                          data[index].clientName[1],
                                       style: AppTheme.notoSansSB16PrimaryText,
                                     ),
                                   ),
                                   subtitle: Text(
-                                    "${DateFormat('M/d/y').format(listClientModel[index].clientStartDate)}"
+                                    "${DateFormat('M/d/y').format(data[index].clientStartDate)}"
                                     "     "
-                                    "${listClientModel[index].firstWeight}"
+                                    "${data[index].firstWeight}"
                                     " - "
-                                    "${listClientModel[index].lastWeight}",
+                                    "${data[index].lastWeight}",
                                     style: AppTheme.notoSansMed14Primary2Text,
                                   ),
                                   title: Text(
-                                    listClientModel[index].clientName,
+                                    data[index].clientName,
                                     style: AppTheme.notoSansMed16PrimaryText,
                                   ),
-                                  trailing: const Icon(Icons.more_vert),
+                                  trailing: PopupMenuButton<int>(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        value: 1,
+                                        onTap: () {
+                                          controller.setDeleteClient(index);
+                                        },
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.delete),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Sil")
+                                          ],
+                                        ),
+                                      ),
+                                      PopupMenuItem(
+                                        value: 2,
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.edit),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Güncelle")
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                    offset: const Offset(0, 50),
+                                    color: secondBackgroundColor,
+                                    elevation: 2,
+                                  ),
                                 ),
                               ),
                             ),
                           );
-                        }),
-                  ),
-                ],
+                        });
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return const CircularProgressIndicator();
+                }),
+            const SizedBox(
+              height: 50,
+            ),
+            SizedBox(
+              width: pageWidht * 0.9,
+              child: PrimaryButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ChangeNotifierProvider<ClientController>.value(
+                        value: controller,
+                        child: const ClientCreatePage(),
+                      ),
+                    ),
+                  );
+                },
+                text: "Danışan Ekle",
+                textStyle: AppTheme.notoSansMed18White,
+                style: AppTheme.elevatedButtonStyle,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        );
+      }),
     ));
   }
 }

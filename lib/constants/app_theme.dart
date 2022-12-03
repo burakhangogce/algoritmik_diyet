@@ -52,27 +52,41 @@ class AppTheme {
   }
 
   static TextTheme textTheme = const TextTheme(
-    headline1: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 26.0, fontWeight: FontWeight.w600),
-    headline2: TextStyle(color: primaryTextColor, fontFamily: "Sans", fontSize: 24.0),
-    headline3: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 20.0),
+    headline1: TextStyle(
+        color: primaryTextColor,
+        fontFamily: "NotoSans",
+        fontSize: 26.0,
+        fontWeight: FontWeight.w600),
+    headline2:
+        TextStyle(color: primaryTextColor, fontFamily: "Sans", fontSize: 24.0),
+    headline3: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 20.0),
     headline4: TextStyle(
       color: primaryTextColor,
       fontFamily: "NotoSans",
       fontSize: 18.0,
     ),
-    headline5: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
+    headline5: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
     headline6: TextStyle(
       color: secondaryColor,
       fontFamily: "NotoSans",
       fontSize: 16.0,
     ),
-    subtitle1: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
-    subtitle2: TextStyle(color: secondaryColor, fontFamily: "NotoSans", fontSize: 16.0),
-    bodyText1: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
-    bodyText2: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 14.0),
-    button: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
-    caption: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 12.0),
-    overline: TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 10.0),
+    subtitle1: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
+    subtitle2: TextStyle(
+        color: secondaryColor, fontFamily: "NotoSans", fontSize: 16.0),
+    bodyText1: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
+    bodyText2: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 14.0),
+    button: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 16.0),
+    caption: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 12.0),
+    overline: TextStyle(
+        color: primaryTextColor, fontFamily: "NotoSans", fontSize: 10.0),
   );
 
   static final ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
@@ -90,7 +104,9 @@ class AppTheme {
   );
 
   static final ButtonStyle textSecondaryButtonStyle = TextButton.styleFrom(
-      foregroundColor: primaryColor, textStyle: notoSansReg12Primary, fixedSize: const Size.fromHeight(12)
+      foregroundColor: primaryColor,
+      textStyle: notoSansReg12Primary,
+      fixedSize: const Size.fromHeight(12)
       // textStyle: textTheme.button?.copyWith(decoration: TextDecoration.underline),
       );
 
@@ -129,7 +145,8 @@ class AppTheme {
     ),
   );
 
-  static final ButtonStyle elevatedPrimaryPassiveButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedPrimaryPassiveButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: overlayColor,
     backgroundColor: disabledColor,
     shape: const RoundedRectangleBorder(
@@ -137,7 +154,8 @@ class AppTheme {
     ),
   );
 
-  static final ButtonStyle elevatedPrimaryActiveButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedPrimaryActiveButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: overlayColor,
     backgroundColor: primaryColor,
     shape: const RoundedRectangleBorder(
@@ -145,7 +163,8 @@ class AppTheme {
     ),
   );
 
-  static final ButtonStyle elevatedPrimaryActiveBorderButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedPrimaryActiveBorderButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: overlayDarkColor,
     backgroundColor: primaryColor,
     shape: const RoundedRectangleBorder(
@@ -153,18 +172,20 @@ class AppTheme {
     ),
   );
 
-  static final ButtonStyle elevatedSecondaryButtonStyle = ElevatedButton.styleFrom(
-      foregroundColor: overlayColor,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(7)),
-      ),
-      side: const BorderSide(
-        color: overlayColor,
-        width: 1.0,
-      ));
+  static final ButtonStyle elevatedSecondaryButtonStyle =
+      ElevatedButton.styleFrom(
+          foregroundColor: overlayColor,
+          backgroundColor: Colors.white,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7)),
+          ),
+          side: const BorderSide(
+            color: overlayColor,
+            width: 1.0,
+          ));
 
-  static final ButtonStyle elevatedEnabledButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedEnabledButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: overlayColor,
     backgroundColor: disabledColor,
     shape: const RoundedRectangleBorder(
@@ -177,16 +198,19 @@ class AppTheme {
     fontWeight: FontWeight.w400,
   );
 
-  static final TextStyle focusedLabelTextStyle = labelTextStyle.copyWith(fontSize: 12);
+  static final TextStyle focusedLabelTextStyle =
+      labelTextStyle.copyWith(fontSize: 12);
 
-  static final ButtonStyle elevatedPrimaryActiveTextButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedPrimaryActiveTextButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: Colors.black,
     backgroundColor: Colors.black,
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(7)),
     ),
   );
-  static final ButtonStyle elevatedPrimaryActiveTransparentTextButtonStyle = ElevatedButton.styleFrom(
+  static final ButtonStyle elevatedPrimaryActiveTransparentTextButtonStyle =
+      ElevatedButton.styleFrom(
     foregroundColor: Colors.transparent,
     backgroundColor: Colors.transparent,
     shape: const RoundedRectangleBorder(
@@ -196,7 +220,8 @@ class AppTheme {
 
   // #region Regular
 
-  static const TextStyle notoSansRegular = TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w400);
+  static const TextStyle notoSansRegular =
+      TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w400);
 
   static const TextStyle notoSansReg14WhiteText = TextStyle(
       color: displayWhiteColor,
@@ -205,97 +230,156 @@ class AppTheme {
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
 
-  static TextStyle sfProReg10White = notoSansRegular.copyWith(color: Colors.white, fontSize: 10.0);
+  static TextStyle sfProReg10White =
+      notoSansRegular.copyWith(color: Colors.white, fontSize: 10.0);
 
-  static TextStyle sfProReg12PrimaryText = notoSansRegular.copyWith(color: primaryTextColor, fontSize: 12.0);
+  static TextStyle sfProReg12PrimaryText =
+      notoSansRegular.copyWith(color: primaryTextColor, fontSize: 12.0);
 
-  static TextStyle notoSansReg12White = notoSansRegular.copyWith(color: Colors.white, fontSize: 12.0);
+  static TextStyle notoSansReg12White =
+      notoSansRegular.copyWith(color: Colors.white, fontSize: 12.0);
 
-  static TextStyle notoSansReg12Black = notoSansRegular.copyWith(color: Colors.black, fontSize: 12.0);
+  static TextStyle notoSansReg12Black =
+      notoSansRegular.copyWith(color: Colors.black, fontSize: 12.0);
 
-  static TextStyle notoSansReg12Inside = notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 12.0);
+  static TextStyle notoSansReg12Inside =
+      notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 12.0);
 
-  static TextStyle notoSansReg12Primary = notoSansRegular.copyWith(color: primaryColor, fontSize: 12.0);
+  static TextStyle notoSansReg12Primary =
+      notoSansRegular.copyWith(color: primaryColor, fontSize: 12.0);
 
-  static TextStyle notoSansReg12PrimaryText = notoSansRegular.copyWith(color: primaryTextColor, fontSize: 12.0);
+  static TextStyle notoSansReg12PrimaryText =
+      notoSansRegular.copyWith(color: primaryTextColor, fontSize: 12.0);
 
-  static TextStyle notoSansReg13Quaternary = notoSansRegular.copyWith(color: quaternaryColor, fontSize: 13.0);
+  static TextStyle notoSansReg13Quaternary =
+      notoSansRegular.copyWith(color: quaternaryColor, fontSize: 13.0);
 
-  static TextStyle notoSansReg14PrimaryText = notoSansRegular.copyWith(color: primaryTextColor, fontSize: 14.0);
+  static TextStyle notoSansReg14PrimaryText =
+      notoSansRegular.copyWith(color: primaryTextColor, fontSize: 14.0);
 
-  static TextStyle notoSansReg14Inside = notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 14.0);
+  static TextStyle notoSansReg14Inside =
+      notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 14.0);
 
-  static TextStyle notoSansReg14Quaternary = notoSansRegular.copyWith(color: quaternaryColor, fontSize: 14.0);
+  static TextStyle notoSansReg14Quaternary =
+      notoSansRegular.copyWith(color: quaternaryColor, fontSize: 14.0);
 
-  static TextStyle notoSansReg16Primary = notoSansRegular.copyWith(color: primaryColor, fontSize: 16.0);
+  static TextStyle notoSansReg16Primary =
+      notoSansRegular.copyWith(color: primaryColor, fontSize: 16.0);
 
-  static TextStyle notoSansReg16Inside = notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 16.0);
+  static TextStyle notoSansReg16Inside =
+      notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 16.0);
 
-  static TextStyle notoSansReg16PrimaryText = notoSansRegular.copyWith(color: primaryTextColor, fontSize: 16.0);
+  static TextStyle notoSansReg16PrimaryText =
+      notoSansRegular.copyWith(color: primaryTextColor, fontSize: 16.0);
 
-  static TextStyle notoSansReg16DarkOverlay = notoSansRegular.copyWith(color: overlayDarkColor, fontSize: 16.0);
+  static TextStyle notoSansReg16DarkOverlay =
+      notoSansRegular.copyWith(color: overlayDarkColor, fontSize: 16.0);
 
-  static TextStyle notoSansReg16Overlay = notoSansRegular.copyWith(color: overlayColor, fontSize: 16.0);
+  static TextStyle notoSansReg16Overlay =
+      notoSansRegular.copyWith(color: overlayColor, fontSize: 16.0);
 
-  static TextStyle notoSansReg16Quaternary =
-      notoSansRegular.copyWith(color: quaternaryColor, fontSize: 16.0, height: 1.4);
+  static TextStyle notoSansReg16Quaternary = notoSansRegular.copyWith(
+      color: quaternaryColor, fontSize: 16.0, height: 1.4);
 
-  static TextStyle notoSansReg16White = notoSansRegular.copyWith(color: Colors.white, fontSize: 16.0, height: 1.4);
+  static TextStyle notoSansReg16White = notoSansRegular.copyWith(
+      color: Colors.white, fontSize: 16.0, height: 1.4);
 
-  static TextStyle notoSansReg16nsideFormText =
-      notoSansRegular.copyWith(color: insideFormTextColor, fontSize: 16.0, height: 1.4);
+  static TextStyle notoSansReg16nsideFormText = notoSansRegular.copyWith(
+      color: insideFormTextColor, fontSize: 16.0, height: 1.4);
 
-  static TextStyle notoSansReg16Black = notoSansRegular.copyWith(color: Colors.black, fontSize: 16.0);
+  static TextStyle notoSansReg16Black =
+      notoSansRegular.copyWith(color: Colors.black, fontSize: 16.0);
 
-  static TextStyle notoSansReg24PrimaryText = notoSansRegular.copyWith(color: primaryTextColor, fontSize: 24.0);
+  static TextStyle notoSansReg24PrimaryText =
+      notoSansRegular.copyWith(color: primaryTextColor, fontSize: 24.0);
 
-  static TextStyle notoSansReg28Black = notoSansRegular.copyWith(color: Colors.black, fontSize: 28.0);
+  static TextStyle notoSansReg28Black =
+      notoSansRegular.copyWith(color: Colors.black, fontSize: 28.0);
 
   // #endregion
 
   // #region Medium
 
-  static const TextStyle notoSansMedium = TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMedium =
+      TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w500);
 
-  static TextStyle notoSansMed16PrimaryText = notoSansMedium.copyWith(color: primaryTextColor, fontSize: 16.0);
+  static TextStyle notoSansMed16PrimaryText =
+      notoSansMedium.copyWith(color: primaryTextColor, fontSize: 16.0);
 
-  static TextStyle notoSansMed16White = notoSansMedium.copyWith(color: Colors.white, fontSize: 16.0, height: 1.4);
+  static TextStyle notoSansMed16White =
+      notoSansMedium.copyWith(color: Colors.white, fontSize: 16.0, height: 1.4);
 
-  static TextStyle notoSansMed14White =
-      notoSansMedium.copyWith(color: Colors.white, fontSize: 14.0, height: 1.4, decoration: TextDecoration.none);
+  static TextStyle notoSansMed14White = notoSansMedium.copyWith(
+      color: Colors.white,
+      fontSize: 14.0,
+      height: 1.4,
+      decoration: TextDecoration.none);
 
-  static TextStyle notoSansMed18PrimaryText = notoSansMedium.copyWith(color: primaryTextColor, fontSize: 18.0);
+  static TextStyle notoSansMed18PrimaryText =
+      notoSansMedium.copyWith(color: primaryTextColor, fontSize: 18.0);
 
-  static TextStyle notoSansMed18White = notoSansMedium.copyWith(color: Colors.white, fontSize: 18.0);
+  static TextStyle notoSansMed18White =
+      notoSansMedium.copyWith(color: Colors.white, fontSize: 18.0);
 
-  static const TextStyle notoSansMed12PrimaryText =
-      TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 12.0, fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed12PrimaryText = TextStyle(
+      color: primaryTextColor,
+      fontFamily: "NotoSans",
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500);
 
-  static const TextStyle notoSansMed14PrimaryText =
-      TextStyle(color: primaryTextColor, fontFamily: "NotoSans", fontSize: 14.0, fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed14PrimaryText = TextStyle(
+      color: primaryTextColor,
+      fontFamily: "NotoSans",
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500);
 
-  static const TextStyle notoSansMed12Primary2Text =
-      TextStyle(color: primary2TextColor, fontFamily: "NotoSans", fontSize: 12.0, fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed12Primary2Text = TextStyle(
+      color: primary2TextColor,
+      fontFamily: "NotoSans",
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500);
 
-  static const TextStyle notoSansMed14Primary2Text =
-      TextStyle(color: primary2TextColor, fontFamily: "NotoSans", fontSize: 14.0, fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed14Primary2Text = TextStyle(
+      color: primary2TextColor,
+      fontFamily: "NotoSans",
+      fontSize: 14.0,
+      fontWeight: FontWeight.w500);
+
+  static const TextStyle notoSansMed8Primary2Text = TextStyle(
+      color: primary2TextColor,
+      fontFamily: "NotoSans",
+      fontSize: 8.0,
+      fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed10PrimaryText = TextStyle(
+      color: primaryTextColor,
+      fontFamily: "NotoSans",
+      fontSize: 10.0,
+      fontWeight: FontWeight.w500);
 
   // #endregion
 
   // #region SemiBold
 
-  static const TextStyle notoSansSemiBold = TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w600);
+  static const TextStyle notoSansSemiBold =
+      TextStyle(fontFamily: "NotoSans", fontWeight: FontWeight.w600);
 
-  static TextStyle notoSansSB10PrimaryText = notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 10.0);
-  static TextStyle notoSansSB12PrimaryText = notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 12.0);
+  static TextStyle notoSansSB10PrimaryText =
+      notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 10.0);
+  static TextStyle notoSansSB12PrimaryText =
+      notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 12.0);
 
-  static TextStyle notoSansSB16PrimaryText = notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 16.0);
+  static TextStyle notoSansSB16PrimaryText =
+      notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 16.0);
 
-  static TextStyle notoSansSB18PrimaryText = notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 18.0);
-  static TextStyle notoSansSB18Primary2Text = notoSansSemiBold.copyWith(color: primary2TextColor, fontSize: 18.0);
-  static TextStyle notoSansSB18WhiteText = notoSansSemiBold.copyWith(color: Colors.white, fontSize: 18.0);
+  static TextStyle notoSansSB18PrimaryText =
+      notoSansSemiBold.copyWith(color: primaryTextColor, fontSize: 18.0);
+  static TextStyle notoSansSB18Primary2Text =
+      notoSansSemiBold.copyWith(color: primary2TextColor, fontSize: 18.0);
+  static TextStyle notoSansSB18WhiteText =
+      notoSansSemiBold.copyWith(color: Colors.white, fontSize: 18.0);
 
-  static TextStyle notoSansSB35WhiteText = notoSansSemiBold.copyWith(color: Colors.white, fontSize: 35.0);
+  static TextStyle notoSansSB35WhiteText =
+      notoSansSemiBold.copyWith(color: Colors.white, fontSize: 35.0);
 
   // #endregion
 

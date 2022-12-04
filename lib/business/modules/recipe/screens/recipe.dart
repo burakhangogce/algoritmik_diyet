@@ -1,4 +1,5 @@
 import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
+import 'package:algoritmik_diyet/business/models/recipe/recipe_output_model.dart';
 import 'package:algoritmik_diyet/business/modules/recipe/controller/recipe_controller.dart';
 import 'package:algoritmik_diyet/business/modules/recipe/screens/add_recipe.dart';
 import 'package:algoritmik_diyet/core/services/navigation_service.dart';
@@ -12,7 +13,6 @@ import '../../../commons/utils/icon_font.dart';
 import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/widgets/buttons/primary_button.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
-import '../../../models/recipe/recipe_model.dart';
 
 class Recipe extends StatelessWidget {
   const Recipe({super.key});
@@ -21,8 +21,7 @@ class Recipe extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Provider.of<RecipeController>(context, listen: false);
 
-    return SingleChildScrollView(
-        child: Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         children: [
@@ -52,18 +51,19 @@ class Recipe extends StatelessWidget {
             height: 12,
           ),
           FutureBuilder<dynamic>(
-              future: controller.setListRecipeModel(),
+              future: controller.myRecipes(nutritionistId),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  List<RecipeModel> data = snapshot.data!;
-                  return SizedBox(
-                    height: pageHeight * 0.6,
+                  List<RecipeOutputModel> data = snapshot.data!;
+                  return Expanded(
                     child: ListView.builder(
                         itemCount: data.length,
+                        physics: const AlwaysScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 7),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 7, horizontal: 15),
                             child: GestureDetector(
                               onTap: () async {
                                 LoadingDialog.openDialog();
@@ -83,15 +83,14 @@ class Recipe extends StatelessWidget {
                                 );
                               },
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text(
-                                        "Tarif 1",
+                                      Text(
+                                        data[index].recipeTitle,
                                         style:
                                             AppTheme.notoSansMed14PrimaryText,
                                       ),
@@ -105,12 +104,12 @@ class Recipe extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 2,
+                                    height: 5,
                                   ),
                                   Text(
                                     data[index].recipeDesc,
                                     style: AppTheme.notoSansMed14Primary2Text,
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -127,6 +126,6 @@ class Recipe extends StatelessWidget {
           ),
         ],
       ),
-    ));
+    );
   }
 }

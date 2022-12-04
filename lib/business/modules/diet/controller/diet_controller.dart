@@ -1,8 +1,6 @@
-import 'package:algoritmik_diyet/business/services/data/diet_services.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/app_color.dart';
-import '../../../../main.dart';
 import '../../../models/diet/diet_day_model.dart';
 
 class DietController with ChangeNotifier {
@@ -11,7 +9,6 @@ class DietController with ChangeNotifier {
   TextEditingController dietLastDate = TextEditingController();
   TextEditingController dietMenuTitle = TextEditingController();
   TextEditingController dietMenuDetail = TextEditingController();
-  final DietServices _dietServices = getIt.get<DietServices>();
   int selectedPageIndex = 0;
   int selectedDietDate = 0;
   final List<Widget> timeRangeList = [

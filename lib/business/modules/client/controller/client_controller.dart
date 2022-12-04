@@ -1,6 +1,5 @@
 import 'package:algoritmik_diyet/business/models/client/client_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_day_model.dart';
-import 'package:algoritmik_diyet/business/models/diet/diet_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/services/data/client_services.dart';
 import 'package:algoritmik_diyet/business/services/data/diet_services.dart';

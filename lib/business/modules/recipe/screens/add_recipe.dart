@@ -1,7 +1,8 @@
 import 'package:algoritmik_diyet/business/commons/widgets/boxes/message_box.dart';
+import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/textformfields/general_text_form_field.dart';
+import 'package:algoritmik_diyet/business/models/recipe/recipe_input_model.dart';
 import 'package:algoritmik_diyet/business/modules/recipe/controller/recipe_controller.dart';
-import 'package:algoritmik_diyet/business/modules/recipe/screens/recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/app_color.dart';
@@ -112,6 +113,14 @@ class AddRecipePage extends StatelessWidget {
                     width: pageWidht * 0.9,
                     child: PrimaryButton(
                       onPressed: () {
+                        LoadingDialog.openDialog();
+                        RecipeInputModel recipeInputModel = RecipeInputModel(
+                            nutritionistId: nutritionistId,
+                            recipeTitle: controller.titleRecipeCont.text,
+                            recipeDesc: controller.descRecipeCont.text);
+                        controller.addRecipe(recipeInputModel);
+                        LoadingDialog.closeDialog();
+
                         Navigator.pop(context);
                       },
                       text: "Tarif Ekle",

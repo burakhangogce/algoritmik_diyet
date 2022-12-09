@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../main.dart';
 import '../../../models/client/my_clients_ouput_model.dart';
+import '../../../models/response/response_model.dart';
 
 class ClientController with ChangeNotifier {
   PageController pageController = PageController();
@@ -94,14 +95,14 @@ class ClientController with ChangeNotifier {
   List<ClientModel> listClientModel = [];
 
   Future<List<MyClientsOutputModel>> myClients(int id) async {
-    List<MyClientsOutputModel> myClients =
+    ResponseModel<List<MyClientsOutputModel>> myClients =
         await _clientServices.getMyClients(id);
-    return myClients;
+    return myClients.body!;
   }
 
   Future<DietOutputModel> getMyDiet(int id) async {
-    DietOutputModel myClients = await _dietServices.getDiet(id);
-    return myClients;
+    ResponseModel<DietOutputModel> myClients = await _dietServices.getDiet(id);
+    return myClients.body!;
   }
 
   setInviteCode() {

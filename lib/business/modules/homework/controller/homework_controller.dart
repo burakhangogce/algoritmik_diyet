@@ -49,7 +49,7 @@ class HomeWorkController with ChangeNotifier {
 
   Future<List<ClassesOutputModel>> contGetClasses() async {
     var result = await _infoServices.getClass();
-    return result;
+    return result.body!;
   }
 
   isSwitchedNotificationChange(bool lastSwitched) {

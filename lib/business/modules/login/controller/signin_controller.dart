@@ -9,6 +9,7 @@ import '../../../models/event_output_model.dart';
 import '../../../models/login_info.dart';
 import '../../../models/login_input_model.dart';
 import '../../../models/login_result.dart';
+import '../../../models/response/response_model.dart';
 import '../../../services/data/identity_services.dart';
 
 class SigninController extends ChangeNotifier {
@@ -30,10 +31,11 @@ class SigninController extends ChangeNotifier {
     LoginInputModel request =
         LoginInputModel(username: username, password: password);
     updateLoading(true);
-    LoginOutputModel response = await _identityServices.login(request);
+    ResponseModel<LoginOutputModel> response =
+        await _identityServices.login(request);
     updateLoading(false);
-    if (response.token.isNotEmpty) {
-      loginInfo = LoginInfo(response.token, List.empty(), false);
+    if (response.body!.token.isNotEmpty) {
+      loginInfo = LoginInfo(response.body!.token, List.empty(), false);
       //loginInfo?.authToken = response.token;
       //loginInfo?.email = email;
 
@@ -41,7 +43,7 @@ class SigninController extends ChangeNotifier {
           email: loginInfo!.email,
           displayName: "denemeDisplay",
           password: "ddd",
-          username: "admin1255222");
+          username: "admin77713");
       setLoginEnvironment(userInfoModel, environment, rememberMe: rememberMe);
       return LoginResult.success;
     }

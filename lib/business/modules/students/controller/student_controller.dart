@@ -75,17 +75,17 @@ class StudentsController with ChangeNotifier {
 
   Future<List<ClassesOutputModel>> contGetClasses() async {
     var result = await _infoServices.getClass();
-    return result;
+    return result.body!;
   }
 
   Future<List<StudentsOutputModel>> contGetStudents() async {
     var result = await _infoServices.getStudents();
-    return result;
+    return result.body!;
   }
 
   Future<List<StudentsOutputModel>> contGetStudentsClass(int id) async {
     var result = await _infoServices.getStudentsClass(id);
-    return result;
+    return result.body!;
   }
 
   setSelectedIndex(int index) {

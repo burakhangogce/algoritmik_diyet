@@ -6,6 +6,7 @@ import 'package:algoritmik_diyet/business/services/data/recipe_services.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../main.dart';
+import '../../../models/response/response_model.dart';
 
 class RecipeController with ChangeNotifier {
   PageController pageController = PageController();
@@ -18,14 +19,15 @@ class RecipeController with ChangeNotifier {
   final RecipeServices _recipeServices = getIt.get<RecipeServices>();
 
   Future<List<RecipeOutputModel>> myRecipes(int id) async {
-    List<RecipeOutputModel> myClients = await _recipeServices.getRecipes(id);
-    return myClients;
+    ResponseModel<List<RecipeOutputModel>> myClients =
+        await _recipeServices.getRecipes(id);
+    return myClients.body!;
   }
 
   Future<RecipeOutputModel> addRecipe(RecipeInputModel recipeInputModel) async {
-    RecipeOutputModel recipe =
+    ResponseModel<RecipeOutputModel> recipe =
         await _recipeServices.addRecipe(recipeInputModel);
-    return recipe;
+    return recipe.body!;
   }
 
   Future fillRecipeDetail(RecipeOutputModel recipe) async {

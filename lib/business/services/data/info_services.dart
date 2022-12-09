@@ -3,6 +3,7 @@ import 'package:algoritmik_diyet/business/services/general/algoritmik_service_ba
 
 import '../../../core/mixins/service_mixin.dart';
 import '../../models/classes/classes_output_model.dart';
+import '../../models/response/response_model.dart';
 
 class InfoServices extends AlgoritmikServiceBase with ServiceMixin {
   InfoServices() {
@@ -10,25 +11,37 @@ class InfoServices extends AlgoritmikServiceBase with ServiceMixin {
     path = 'info';
   }
 
-  Future<List<ClassesOutputModel>> getClass() async {
-    List map =
+  Future<ResponseModel<List<ClassesOutputModel>>> getClass() async {
+    ResponseModel<dynamic> response =
         await getMapAsync(getUri('myclass').toString(), createHeaders(), null);
-    return map.map((job) => ClassesOutputModel.fromJson(job)).toList();
+    List saveMap = response.body!;
+    if (response.isSuccess) {
+      return response.toBody(
+          saveMap.map((job) => ClassesOutputModel.fromJson(job)).toList());
+    }
+    return response.toBody(null);
   }
 
-  Future<List<StudentsOutputModel>> getStudentsClass(int id) async {
-    List map = await getMapAsync(
+  Future<ResponseModel<List<StudentsOutputModel>>> getStudentsClass(
+      int id) async {
+    ResponseModel<dynamic> response = await getMapAsync(
         getUri('student/class/$id').toString(), createHeaders(), null);
-    return List.from(map)
-        .map((e) => StudentsOutputModel.fromJson(Map.from(e)))
-        .toList();
+    List saveMap = response.body!;
+    if (response.isSuccess) {
+      return response.toBody(
+          saveMap.map((job) => StudentsOutputModel.fromJson(job)).toList());
+    }
+    return response.toBody(null);
   }
 
-  Future<List<StudentsOutputModel>> getStudents() async {
-    List map =
+  Future<ResponseModel<List<StudentsOutputModel>>> getStudents() async {
+    ResponseModel<dynamic> response =
         await getMapAsync(getUri('student').toString(), createHeaders(), null);
-    return List.from(map)
-        .map((e) => StudentsOutputModel.fromJson(Map.from(e)))
-        .toList();
+    List saveMap = response.body!;
+    if (response.isSuccess) {
+      return response.toBody(
+          saveMap.map((job) => StudentsOutputModel.fromJson(job)).toList());
+    }
+    return response.toBody(null);
   }
 }

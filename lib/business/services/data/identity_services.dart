@@ -5,6 +5,7 @@ import '../../models/change_password_input_model.dart';
 import '../../models/event_output_model.dart';
 import '../../models/login_input_model.dart';
 import '../../models/login_output_model.dart';
+import '../../models/response/response_model.dart';
 import '../../models/user_info_model.dart';
 
 class IdentityServices extends AlgoritmikServiceBase with ServiceMixin {
@@ -19,26 +20,30 @@ class IdentityServices extends AlgoritmikServiceBase with ServiceMixin {
   //   return loginMap;
   // }
 
-  Future<LoginOutputModel> login(LoginInputModel request) async {
-    Map<String, dynamic> loginMap = await postMapAsync<Map<String, dynamic>>(
+  Future<ResponseModel<LoginOutputModel>> login(LoginInputModel request) async {
+    ResponseModel<dynamic> response = await postMapAsync<Map<String, dynamic>>(
         getUri('login').toString(), createHeaders(), request.toJson(), null);
-    return LoginOutputModel.fromMap(loginMap);
+    Map<String, dynamic> saveMap = response.body;
+    if (response.isSuccess) {
+      return response.toBody(LoginOutputModel.fromMap(saveMap));
+    }
+    return response.toBody(null);
   }
 
   Future<UserInfoModel> getUser() async {
-    Map<String, dynamic> map = await getMapAsync<Map<String, dynamic>>(
+    ResponseModel<dynamic> response = await getMapAsync<Map<String, dynamic>>(
         getUri("connect/userinfo").toString(), createHeaders(), null);
 
-    return UserInfoModel.fromMap(map);
+    return UserInfoModel.fromMap(response.body);
   }
 
   Future<EventOutputModel> changePassword(
       ChangePasswordInputModel request) async {
-    Map<String, dynamic> map = await postMapAsync<Map<String, dynamic>>(
+    ResponseModel<dynamic> response = await postMapAsync<Map<String, dynamic>>(
         getUri('User/sendotp').toString(),
         createHeaders(),
         json.encode(request.toJson()),
         null);
-    return EventOutputModel.fromJson(map);
+    return EventOutputModel.fromJson(response.body);
   }
 }

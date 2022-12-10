@@ -26,8 +26,8 @@ class SigninView extends StatelessWidget {
     TextEditingController passController = TextEditingController();
 
     if (kDebugMode && !isTest) {
-      emailController.text = "admin77713";
-      passController.text = 'ddd';
+      emailController.text = "admin20125@hotmail.com";
+      passController.text = 'deneme123';
     }
 
     return Scaffold(
@@ -49,7 +49,8 @@ class SigninView extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, top: 15.0, right: 16, bottom: 50),
+          padding: const EdgeInsets.only(
+              left: 16.0, top: 15.0, right: 16, bottom: 50),
           child: SafeArea(
             bottom: false,
             right: false,
@@ -58,10 +59,16 @@ class SigninView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(9), color: backgroundColor, boxShadow: const [
-                    BoxShadow(color: containerShadowColor, spreadRadius: 0, blurRadius: 6, offset: Offset(0, 3)),
-                  ]),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9),
+                      color: backgroundColor,
+                      boxShadow: const [
+                        BoxShadow(
+                            color: containerShadowColor,
+                            spreadRadius: 0,
+                            blurRadius: 6,
+                            offset: Offset(0, 3)),
+                      ]),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 0, right: 16, left: 16),
                     child: Form(
@@ -75,8 +82,10 @@ class SigninView extends StatelessWidget {
                           GeneralTextFormField(
                             emailController,
                             keyboardType: TextInputType.emailAddress,
-                            placeholder: Localization.of(context)!.signin_email_placeholder,
-                            validator: (value) => Validations.validateEmail(value),
+                            placeholder: Localization.of(context)!
+                                .signin_email_placeholder,
+                            validator: (value) =>
+                                Validations.validateEmail(value),
                             key: const Key('email-textfield'),
                           ),
                           const SizedBox(
@@ -84,15 +93,18 @@ class SigninView extends StatelessWidget {
                           ),
                           PasswordTextFormField(
                             passController: passController,
-                            placeHolder: Localization.of(context)!.signin_password_placeholder,
+                            placeHolder: Localization.of(context)!
+                                .signin_password_placeholder,
                             key: const Key('password-textfield'),
                           ),
                           GestureDetector(
-                            onTap: () => Navigator.pushNamed(context, '/newpassword'),
+                            onTap: () =>
+                                Navigator.pushNamed(context, '/newpassword'),
                             child: Align(
                               alignment: Alignment.topRight,
                               child: Text(
-                                Localization.of(context)!.signin_forgot_password,
+                                Localization.of(context)!
+                                    .signin_forgot_password,
                                 style: AppTheme.notoSansReg12Primary,
                               ),
                             ),
@@ -101,7 +113,8 @@ class SigninView extends StatelessWidget {
                             height: 24,
                           ),
                           ConstrainedBox(
-                            constraints: const BoxConstraints(minHeight: 120, maxHeight: 240),
+                            constraints: const BoxConstraints(
+                                minHeight: 120, maxHeight: 240),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -110,36 +123,44 @@ class SigninView extends StatelessWidget {
                                   flex: 1,
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        bool valid = formKey.currentState?.validate() ?? false;
+                                        bool valid =
+                                            formKey.currentState?.validate() ??
+                                                false;
                                         if (valid) {
                                           LoadingDialog.openDialog();
 
                                           context
                                               .read<SigninController>()
-                                              .login(emailController.text, passController.text)
+                                              .login(emailController.text,
+                                                  passController.text)
                                               .then((result) {
                                             LoadingDialog.closeDialog();
-                                            loginResult(result, emailController.text, context);
+                                            loginResult(result,
+                                                emailController.text, context);
                                           });
                                         }
                                       },
                                       key: const Key('login'),
                                       style: AppTheme.elevatedButtonStyle,
-                                      child: Text(Localization.of(context)!.signin_login_button)),
+                                      child: Text(Localization.of(context)!
+                                          .signin_login_button)),
                                 ),
-                                DividerWidget(Localization.of(context)!.signin_company_question),
+                                DividerWidget(Localization.of(context)!
+                                    .signin_company_question),
                                 Flexible(
                                   flex: 1,
                                   child: OutlinedButton(
                                       style: OutlinedButton.styleFrom(
-                                          foregroundColor: loginGradientStartColor,
+                                          foregroundColor:
+                                              loginGradientStartColor,
                                           side: const BorderSide(
                                             width: 1.0,
                                             color: loginGradientStartColor,
                                             style: BorderStyle.solid,
                                           )),
                                       onPressed: () {},
-                                      child: Text(Localization.of(context)!.signin_company_button)),
+                                      child: Text(Localization.of(context)!
+                                          .signin_company_button)),
                                 ),
                                 const SizedBox(
                                   height: 15,

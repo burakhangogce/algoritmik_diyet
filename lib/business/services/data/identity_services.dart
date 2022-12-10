@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:algoritmik_diyet/business/models/login/firebase_login_output_model.dart';
 import 'package:algoritmik_diyet/business/services/general/algoritmik_service_base.dart';
 import '../../../core/mixins/service_mixin.dart';
 import '../../models/change_password_input_model.dart';
 import '../../models/event_output_model.dart';
+import '../../models/login/firebase_login_input_model.dart';
 import '../../models/login_input_model.dart';
 import '../../models/login_output_model.dart';
 import '../../models/response/response_model.dart';
@@ -20,12 +22,16 @@ class IdentityServices extends AlgoritmikServiceBase with ServiceMixin {
   //   return loginMap;
   // }
 
-  Future<ResponseModel<LoginOutputModel>> login(LoginInputModel request) async {
+  Future<ResponseModel<FirebaseLoginOutputModel>> login(
+      FirebaseLoginInputModel request) async {
     ResponseModel<dynamic> response = await postMapAsync<Map<String, dynamic>>(
-        getUri('login').toString(), createHeaders(), request.toJson(), null);
+        getUri('loginfirebase').toString(),
+        createHeaders(),
+        json.encode(request.toJson()),
+        null);
     Map<String, dynamic> saveMap = response.body;
     if (response.isSuccess) {
-      return response.toBody(LoginOutputModel.fromMap(saveMap));
+      return response.toBody(FirebaseLoginOutputModel.fromJson(saveMap));
     }
     return response.toBody(null);
   }

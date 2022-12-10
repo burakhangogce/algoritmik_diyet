@@ -1,3 +1,5 @@
+import 'package:algoritmik_diyet/business/models/login/firebase_login_input_model.dart';
+import 'package:algoritmik_diyet/business/models/login/firebase_login_output_model.dart';
 import 'package:algoritmik_diyet/business/models/login_output_model.dart';
 import 'package:algoritmik_diyet/business/models/user_info_model.dart';
 import 'package:flutter/material.dart';
@@ -26,24 +28,24 @@ class SigninController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<LoginResult?> login(String username, String password) async {
+  Future<LoginResult?> login(String email, String password) async {
     Map<String, String>? environment = {'Admin': 'Admin1'};
-    LoginInputModel request =
-        LoginInputModel(username: username, password: password);
+    FirebaseLoginInputModel request =
+        FirebaseLoginInputModel(email: email, password: password);
     updateLoading(true);
-    ResponseModel<LoginOutputModel> response =
+    ResponseModel<FirebaseLoginOutputModel> response =
         await _identityServices.login(request);
     updateLoading(false);
-    if (response.body!.token.isNotEmpty) {
-      loginInfo = LoginInfo(response.body!.token, List.empty(), false);
+    if (response.body!.firebaseToken.isNotEmpty) {
+      loginInfo = LoginInfo(response.body!.firebaseToken, List.empty(), false);
       //loginInfo?.authToken = response.token;
       //loginInfo?.email = email;
 
       userInfoModel = UserInfoModel(
           email: loginInfo!.email,
           displayName: "denemeDisplay",
-          password: "ddd",
-          username: "admin77713");
+          password: password,
+          username: "admindeneme");
       setLoginEnvironment(userInfoModel, environment, rememberMe: rememberMe);
       return LoginResult.success;
     }

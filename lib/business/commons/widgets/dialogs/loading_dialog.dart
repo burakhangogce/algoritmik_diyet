@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../core/services/navigation_service.dart';
@@ -19,16 +20,18 @@ class LoadingDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const CircularProgressIndicator(
-              color: backgroundColor,
-              strokeWidth: 3,
-              backgroundColor: primaryColor,
-            ),
-            Text(
-              "Lütfen Bekleyiniz",
-              textAlign: TextAlign.center,
-              style: AppTheme.notoSansMed16White,
-            )
+            // const CircularProgressIndicator(
+            //   color: backgroundColor,
+            //   strokeWidth: 3,
+            //   backgroundColor: primaryColor,
+            // ),
+            Lottie.network(
+                'https://assets1.lottiefiles.com/packages/lf20_6yhhrbk6.json'),
+            // Text(
+            //   "Lütfen Bekleyiniz",
+            //   textAlign: TextAlign.center,
+            //   style: AppTheme.notoSansMed16White,
+            // )
           ],
         ),
       ),

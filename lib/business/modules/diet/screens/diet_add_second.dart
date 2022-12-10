@@ -1,4 +1,3 @@
-import 'package:algoritmik_diyet/business/models/diet/diet_day_model.dart';
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +11,7 @@ import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/utils/validations.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
 import '../../../commons/widgets/textformfields/general_text_form_field.dart';
+import '../../../models/diet/diet_model_input.dart';
 
 class DietAddSecond extends StatelessWidget {
   const DietAddSecond({super.key});
@@ -360,7 +360,7 @@ class DietAddSecond extends StatelessWidget {
   }
 
   showAddDietSheet(DietController cnt,
-      {bool isUpdate = false, DietMenuModel? dietMenuModel, int? index}) {
+      {bool isUpdate = false, DietInputMenu? dietMenuModel, int? index}) {
     final formKey = GlobalKey<FormState>();
     if (isUpdate) {
       cnt.dietMenuTitle.text = dietMenuModel!.dietMenuTitle;
@@ -470,27 +470,29 @@ class DietAddSecond extends StatelessWidget {
                                             false;
                                     if (valid) {
                                       if (isUpdate) {
-                                        DietMenuModel dietMenuModel =
-                                            DietMenuModel(
-                                                1,
-                                                cnt.dietMenuTitle.text,
-                                                cnt.dietMenuDetail.text,
-                                                DateTime.now(),
-                                                true,
-                                                false);
+                                        DietInputMenu dietMenuModel =
+                                            DietInputMenu(
+                                                dietMenuDetail:
+                                                    cnt.dietMenuDetail.text,
+                                                dietMenuTime: DateTime.now(),
+                                                dietMenuTitle:
+                                                    cnt.dietMenuTitle.text,
+                                                isCompleted: true,
+                                                isNotification: false);
                                         cnt.updateDietMenu(
                                             dietMenuModel, index!);
                                         Navigator.pop(context);
                                       } else {
-                                        DietMenuModel dietMenuModel =
-                                            DietMenuModel(
-                                                1,
-                                                cnt.dietMenuTitle.text,
-                                                cnt.dietMenuDetail.text,
-                                                DateTime.now(),
-                                                true,
-                                                false);
-                                        cnt.addDietMenu(dietMenuModel,
+                                        DietInputMenu dietInputMenu =
+                                            DietInputMenu(
+                                                dietMenuDetail:
+                                                    cnt.dietMenuDetail.text,
+                                                dietMenuTime: DateTime.now(),
+                                                dietMenuTitle:
+                                                    cnt.dietMenuTitle.text,
+                                                isCompleted: true,
+                                                isNotification: false);
+                                        cnt.addDietMenu(dietInputMenu,
                                             cnt.selectedDietDate);
                                         Navigator.pop(context);
                                       }

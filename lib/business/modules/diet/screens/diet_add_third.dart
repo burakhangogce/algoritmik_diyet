@@ -58,7 +58,9 @@ class DietAddThird extends StatelessWidget {
                         secondColor: secondIconColor,
                         iconSecondSource: SecondIconFont.running),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.createDiet();
+                      },
                       style: AppTheme.textButtonStyle,
                       child: const Text(
                         "Bitir",
@@ -95,9 +97,13 @@ class DietAddThird extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   SizedBox(
-                    height: controller.dietMap.length < 2 ? 40 : 35 * controller.dietMap.length.toDouble(),
+                    height: controller.dietMap.length < 2
+                        ? 40
+                        : 35 * controller.dietMap.length.toDouble(),
                     child: ListView.builder(
                       physics: const AlwaysScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
@@ -116,14 +122,18 @@ class DietAddThird extends StatelessWidget {
                                       firstColor: firstIconColor,
                                       iconSize: 12,
                                       secondColor: secondIconColor,
-                                      iconSecondSource: SecondIconFont.utensilsalt),
+                                      iconSecondSource:
+                                          SecondIconFont.utensilsalt),
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(DateFormat('EEEE, d MMM').format(controller.dietMap.keys.elementAt(index))),
+                                  Text(DateFormat('EEEE, d MMM').format(
+                                      controller.dietMap.keys
+                                          .elementAt(index))),
                                 ],
                               ),
-                              Text("${controller.dietMap.values.elementAt(index).length} Öğün")
+                              Text(
+                                  "${controller.dietMap.values.elementAt(index).length} Öğün")
                             ],
                           ),
                         );
@@ -136,7 +146,8 @@ class DietAddThird extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            Consumer<DietController>(builder: (BuildContext context, controller, Widget? child) {
+            Consumer<DietController>(
+                builder: (BuildContext context, controller, Widget? child) {
               return Column(
                 children: [
                   Padding(
@@ -180,13 +191,15 @@ class DietAddThird extends StatelessWidget {
                               max: 12.0,
                               value: controller.dietWaterNotificationLoop,
                               divisions: 9,
-                              label: '${controller.dietWaterNotificationLoop.round()}0',
+                              label:
+                                  '${controller.dietWaterNotificationLoop.round()}0',
                               onChanged: (value) {
                                 controller.setDietWaterNotificationLoop(value);
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 7),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 7),
                               child: Text(
                                 "${controller.dietWaterNotificationLoop.toInt()}0 dakikada bir hatırlatılacak.",
                                 style: AppTheme.notoSansMed14Primary2Text,
@@ -219,7 +232,8 @@ class DietAddThird extends StatelessWidget {
                               },
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 7),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 7),
                               child: Text(
                                 "${controller.dietCoffeeLoop.toInt()} fincan kahve içebilir.",
                                 style: AppTheme.notoSansMed14Primary2Text,

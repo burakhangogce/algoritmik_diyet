@@ -1,5 +1,4 @@
 import 'package:algoritmik_diyet/business/models/client/my_clients_ouput_model.dart';
-import 'package:algoritmik_diyet/business/models/diet/diet_day_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/business/modules/client/screens/client_update_diet_page.dart';
@@ -136,7 +135,7 @@ class ClientDetailPage extends StatelessWidget {
                   }
                   if (snapshot.hasData) {
                     DietOutputModel dataDiet = snapshot.data!;
-                    List<DietMenu> dietMenus = [];
+                    List<DietOutputMenu> dietMenus = [];
                     DateTime inDate = DateTime.now();
                     if (dataDiet.dietDayModel.isNotEmpty) {
                       for (int i = 0; i < dataDiet.dietDayModel.length; i++) {

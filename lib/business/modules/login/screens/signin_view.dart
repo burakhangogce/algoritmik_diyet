@@ -145,8 +145,7 @@ class SigninView extends StatelessWidget {
                                       child: Text(Localization.of(context)!
                                           .signin_login_button)),
                                 ),
-                                DividerWidget(Localization.of(context)!
-                                    .signin_company_question),
+                                DividerWidget("Hesabınız yok mu?"),
                                 Flexible(
                                   flex: 1,
                                   child: OutlinedButton(
@@ -159,8 +158,7 @@ class SigninView extends StatelessWidget {
                                             style: BorderStyle.solid,
                                           )),
                                       onPressed: () {},
-                                      child: Text(Localization.of(context)!
-                                          .signin_company_button)),
+                                      child: Text("Hesap Oluşturun")),
                                 ),
                                 const SizedBox(
                                   height: 15,

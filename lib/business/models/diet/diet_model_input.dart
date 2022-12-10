@@ -20,14 +20,14 @@ class DietInputModel {
   String dietTitle;
   DateTime dietStartDate;
   DateTime dietEndDate;
-  List<DietDayModel> dietDayModel;
+  List<DietInputDayModel> dietDayModel;
 
   factory DietInputModel.fromJson(Map<String, dynamic> json) => DietInputModel(
         dietTitle: json["dietTitle"],
         dietStartDate: DateTime.parse(json["dietStartDate"]),
         dietEndDate: DateTime.parse(json["dietEndDate"]),
-        dietDayModel: List<DietDayModel>.from(
-            json["dietDayModel"].map((x) => DietDayModel.fromJson(x))),
+        dietDayModel: List<DietInputDayModel>.from(
+            json["dietDayModel"].map((x) => DietInputDayModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -38,19 +38,20 @@ class DietInputModel {
       };
 }
 
-class DietDayModel {
-  DietDayModel({
+class DietInputDayModel {
+  DietInputDayModel({
     required this.dietTime,
     required this.dietMenus,
   });
 
   DateTime dietTime;
-  List<DietMenu> dietMenus;
+  List<DietInputMenu> dietMenus;
 
-  factory DietDayModel.fromJson(Map<String, dynamic> json) => DietDayModel(
+  factory DietInputDayModel.fromJson(Map<String, dynamic> json) =>
+      DietInputDayModel(
         dietTime: DateTime.parse(json["dietTime"]),
-        dietMenus: List<DietMenu>.from(
-            json["dietMenus"].map((x) => DietMenu.fromJson(x))),
+        dietMenus: List<DietInputMenu>.from(
+            json["dietMenus"].map((x) => DietInputMenu.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -59,8 +60,8 @@ class DietDayModel {
       };
 }
 
-class DietMenu {
-  DietMenu({
+class DietInputMenu {
+  DietInputMenu({
     required this.dietMenuTitle,
     required this.dietMenuDetail,
     required this.dietMenuTime,
@@ -74,7 +75,7 @@ class DietMenu {
   bool isNotification;
   bool isCompleted;
 
-  factory DietMenu.fromJson(Map<String, dynamic> json) => DietMenu(
+  factory DietInputMenu.fromJson(Map<String, dynamic> json) => DietInputMenu(
         dietMenuTitle: json["dietMenuTitle"],
         dietMenuDetail: json["dietMenuDetail"],
         dietMenuTime: DateTime.parse(json["dietMenuTime"]),

@@ -1,4 +1,4 @@
-import 'package:algoritmik_diyet/business/models/diet/diet_model.dart';
+import '../diet/diet_model_input.dart';
 
 class ClientModel {
   int clientId;
@@ -7,7 +7,7 @@ class ClientModel {
   String clientAge;
   int firstWeight;
   int lastWeight;
-  DietModel dietModel;
+  DietInputModel dietModel;
 
   ClientModel(
     this.clientId,

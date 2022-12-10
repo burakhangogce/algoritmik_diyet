@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
-import 'package:algoritmik_diyet/business/modules/homework/controller/homework_controller.dart';
-import 'package:algoritmik_diyet/business/modules/homework/screens/homework_page.dart';
 import 'package:algoritmik_diyet/business/modules/students/screens/student_details_page.dart';
 import 'package:algoritmik_diyet/business/modules/students/screens/students_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -83,10 +81,6 @@ class MyApp extends StatelessWidget {
         "/login": (context) => ChangeNotifierProvider(
               create: (_) => SigninController(),
               child: const SigninView(),
-            ),
-        "/homework": (context) => ChangeNotifierProvider(
-              create: (_) => HomeWorkController(),
-              child: const HomeWorkPage(),
             ),
         "/secondaryLogin": (context) => ChangeNotifierProvider(
               create: (_) => SigninController(),

@@ -25,7 +25,7 @@ class DietOutputModel {
   String dietTitle;
   DateTime dietStartDate;
   DateTime dietEndDate;
-  List<DietDayModel> dietDayModel;
+  List<DietOutputDayModel> dietDayModel;
 
   factory DietOutputModel.fromJson(Map<String, dynamic> json) =>
       DietOutputModel(
@@ -34,8 +34,8 @@ class DietOutputModel {
         dietTitle: json["dietTitle"],
         dietStartDate: DateTime.parse(json["dietStartDate"]),
         dietEndDate: DateTime.parse(json["dietEndDate"]),
-        dietDayModel: List<DietDayModel>.from(
-            json["dietDayModel"].map((x) => DietDayModel.fromJson(x))),
+        dietDayModel: List<DietOutputDayModel>.from(
+            json["dietDayModel"].map((x) => DietOutputDayModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -48,8 +48,8 @@ class DietOutputModel {
       };
 }
 
-class DietDayModel {
-  DietDayModel({
+class DietOutputDayModel {
+  DietOutputDayModel({
     required this.dietDayId,
     required this.dietId,
     required this.dietTime,
@@ -59,15 +59,16 @@ class DietDayModel {
   int dietDayId;
   int dietId;
   DateTime dietTime;
-  List<DietMenu> dietMenus;
+  List<DietOutputMenu> dietMenus;
   dynamic dietModel;
 
-  factory DietDayModel.fromJson(Map<String, dynamic> json) => DietDayModel(
+  factory DietOutputDayModel.fromJson(Map<String, dynamic> json) =>
+      DietOutputDayModel(
         dietDayId: json["dietDayId"],
         dietId: json["dietId"],
         dietTime: DateTime.parse(json["dietTime"]),
-        dietMenus: List<DietMenu>.from(
-            json["dietMenus"].map((x) => DietMenu.fromJson(x))),
+        dietMenus: List<DietOutputMenu>.from(
+            json["dietMenus"].map((x) => DietOutputMenu.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,8 +79,8 @@ class DietDayModel {
       };
 }
 
-class DietMenu {
-  DietMenu({
+class DietOutputMenu {
+  DietOutputMenu({
     required this.dietMenuId,
     required this.dietDayId,
     required this.dietMenuTitle,
@@ -97,7 +98,7 @@ class DietMenu {
   bool isNotification;
   bool isCompleted;
 
-  factory DietMenu.fromJson(Map<String, dynamic> json) => DietMenu(
+  factory DietOutputMenu.fromJson(Map<String, dynamic> json) => DietOutputMenu(
         dietMenuId: json["dietMenuId"],
         dietDayId: json["dietDayId"],
         dietMenuTitle: json["dietMenuTitle"],

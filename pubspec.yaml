@@ -144,6 +144,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+    - assets/animations/
   #  - assets/ca/
   #   - family: Trajan Pro
   #     fonts:

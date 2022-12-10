@@ -1,14 +1,22 @@
+import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
+import 'package:algoritmik_diyet/business/models/diet/diet_model_input.dart';
+import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
+import 'package:algoritmik_diyet/business/models/response/response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/app_color.dart';
-import '../../../models/diet/diet_day_model.dart';
+import '../../../../main.dart';
+import '../../../services/data/diet_services.dart';
 
 class DietController with ChangeNotifier {
   PageController pageController = PageController();
   TextEditingController dietFirstDate = TextEditingController();
+  TextEditingController dietClient = TextEditingController();
   TextEditingController dietLastDate = TextEditingController();
   TextEditingController dietMenuTitle = TextEditingController();
   TextEditingController dietMenuDetail = TextEditingController();
+  final DietServices _dietServices = getIt.get<DietServices>();
+
   int selectedPageIndex = 0;
   int selectedDietDate = 0;
   final List<Widget> timeRangeList = [
@@ -89,10 +97,14 @@ class DietController with ChangeNotifier {
   List<List<TextEditingController>> diets = [];
   List<TextEditingController> controllers = [];
   List<DateTime> selectedDateList = [];
-  Map<DateTime, List<DietMenuModel>> dietMap = {};
-  List<DietMenuModel> copyList = [];
-  DietMenuModel copyMenu =
-      DietMenuModel(1, "", "", DateTime.now(), true, false);
+  Map<DateTime, List<DietInputMenu>> dietMap = {};
+  List<DietInputMenu> copyList = [];
+  DietInputMenu copyMenu = DietInputMenu(
+      dietMenuTitle: "",
+      dietMenuDetail: "",
+      dietMenuTime: DateTime.now(),
+      isCompleted: true,
+      isNotification: false);
   double dietWaterLoop = 1.0;
   double dietWaterNotificationLoop = 3.0;
   double dietCoffeeLoop = 1.0;
@@ -100,6 +112,26 @@ class DietController with ChangeNotifier {
   bool isMenuNotification = false;
   bool isExerciseNotification = false;
   bool isCoffeePermission = false;
+
+  Future<ResponseModel<DietOutputModel>> createDiet() async {
+    LoadingDialog.openDialog();
+    List<DietInputDayModel> dietDays = [];
+    for (int i = 0; i < dietMap.length; i++) {
+      DietInputDayModel dietInputDayModel = DietInputDayModel(
+          dietTime: dietMap.keys.elementAt(i),
+          dietMenus: dietMap.values.elementAt(i));
+      dietDays.add(dietInputDayModel);
+    }
+    DietInputModel req = DietInputModel(
+        dietTitle: "dietTitle",
+        dietStartDate: DateTime.now(),
+        dietEndDate: DateTime.now(),
+        dietDayModel: dietDays);
+    ResponseModel<DietOutputModel> resp = await _dietServices.addDiet(req);
+    LoadingDialog.closeDialog();
+    return resp;
+  }
+
   setNotification(bool value, String type) {
     if (type == "water") {
       isWaterNotification = value;
@@ -151,14 +183,14 @@ class DietController with ChangeNotifier {
     notifyListeners();
   }
 
-  addDietMenu(DietMenuModel dietMenuModel, int index) {
+  addDietMenu(DietInputMenu dietMenuModel, int index) {
     dietMap[selectedDateList[index]]!.add(dietMenuModel);
     dietMenuTitle.clear();
     dietMenuDetail.clear();
     notifyListeners();
   }
 
-  updateDietMenu(DietMenuModel dietMenuModel, int index) {
+  updateDietMenu(DietInputMenu dietMenuModel, int index) {
     dietMap[selectedDateList[index]]![index] = dietMenuModel;
     dietMenuTitle.clear();
     dietMenuDetail.clear();

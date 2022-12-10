@@ -1,4 +1,3 @@
-import 'package:algoritmik_diyet/business/models/diet/diet_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/main.dart';

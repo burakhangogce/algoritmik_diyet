@@ -67,6 +67,30 @@ class DietAddFirst extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            GestureDetector(
+              onTap: () {
+                controller.displayTimePicker(
+                    context,
+                    DateFormat('dd-MM-yyyy')
+                        .parse(controller.dietFirstDate.text)
+                        .add(const Duration(days: 1)),
+                    controller.dietLastDate,
+                    DateFormat('dd-MM-yyyy')
+                        .parse(controller.dietFirstDate.text)
+                        .add(const Duration(days: 6)));
+              },
+              child: TapTextFormField(
+                controller.dietClient,
+                placeholder: 'Danışan',
+                keyboardType: TextInputType.phone,
+                icon: const Icon(Icons.person),
+                validator: (value) =>
+                    Validations.validateIsNotEmpty(value, null),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             controller.dietLastDate.text.isNotEmpty
                 ? SizedBox(
                     width: pageWidht * 0.9,

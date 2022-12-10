@@ -32,16 +32,15 @@ class Recipe extends StatelessWidget {
             width: pageWidht * 0.9,
             child: PrimaryButton(
               onPressed: () {
-                LoadingDialog.openDialog();
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) =>
-                //         ChangeNotifierProvider<RecipeController>.value(
-                //       value: controller,
-                //       child: const AddRecipePage(),
-                //     ),
-                //   ),
-                // );
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        ChangeNotifierProvider<RecipeController>.value(
+                      value: controller,
+                      child: const AddRecipePage(),
+                    ),
+                  ),
+                );
               },
               text: "Tarif Oluştur",
               textStyle: AppTheme.notoSansMed18White,

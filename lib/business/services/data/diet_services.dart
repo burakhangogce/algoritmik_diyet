@@ -20,10 +20,9 @@ class DietServices extends AlgoritmikServiceBase with ServiceMixin {
     return response.toBody(null);
   }
 
-  Future<ResponseModel<DietOutputModel>> changePassword(
-      DietInputModel diet) async {
+  Future<ResponseModel<DietOutputModel>> addDiet(DietInputModel diet) async {
     ResponseModel<dynamic> response = await postMapAsync(
-        getUri('User/sendotp').toString(),
+        getUri('mydiets/adddiet').toString(),
         createHeaders(),
         json.encode(diet.toJson()),
         null);

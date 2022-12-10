@@ -1,3 +1,4 @@
+import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../../../../constants/app_color.dart';
@@ -13,27 +14,22 @@ class LoadingDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.black12,
-      child: SizedBox(
-        height: 15,
-        width: 15,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // const CircularProgressIndicator(
-            //   color: backgroundColor,
-            //   strokeWidth: 3,
-            //   backgroundColor: primaryColor,
-            // ),
-            Lottie.network(
-                'https://assets1.lottiefiles.com/packages/lf20_6yhhrbk6.json'),
-            // Text(
-            //   "Lütfen Bekleyiniz",
-            //   textAlign: TextAlign.center,
-            //   style: AppTheme.notoSansMed16White,
-            // )
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            'assets/animations/99279-preparing-food.json',
+            width: pageWidht * 0.95,
+            height: pageHeight * 0.50,
+          ),
+          Center(
+            child: Text(
+              "Lütfen Bekleyiniz",
+              textAlign: TextAlign.center,
+              style: AppTheme.notoSansMed16White,
+            ),
+          )
+        ],
       ),
     );
   }

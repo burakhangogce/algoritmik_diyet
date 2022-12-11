@@ -11,6 +11,7 @@ import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/utils/validations.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
 import '../../../commons/widgets/textformfields/general_text_form_field.dart';
+import '../../../commons/widgets/title/text_icon_title.dart';
 import '../../../models/diet/diet_model_input.dart';
 
 class DietAddSecond extends StatelessWidget {
@@ -366,156 +367,195 @@ class DietAddSecond extends StatelessWidget {
       cnt.dietMenuTitle.text = dietMenuModel!.dietMenuTitle;
       cnt.dietMenuDetail.text = dietMenuModel.dietMenuDetail;
     }
-
-    return showDialog(
-        context: NavigationService.navigatorKey.currentContext!,
-        builder: (BuildContext context) {
-          return Dialog(
-            child: SizedBox(
-              height: pageHeight * 0.7,
-              width: pageWidht,
-              child: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
+    return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: NavigationService.navigatorKey.currentContext!,
+      builder: (context) {
+        return Container(
+          decoration: const BoxDecoration(
+              color: secondaryTextColor,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(12.0),
+                  topRight: Radius.circular(12.0))),
+          margin: const EdgeInsets.only(top: 35),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 25,
+                ),
+                Expanded(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              DuoToneFontAwesomeIcon(
+                                  iconSource: IconFont.utensilsalt,
+                                  firstColor: firstIconColor,
+                                  iconSize: 17,
+                                  secondColor: secondIconColor,
+                                  iconSecondSource: SecondIconFont.utensilsalt),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: DuoToneFontAwesomeIcon(
+                                    iconSource: IconFont.windowclose,
+                                    firstColor: firstIconColor,
+                                    iconSize: 24,
+                                    secondColor: secondIconColor,
+                                    iconSecondSource:
+                                        SecondIconFont.windowclose),
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: Column(
+                            children: [
+                              GeneralTextFormField(
+                                cnt.dietMenuTitle,
+                                keyboardType: TextInputType.text,
+                                placeholder: isUpdate
+                                    ? dietMenuModel!.dietMenuTitle
+                                    : "Öğün Başlığı",
+                                validator: (value) =>
+                                    Validations.validateIsNotEmpty(value, null),
+                              ),
+                              TextField(
+                                controller: cnt.dietMenuDetail,
+                                keyboardType: TextInputType.multiline,
+                                maxLines: 10,
+                                decoration: InputDecoration(
+                                    hintText: isUpdate
+                                        ? dietMenuModel!.dietMenuDetail
+                                        : "Öğün Detayı",
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1, color: firstIconColor))),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            DuoToneFontAwesomeIcon(
-                                iconSource: IconFont.utensilsalt,
-                                firstColor: firstIconColor,
-                                iconSize: 17,
-                                secondColor: secondIconColor,
-                                iconSecondSource: SecondIconFont.utensilsalt),
+                            Text(
+                              "Saat",
+                              style: AppTheme.notoSansMed18PrimaryText,
+                            ),
+                            cnt.dietMenuTime.text.isNotEmpty
+                                ? Text(cnt.dietMenuTime.text)
+                                : TextButton(
+                                    onPressed: () async {
+                                      final TimeOfDay? newTime =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: const TimeOfDay(
+                                            hour: 7, minute: 15),
+                                      );
+                                      if (newTime != null) {
+                                        cnt.dietMenuTime.text =
+                                            newTime.toString();
+                                      }
+                                    },
+                                    style: AppTheme.textButtonStyle,
+                                    child: const Text(
+                                      "Saat belirle",
+                                      style: AppTheme.notoSansMed14Primary2Text,
+                                    ),
+                                  ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
                             GestureDetector(
                               onTap: () {
                                 Navigator.pop(context);
                               },
-                              child: DuoToneFontAwesomeIcon(
-                                  iconSource: IconFont.windowclose,
-                                  firstColor: firstIconColor,
-                                  iconSize: 24,
-                                  secondColor: secondIconColor,
-                                  iconSecondSource: SecondIconFont.windowclose),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Column(
-                          children: [
-                            GeneralTextFormField(
-                              cnt.dietMenuTitle,
-                              keyboardType: TextInputType.text,
-                              placeholder: isUpdate
-                                  ? dietMenuModel!.dietMenuTitle
-                                  : "Öğün Başlığı",
-                              validator: (value) =>
-                                  Validations.validateIsNotEmpty(value, null),
-                            ),
-                            TextField(
-                              controller: cnt.dietMenuDetail,
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 4,
-                              decoration: InputDecoration(
-                                  hintText: isUpdate
-                                      ? dietMenuModel!.dietMenuDetail
-                                      : "Öğün Detayı",
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 1, color: firstIconColor))),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        child: ListWheelScrollView(
-                            itemExtent: cnt.timeRangeList.length.toDouble(),
-                            clipBehavior: Clip.antiAlias,
-                            diameterRatio: 5,
-                            children: cnt.timeRangeList),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Row(
-                              children: [
-                                DuoToneFontAwesomeIcon(
-                                    iconSource: IconFont.utensilsalt,
-                                    firstColor: firstIconColor,
-                                    iconSize: 20,
-                                    secondColor: secondIconColor,
-                                    iconSecondSource:
-                                        SecondIconFont.utensilsalt),
-                                TextButton(
-                                  onPressed: () {
-                                    bool valid =
-                                        formKey.currentState?.validate() ??
-                                            false;
-                                    if (valid) {
-                                      if (isUpdate) {
-                                        DietInputMenu dietMenuModel =
-                                            DietInputMenu(
-                                                dietMenuDetail:
-                                                    cnt.dietMenuDetail.text,
-                                                dietMenuTime: DateTime.now(),
-                                                dietMenuTitle:
-                                                    cnt.dietMenuTitle.text,
-                                                isCompleted: true,
-                                                isNotification: false);
-                                        cnt.updateDietMenu(
-                                            dietMenuModel, index!);
-                                        Navigator.pop(context);
-                                      } else {
-                                        DietInputMenu dietInputMenu =
-                                            DietInputMenu(
-                                                dietMenuDetail:
-                                                    cnt.dietMenuDetail.text,
-                                                dietMenuTime: DateTime.now(),
-                                                dietMenuTitle:
-                                                    cnt.dietMenuTitle.text,
-                                                isCompleted: true,
-                                                isNotification: false);
-                                        cnt.addDietMenu(dietInputMenu,
-                                            cnt.selectedDietDate);
-                                        Navigator.pop(context);
+                              child: Row(
+                                children: [
+                                  DuoToneFontAwesomeIcon(
+                                      iconSource: IconFont.utensilsalt,
+                                      firstColor: firstIconColor,
+                                      iconSize: 20,
+                                      secondColor: secondIconColor,
+                                      iconSecondSource:
+                                          SecondIconFont.utensilsalt),
+                                  TextButton(
+                                    onPressed: () {
+                                      bool valid =
+                                          formKey.currentState?.validate() ??
+                                              false;
+                                      if (valid) {
+                                        if (isUpdate) {
+                                          DietInputMenu dietMenuModel =
+                                              DietInputMenu(
+                                                  dietMenuDetail:
+                                                      cnt.dietMenuDetail.text,
+                                                  dietMenuTime: DateTime.now(),
+                                                  dietMenuTitle:
+                                                      cnt.dietMenuTitle.text,
+                                                  isCompleted: true,
+                                                  isNotification: false);
+                                          cnt.updateDietMenu(
+                                              dietMenuModel, index!);
+                                          Navigator.pop(context);
+                                        } else {
+                                          DietInputMenu dietInputMenu =
+                                              DietInputMenu(
+                                                  dietMenuDetail:
+                                                      cnt.dietMenuDetail.text,
+                                                  dietMenuTime: DateTime.now(),
+                                                  dietMenuTitle:
+                                                      cnt.dietMenuTitle.text,
+                                                  isCompleted: true,
+                                                  isNotification: false);
+                                          cnt.addDietMenu(dietInputMenu,
+                                              cnt.selectedDietDate);
+                                          Navigator.pop(context);
+                                        }
                                       }
-                                    }
-                                    //controller.addSetDietDetailWidget(controller.selectedDietDate);
-                                  },
-                                  style: AppTheme.textButtonStyle,
-                                  child: Text(
-                                    isUpdate ? "Güncelle" : "Ekle",
-                                    style: AppTheme.notoSansMed18PrimaryText,
+                                      //controller.addSetDietDetailWidget(controller.selectedDietDate);
+                                    },
+                                    style: AppTheme.textButtonStyle,
+                                    child: Text(
+                                      isUpdate ? "Güncelle" : "Ekle",
+                                      style: AppTheme.notoSansMed18PrimaryText,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

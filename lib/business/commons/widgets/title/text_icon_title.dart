@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 class TextIconTitle extends StatelessWidget {
   final String title;
-  final String iconAsset;
   final Function? action;
 
-  const TextIconTitle(
-      {Key? key,
-      required this.title,
-      this.iconAsset = 'assets/images/cikis_lacivert.png',
-      this.action})
+  const TextIconTitle({Key? key, required this.title, this.action})
       : super(key: key);
 
   @override
@@ -33,10 +28,9 @@ class TextIconTitle extends StatelessWidget {
               : () {
                   action!.call();
                 },
-          child: Image(
-            image: AssetImage(iconAsset),
-            height: 25,
-            width: 25,
+          child: const Icon(
+            Icons.cancel_sharp,
+            color: Colors.black,
           ),
         ),
       ],

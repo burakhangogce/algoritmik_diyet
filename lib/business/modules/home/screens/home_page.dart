@@ -104,9 +104,7 @@ class _HomePageState extends State<HomePage>
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/creatediet');
-                  },
+                  onTap: () {},
                   child: Container(
                     height: pageHeight * 0.1,
                     width: pageWidht * 0.25,

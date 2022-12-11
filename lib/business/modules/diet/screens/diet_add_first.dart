@@ -1,3 +1,5 @@
+import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
+import 'package:algoritmik_diyet/business/commons/widgets/filter/filter_view.dart';
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,8 @@ import '../../../../main.dart';
 import '../../../commons/utils/validations.dart';
 import '../../../commons/widgets/buttons/primary_button.dart';
 import '../../../commons/widgets/textformfields/tap_text_form_field.dart';
+import '../../../models/client/my_clients_ouput_model.dart';
+import '../../../models/response/response_model.dart';
 
 class DietAddFirst extends StatelessWidget {
   const DietAddFirst({super.key});
@@ -68,16 +72,20 @@ class DietAddFirst extends StatelessWidget {
               height: 10,
             ),
             GestureDetector(
-              onTap: () {
-                controller.displayTimePicker(
-                    context,
-                    DateFormat('dd-MM-yyyy')
-                        .parse(controller.dietFirstDate.text)
-                        .add(const Duration(days: 1)),
-                    controller.dietLastDate,
-                    DateFormat('dd-MM-yyyy')
-                        .parse(controller.dietFirstDate.text)
-                        .add(const Duration(days: 6)));
+              onTap: () async {
+                LoadingDialog.openDialog();
+                ResponseModel<List<MyClientsOutputModel>> clientList =
+                    await controller.getClients();
+                LoadingDialog.closeDialog();
+                final result = await FilterView<MyClientsOutputModel>(
+                        values: clientList.body!)
+                    .showSheet<MyClientsOutputModel>(
+                        context: context,
+                        items: clientList.body!,
+                        textTitle: "Titleee",
+                        textFieldHint: "hinttt");
+                if (result == null) return;
+                controller.dietClient.text = result.clientName;
               },
               child: TapTextFormField(
                 controller.dietClient,

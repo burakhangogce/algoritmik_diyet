@@ -6,8 +6,16 @@ import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
+
+class _SalesData {
+  _SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
+}
 
 class ClientDetailPage extends StatelessWidget {
   const ClientDetailPage({super.key, required this.clientModel});
@@ -16,7 +24,18 @@ class ClientDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Provider.of<ClientController>(context, listen: false);
-
+    List<_SalesData> data = [
+      _SalesData('Jan', 35),
+      _SalesData('Feb', 28),
+      _SalesData('Feb1', 29),
+      _SalesData('Feb2', 45),
+      _SalesData('Feb3', 50),
+      _SalesData('Feb4', 20),
+      _SalesData('Mar', 34),
+      _SalesData('Apr', 32),
+      _SalesData('May', 70),
+      _SalesData('May', 60)
+    ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -116,6 +135,23 @@ class ClientDetailPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            SfCartesianChart(
+                primaryXAxis: CategoryAxis(),
+                // Chart title
+                title: ChartTitle(text: 'Kilo Geçmişi'),
+                // Enable legend
+                legend: Legend(isVisible: false),
+                // Enable tooltip
+                tooltipBehavior:
+                    TooltipBehavior(enable: false, canShowMarker: false),
+                series: <ChartSeries<_SalesData, String>>[
+                  AreaSeries<_SalesData, String>(
+                      dataSource: data,
+                      xValueMapper: (_SalesData data, _) => data.year,
+                      yValueMapper: (_SalesData data, _) => data.sales,
+                      name: 'Gold',
+                      color: firstIconColor)
+                ]),
             Center(
               child: Text(
                 "Uyguladığı Diyet",

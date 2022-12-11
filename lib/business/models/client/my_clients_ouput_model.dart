@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:algoritmik_diyet/business/commons/widgets/filter/filter_view.dart';
+
 List<MyClientsOutputModel> myClientsOutputModelFromJson(String str) =>
     List<MyClientsOutputModel>.from(
         json.decode(str).map((x) => MyClientsOutputModel.fromJson(x)));
@@ -11,7 +13,7 @@ List<MyClientsOutputModel> myClientsOutputModelFromJson(String str) =>
 String myClientsOutputModelToJson(List<MyClientsOutputModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class MyClientsOutputModel {
+class MyClientsOutputModel extends IFilter {
   MyClientsOutputModel({
     required this.clientId,
     required this.nutritionistId,
@@ -23,6 +25,11 @@ class MyClientsOutputModel {
     required this.token,
     this.nutritionistModel,
   });
+
+  @override
+  String get id => clientId.toString();
+  @override
+  String get key => clientName;
 
   int clientId;
   int nutritionistId;

@@ -32,6 +32,7 @@ double pageWidht =
 bool isTest = false;
 bool isClient = false;
 int nutritionistId = 1;
+int clientId = 1;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

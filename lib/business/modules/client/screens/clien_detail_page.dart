@@ -137,11 +137,8 @@ class ClientDetailPage extends StatelessWidget {
             ),
             SfCartesianChart(
                 primaryXAxis: CategoryAxis(),
-                // Chart title
                 title: ChartTitle(text: 'Kilo Geçmişi'),
-                // Enable legend
                 legend: Legend(isVisible: false),
-                // Enable tooltip
                 tooltipBehavior:
                     TooltipBehavior(enable: false, canShowMarker: false),
                 series: <ChartSeries<_SalesData, String>>[
@@ -189,6 +186,7 @@ class ClientDetailPage extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
+                                controller.setSelectedDietModel(dataDiet);
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) =>

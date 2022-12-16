@@ -4,12 +4,9 @@ import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
-import '../../../commons/utils/icon_font.dart';
-import '../../../commons/utils/second_icon_font.dart';
-import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
+import '../widget/diet_menu_widget.dart';
 
 class UpdateDietPage extends StatelessWidget {
   const UpdateDietPage({super.key, required this.dietModel});
@@ -78,7 +75,10 @@ class UpdateDietPage extends StatelessWidget {
                                 const BorderRadius.all(Radius.circular(15.0)),
                             color: controller.selectedDietDate == index
                                 ? Colors.grey.shade300
-                                : Colors.transparent),
+                                : dietModel.dietDayModel[index].dietTime
+                                        .isBefore(DateTime.now())
+                                    ? Colors.green.shade200
+                                    : Colors.transparent),
                         child: Column(
                           children: [
                             Text(
@@ -109,151 +109,11 @@ class UpdateDietPage extends StatelessWidget {
                   return Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 2, vertical: 10),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: firstIconColor,
-                            ),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15.0)),
-                            color: Colors.transparent),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Column(
-                            children: [
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Column(
-                                children: [
-                                  Center(
-                                    child: DuoToneFontAwesomeIcon(
-                                        iconSource: IconFont.utensilsalt,
-                                        firstColor: firstIconColor,
-                                        iconSize: 40,
-                                        secondColor: secondIconColor,
-                                        iconSecondSource:
-                                            SecondIconFont.utensilsalt),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    DateFormat('hh:mm').format(dietModel
-                                        .dietDayModel[
-                                            controller.selectedDietDate]
-                                        .dietMenus[index]
-                                        .dietMenuTime),
-                                    style: AppTheme.notoSansMed18PrimaryText,
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Öğün Başlığı",
-                                    style: AppTheme.notoSansMed14PrimaryText,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    dietModel
-                                        .dietDayModel[
-                                            controller.selectedDietDate]
-                                        .dietMenus[index]
-                                        .dietMenuTitle,
-                                    style: AppTheme.notoSansMed12Primary2Text,
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Öğün Detayı",
-                                    style: AppTheme.notoSansMed14PrimaryText,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      dietModel
-                                          .dietDayModel[
-                                              controller.selectedDietDate]
-                                          .dietMenus[index]
-                                          .dietMenuDetail,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 20,
-                                      style: AppTheme.notoSansMed12Primary2Text,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                      width: pageWidht * 0.3,
-                                      child: ElevatedButton(
-                                        onPressed: () {},
-                                        style: AppTheme.elevatedButtonStyle
-                                            .copyWith(fixedSize:
-                                                MaterialStateProperty
-                                                    .resolveWith((states) {
-                                          if (states.contains(
-                                              MaterialState.disabled)) {
-                                            return const Size(5, 5);
-                                          }
-                                          return const Size(5, 5);
-                                        })),
-                                        child: const Text("Kopyala"),
-                                      )),
-                                  SizedBox(
-                                    width: pageWidht * 0.3,
-                                    child: OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                          foregroundColor:
-                                              loginGradientStartColor,
-                                          fixedSize: const Size(10, 10),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                          ),
-                                          side: const BorderSide(
-                                            width: 1.0,
-                                            color: loginGradientStartColor,
-                                            style: BorderStyle.solid,
-                                          )),
-                                      onPressed: () {},
-                                      child: const Text("İptal Et"),
-                                    ),
-                                  )
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    child: DietMenuWidget(
+                      dietModel: dietModel,
+                      dietMenuModel: dietModel
+                          .dietDayModel[controller.selectedDietDate]
+                          .dietMenus[index],
                     ),
                   );
                 },

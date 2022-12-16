@@ -18,7 +18,7 @@ class LoadingDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(
-            'assets/animations/99279-preparing-food.json',
+            'assets/animations/99276-loading-utensils.json',
             width: pageWidht * 0.95,
             height: pageHeight * 0.50,
           ),

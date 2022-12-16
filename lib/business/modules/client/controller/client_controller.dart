@@ -13,17 +13,30 @@ class ClientController with ChangeNotifier {
   PageController pageController = PageController();
   final ClientServices _clientServices = getIt.get<ClientServices>();
   final DietServices _dietServices = getIt.get<DietServices>();
-
   int selectedDietDate = 0;
+  int selectedDietMenu = 0;
   setSelectedDietDate(int value) {
     selectedDietDate = value;
     notifyListeners();
   }
 
+  setSelectedDietMenu(int value) {
+    selectedDietMenu = value;
+    notifyListeners();
+  }
+
+  TextEditingController dietMenuTitleTxt = TextEditingController();
+  TextEditingController dietMenuDetailTxt = TextEditingController();
+  TextEditingController dietMenuTimeTxt = TextEditingController();
   int selectedPageIndex = 0;
   String inviteCode = "";
   String copyInviteCode = "";
   List<ClientModel> listClientModel = [];
+  DietOutputModel? selectedDietModel;
+
+  setSelectedDietModel(DietOutputModel dietOutputModel) {
+    selectedDietModel = dietOutputModel;
+  }
 
   Future<List<MyClientsOutputModel>> myClients(int id) async {
     ResponseModel<List<MyClientsOutputModel>> myClients =
@@ -36,6 +49,37 @@ class ClientController with ChangeNotifier {
     return myClients.body!;
   }
 
+  Future<DietOutputModel> updateDiet() async {
+    ResponseModel<DietOutputModel> diet =
+        await _dietServices.updateDiet(selectedDietModel!);
+    return diet.body!;
+  }
+
+  Future<DietOutputModel> updateDietMenuLocal() async {
+    DietOutputMenu editDietMenu = selectedDietModel!.dietDayModel
+        .singleWhere((element) => element.dietDayId == selectedDietDate)
+        .dietMenus
+        .singleWhere((element) => element.dietMenuId == selectedDietMenu);
+    DietOutputMenu dietOutputMenu = DietOutputMenu(
+        dietDayId: selectedDietDate,
+        dietMenuId: selectedDietMenu,
+        dietMenuDetail: dietMenuDetailTxt.text,
+        dietMenuTime: editDietMenu.dietMenuTime,
+        dietMenuTitle: dietMenuTitleTxt.text,
+        isCompleted: editDietMenu.isCompleted,
+        isNotification: editDietMenu.isNotification);
+    selectedDietModel!.dietDayModel
+                .singleWhere((element) => element.dietDayId == selectedDietDate)
+                .dietMenus[
+            selectedDietModel!.dietDayModel
+                .singleWhere((element) => element.dietDayId == selectedDietDate)
+                .dietMenus
+                .indexWhere(
+                    (element) => element.dietMenuId == selectedDietMenu)] =
+        dietOutputMenu;
+    return selectedDietModel!;
+  }
+
   setInviteCode() {
     var uuid = const Uuid();
     inviteCode = uuid.v1();
@@ -44,6 +88,28 @@ class ClientController with ChangeNotifier {
 
   setDeleteClient(int index) {
     listClientModel.removeAt(index);
+    notifyListeners();
+  }
+
+  setDietMenuTime(TimeOfDay timeOfDay) {
+    DietOutputMenu editDietMenu = selectedDietModel!.dietDayModel
+        .singleWhere((element) => element.dietDayId == selectedDietDate)
+        .dietMenus
+        .singleWhere((element) => element.dietMenuId == selectedDietMenu);
+    DateTime dietMenuTime = editDietMenu.dietMenuTime;
+    dietMenuTime = DateTime(dietMenuTime.year, dietMenuTime.month,
+        dietMenuTime.day, timeOfDay.hour, timeOfDay.minute);
+    editDietMenu.dietMenuTime = dietMenuTime;
+    selectedDietModel!.dietDayModel
+                .singleWhere((element) => element.dietDayId == selectedDietDate)
+                .dietMenus[
+            selectedDietModel!.dietDayModel
+                .singleWhere((element) => element.dietDayId == selectedDietDate)
+                .dietMenus
+                .indexWhere(
+                    (element) => element.dietMenuId == selectedDietMenu)] =
+        editDietMenu;
+    dietMenuTimeTxt.text = "${timeOfDay.hour}:${timeOfDay.minute}";
     notifyListeners();
   }
 

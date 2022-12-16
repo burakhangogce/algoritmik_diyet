@@ -98,6 +98,15 @@ class AppTheme {
     ),
   );
 
+  static final ButtonStyle miniElevatedButtonStyle = ElevatedButton.styleFrom(
+    backgroundColor: firstIconColor,
+    fixedSize: const Size.fromHeight(10),
+    textStyle: notoSansReg12White,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+    ),
+  );
+
   static final ButtonStyle textButtonStyle = TextButton.styleFrom(
     foregroundColor: primaryTextColor,
     fixedSize: const Size.fromHeight(22),

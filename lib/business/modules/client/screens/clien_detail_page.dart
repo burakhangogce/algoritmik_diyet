@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:algoritmik_diyet/business/models/client/my_clients_ouput_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
 import 'package:algoritmik_diyet/business/modules/client/screens/client_update_diet_page.dart';
+import 'package:algoritmik_diyet/business/modules/client/screens/pdf_screen.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -217,7 +222,51 @@ class ClientDetailPage extends StatelessWidget {
                                     dataDiet.dietTitle,
                                     style: AppTheme.notoSansMed16PrimaryText,
                                   ),
-                                  trailing: const Icon(Icons.more_vert),
+                                  trailing: PopupMenuButton<int>(
+                                    itemBuilder: (context) => [
+                                      PopupMenuItem(
+                                        value: 1,
+                                        onTap: () async {
+                                          File? pdfFile = await controller
+                                              .createDietPdf(1)
+                                              .then((value) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => PdfScreen(
+                                                    path: value!.path),
+                                              ),
+                                            );
+                                          });
+                                          print(pdfFile);
+                                        },
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.delete),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Pdf")
+                                          ],
+                                        ),
+                                      ),
+                                      PopupMenuItem(
+                                        value: 2,
+                                        child: Row(
+                                          children: const [
+                                            Icon(Icons.edit),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Güncelle")
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                    offset: const Offset(0, 50),
+                                    color: secondBackgroundColor,
+                                    elevation: 2,
+                                  ),
                                 ),
                               ),
                             ),

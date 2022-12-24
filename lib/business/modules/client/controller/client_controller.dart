@@ -1,9 +1,15 @@
+import 'dart:io';
+
+import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
 import 'package:algoritmik_diyet/business/models/client/client_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_input.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/services/data/client_services.dart';
 import 'package:algoritmik_diyet/business/services/data/diet_services.dart';
+import 'package:algoritmik_diyet/business/services/data/pdf_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../main.dart';
 import '../../../models/client/my_clients_ouput_model.dart';
@@ -13,6 +19,7 @@ class ClientController with ChangeNotifier {
   PageController pageController = PageController();
   final ClientServices _clientServices = getIt.get<ClientServices>();
   final DietServices _dietServices = getIt.get<DietServices>();
+  final PdfServices _pdfServices = getIt.get<PdfServices>();
   int selectedDietDate = 0;
   int selectedDietMenu = 0;
   setSelectedDietDate(int value) {
@@ -36,6 +43,22 @@ class ClientController with ChangeNotifier {
 
   setSelectedDietModel(DietOutputModel dietOutputModel) {
     selectedDietModel = dietOutputModel;
+  }
+
+  Future<File?> createDietPdf(int id) async {
+    LoadingDialog.openDialog();
+    ResponseModel<String> pdfString = await _pdfServices.getDietPdf(id);
+    if (pdfString.isSuccess) {
+      Directory appDocDir = await getApplicationDocumentsDirectory();
+      var targetPath = appDocDir.path;
+      var targetFileName = "example_pdf_file";
+      var generatedPdfFile = await FlutterHtmlToPdf.convertFromHtmlContent(
+          pdfString.body!, targetPath, targetFileName);
+      LoadingDialog.closeDialog();
+      return generatedPdfFile;
+    }
+    LoadingDialog.closeDialog();
+    return null;
   }
 
   Future<List<MyClientsOutputModel>> myClients(int id) async {

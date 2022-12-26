@@ -1,7 +1,7 @@
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import '../../../../constants/app_color.dart';
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../core/services/navigation_service.dart';
 
@@ -37,13 +37,13 @@ class LoadingDialog extends StatelessWidget {
   static openDialog() {
     return showDialog(
         barrierDismissible: false,
-        context: NavigationService.navigatorKey.currentContext!,
+        context: NavigationService.instance!.navigatorKey.currentContext!,
         builder: (context) {
           return const LoadingDialog();
         });
   }
 
   static closeDialog() {
-    Navigator.of(NavigationService.navigatorKey.currentContext!).pop();
+    navigatorKey.currentState!.pop();
   }
 }

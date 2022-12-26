@@ -1,7 +1,6 @@
 import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/filter/filter_view.dart';
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

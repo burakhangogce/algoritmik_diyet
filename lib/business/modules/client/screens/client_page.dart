@@ -1,7 +1,6 @@
 import 'package:algoritmik_diyet/business/models/client/my_clients_ouput_model.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
-import 'package:algoritmik_diyet/business/modules/client/screens/clien_detail_page.dart';
-import 'package:algoritmik_diyet/business/modules/client/screens/client_create_page.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -9,14 +8,12 @@ import 'package:provider/provider.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../commons/widgets/buttons/primary_button.dart';
-import '../../../models/client/client_model.dart';
 
 class ClientPage extends StatelessWidget {
   const ClientPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<ClientController>(context, listen: false);
     return SingleChildScrollView(
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -55,18 +52,9 @@ class ClientPage extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 5),
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ChangeNotifierProvider<
-                                            ClientController>.value(
-                                      value: controller,
-                                      child: ClientDetailPage(
-                                        clientModel: data[index],
-                                      ),
-                                    ),
-                                  ),
-                                );
+                                navigatorKey.currentState!.pushNamed(
+                                    clientDetailPage,
+                                    arguments: data[index]);
                               },
                               child: SizedBox(
                                 height: 50,
@@ -142,15 +130,7 @@ class ClientPage extends StatelessWidget {
               width: pageWidht * 0.9,
               child: PrimaryButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          ChangeNotifierProvider<ClientController>.value(
-                        value: controller,
-                        child: const ClientCreatePage(),
-                      ),
-                    ),
-                  );
+                  navigatorKey.currentState!.pushNamed(clientCreatePage);
                 },
                 text: "Danışan Ekle",
                 textStyle: AppTheme.notoSansMed18White,

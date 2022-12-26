@@ -1,3 +1,4 @@
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants/app_color.dart';
@@ -127,7 +128,7 @@ class _NewPassCreatePasswordState extends State<NewPassCreatePassword> {
                         }
 
                         if (await changePassword()) {
-                          Navigator.of(context).pushNamed('/secondaryLogin');
+                          navigatorKey.currentState!.pushNamed(secondaryLogin);
                         }
                       },
                       style: AppTheme.elevatedButtonStyle,

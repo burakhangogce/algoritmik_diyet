@@ -1,6 +1,5 @@
 import 'package:algoritmik_diyet/business/models/login/firebase_login_input_model.dart';
 import 'package:algoritmik_diyet/business/models/login/firebase_login_output_model.dart';
-import 'package:algoritmik_diyet/business/models/login_output_model.dart';
 import 'package:algoritmik_diyet/business/models/user_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mobkit_flutter_servicebase/services/secure_storage_service.dart';
@@ -9,7 +8,6 @@ import '../../../../main.dart';
 import '../../../models/change_password_input_model.dart';
 import '../../../models/event_output_model.dart';
 import '../../../models/login_info.dart';
-import '../../../models/login_input_model.dart';
 import '../../../models/login_result.dart';
 import '../../../models/response/response_model.dart';
 import '../../../services/data/identity_services.dart';

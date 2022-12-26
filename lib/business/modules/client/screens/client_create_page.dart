@@ -1,5 +1,6 @@
 import 'package:algoritmik_diyet/business/commons/widgets/boxes/message_box.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/textformfields/general_text_form_field.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/app_color.dart';
@@ -16,15 +17,13 @@ class ClientCreatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController mailTxtCont = TextEditingController();
-    var controller = Provider.of<ClientController>(context, listen: false);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           "Danışan Oluştur",
@@ -130,15 +129,7 @@ class ClientCreatePage extends StatelessWidget {
                     width: pageWidht * 0.9,
                     child: PrimaryButton(
                       onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                ChangeNotifierProvider<ClientController>.value(
-                              value: controller,
-                              child: const ClientCreatePage(),
-                            ),
-                          ),
-                        );
+                        navigatorKey.currentState!.pushNamed(clientCreatePage);
                       },
                       text: "Danışan Ekle",
                       textStyle: AppTheme.notoSansMed18White,

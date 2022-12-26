@@ -6,6 +6,7 @@ import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../constants/api_path.dart';
 import '../../../commons/utils/icon_font.dart';
 import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
@@ -25,7 +26,7 @@ class StudentsPage extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           "Öğrencilerim",

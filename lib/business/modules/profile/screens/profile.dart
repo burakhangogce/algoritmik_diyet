@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:flutter/material.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
@@ -45,7 +46,8 @@ class _ProfileState extends State<Profile> {
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -115,7 +117,8 @@ class _ProfileState extends State<Profile> {
               Navigator.pop(context);
             },
             acceptButtonPressed: () async {
-              Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
+              navigatorKey.currentState!.pushNamedAndRemoveUntil(
+                  login, (Route<dynamic> route) => false);
             },
           ),
           child: Text(

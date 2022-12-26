@@ -1,14 +1,9 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:algoritmik_diyet/business/models/client/my_clients_ouput_model.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/modules/client/controller/client_controller.dart';
-import 'package:algoritmik_diyet/business/modules/client/screens/client_update_diet_page.dart';
-import 'package:algoritmik_diyet/business/modules/client/screens/pdf_screen.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -47,7 +42,7 @@ class ClientDetailPage extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           clientModel.clientName,
@@ -192,18 +187,9 @@ class ClientDetailPage extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 controller.setSelectedDietModel(dataDiet);
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ChangeNotifierProvider<
-                                            ClientController>.value(
-                                      value: controller,
-                                      child: UpdateDietPage(
-                                        dietModel: dataDiet,
-                                      ),
-                                    ),
-                                  ),
-                                );
+                                navigatorKey.currentState!.pushNamed(
+                                    clientUpdateDietPage,
+                                    arguments: dataDiet);
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -227,18 +213,8 @@ class ClientDetailPage extends StatelessWidget {
                                       PopupMenuItem(
                                         value: 1,
                                         onTap: () async {
-                                          File? pdfFile = await controller
-                                              .createDietPdf(1)
-                                              .then((value) {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => PdfScreen(
-                                                    path: value!.path),
-                                              ),
-                                            );
-                                          });
-                                          print(pdfFile);
+                                          await controller
+                                              .createDietPdf(dataDiet.dietId);
                                         },
                                         child: Row(
                                           children: const [

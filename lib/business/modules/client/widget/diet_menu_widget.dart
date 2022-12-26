@@ -1,4 +1,4 @@
-import 'package:algoritmik_diyet/business/modules/client/screens/client_diet_menu_update.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -85,17 +85,9 @@ class DietMenuWidget extends StatelessWidget {
                       onPressed: () {
                         controller
                             .setSelectedDietMenu(dietMenuModel.dietMenuId);
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                ChangeNotifierProvider(
-                              create: (_) => ClientController(),
-                              child: ClientDietMenuUpdate(
-                                dietOutputMenu: dietMenuModel,
-                              ),
-                            ),
-                          ),
-                        );
+                        navigatorKey.currentState!.pushNamed(
+                            clientDietMenuUpdatePage,
+                            arguments: dietMenuModel);
                       },
                       style: AppTheme.textButtonStyle,
                       child: const Text(

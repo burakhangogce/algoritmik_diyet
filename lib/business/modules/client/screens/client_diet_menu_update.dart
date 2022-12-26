@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../commons/utils/icon_font.dart';
@@ -10,8 +11,8 @@ import '../../../commons/widgets/textformfields/general_text_form_field.dart';
 import '../../../models/diet/diet_model_output.dart';
 import '../controller/client_controller.dart';
 
-class ClientDietMenuUpdate extends StatelessWidget {
-  const ClientDietMenuUpdate({super.key, required this.dietOutputMenu});
+class ClientDietMenuUpdatePage extends StatelessWidget {
+  const ClientDietMenuUpdatePage({super.key, required this.dietOutputMenu});
   final DietOutputMenu dietOutputMenu;
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -29,7 +30,7 @@ class ClientDietMenuUpdate extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           "Güncelle",

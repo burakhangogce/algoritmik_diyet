@@ -1,4 +1,4 @@
-import 'package:algoritmik_diyet/business/modules/dashboard/dashboard_page.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,6 @@ import '../../../commons/widgets/dialogs/loading_dialog.dart';
 import '../../../commons/widgets/textformfields/general_text_form_field.dart';
 import '../../../commons/widgets/textformfields/password_text_form_field.dart';
 import '../../../models/login_result.dart';
-import '../../home/controller/home_controller.dart';
 import '../controller/signin_controller.dart';
 import '../widgets/divider_widget.dart';
 import '../widgets/snackbar.dart';
@@ -145,7 +144,7 @@ class SigninView extends StatelessWidget {
                                       child: Text(Localization.of(context)!
                                           .signin_login_button)),
                                 ),
-                                DividerWidget("Hesabınız yok mu?"),
+                                const DividerWidget("Hesabınız yok mu?"),
                                 Flexible(
                                   flex: 1,
                                   child: OutlinedButton(
@@ -158,7 +157,7 @@ class SigninView extends StatelessWidget {
                                             style: BorderStyle.solid,
                                           )),
                                       onPressed: () {},
-                                      child: Text("Hesap Oluşturun")),
+                                      child: const Text("Hesap Oluşturun")),
                                 ),
                                 const SizedBox(
                                   height: 15,
@@ -183,14 +182,8 @@ class SigninView extends StatelessWidget {
     if (result != null) {
       switch (result) {
         case LoginResult.success:
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => ChangeNotifierProvider(
-                create: (context) => HomeController(),
-                child: const DashboardPage(),
-              ),
-            ),
-          );
+          navigatorKey.currentState!.pushNamed(dashboard);
+
           break;
         case LoginResult.requiresTwoFactor:
           break;

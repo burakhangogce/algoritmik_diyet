@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../constants/localization.dart';
@@ -33,7 +33,7 @@ class SecondarySignin extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: IconButton(
                     onPressed: () =>
-                        Navigator.of(context).pushReplacementNamed('/login'),
+                        navigatorKey.currentState!.pushReplacementNamed(login),
                     icon: const Icon(
                       Icons.close,
                       color: backgroundColor,

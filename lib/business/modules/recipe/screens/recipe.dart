@@ -1,12 +1,10 @@
 import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
 import 'package:algoritmik_diyet/business/models/recipe/recipe_output_model.dart';
 import 'package:algoritmik_diyet/business/modules/recipe/controller/recipe_controller.dart';
-import 'package:algoritmik_diyet/business/modules/recipe/screens/add_recipe.dart';
-import 'package:algoritmik_diyet/core/services/navigation_service.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../commons/utils/icon_font.dart';
@@ -32,15 +30,7 @@ class Recipe extends StatelessWidget {
             width: pageWidht * 0.9,
             child: PrimaryButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        ChangeNotifierProvider<RecipeController>.value(
-                      value: controller,
-                      child: const AddRecipePage(),
-                    ),
-                  ),
-                );
+                navigatorKey.currentState!.pushNamed(addRecipePage);
               },
               text: "Tarif Oluştur",
               textStyle: AppTheme.notoSansMed18White,
@@ -69,18 +59,8 @@ class Recipe extends StatelessWidget {
                                 LoadingDialog.openDialog();
                                 await controller.fillRecipeDetail(data[index]);
                                 LoadingDialog.closeDialog();
-                                Navigator.of(NavigationService
-                                        .navigatorKey.currentContext!)
-                                    .push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ChangeNotifierProvider<
-                                            RecipeController>.value(
-                                      value: controller,
-                                      child: const AddRecipePage(),
-                                    ),
-                                  ),
-                                );
+                                navigatorKey.currentState!
+                                    .pushNamed(addRecipePage);
                               },
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

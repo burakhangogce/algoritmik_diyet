@@ -4,12 +4,13 @@ import 'package:algoritmik_diyet/main.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../widget/diet_menu_widget.dart';
 
-class UpdateDietPage extends StatelessWidget {
-  const UpdateDietPage({super.key, required this.dietModel});
+class ClientUpdateDietPage extends StatelessWidget {
+  const ClientUpdateDietPage({super.key, required this.dietModel});
   final DietOutputModel dietModel;
 
   @override
@@ -20,7 +21,7 @@ class UpdateDietPage extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           dietModel.dietTitle,

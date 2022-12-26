@@ -2,14 +2,15 @@ import 'dart:io';
 
 import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog.dart';
 import 'package:algoritmik_diyet/business/models/client/client_model.dart';
-import 'package:algoritmik_diyet/business/models/diet/diet_model_input.dart';
 import 'package:algoritmik_diyet/business/models/diet/diet_model_output.dart';
 import 'package:algoritmik_diyet/business/services/data/client_services.dart';
 import 'package:algoritmik_diyet/business/services/data/diet_services.dart';
 import 'package:algoritmik_diyet/business/services/data/pdf_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../main.dart';
 import '../../../models/client/my_clients_ouput_model.dart';
@@ -40,21 +41,69 @@ class ClientController with ChangeNotifier {
   String copyInviteCode = "";
   List<ClientModel> listClientModel = [];
   DietOutputModel? selectedDietModel;
+  String localPath = "";
 
   setSelectedDietModel(DietOutputModel dietOutputModel) {
     selectedDietModel = dietOutputModel;
   }
 
+  Future<bool> checkPermission() async {
+    if (platform == TargetPlatform.android) {
+      final status = await Permission.storage.status;
+      if (status != PermissionStatus.granted) {
+        final result = await Permission.storage.request();
+        if (result == PermissionStatus.granted) {
+          return true;
+        }
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> prepareSaveDir() async {
+    localPath = (await findLocalPath())!;
+    final savedDir = Directory(localPath);
+    bool hasExisted = await savedDir.exists();
+    if (!hasExisted) {
+      savedDir.create();
+    }
+  }
+
+  Future<String?> findLocalPath() async {
+    if (platform == TargetPlatform.android) {
+      return "/sdcard/download";
+    } else {
+      var directory = await getApplicationDocumentsDirectory();
+      return '${directory.path}${Platform.pathSeparator}Download';
+    }
+  }
+
+  Future<File> storeFile(List<int> bytes, String fileName) async {
+    final file = File('$localPath/$fileName');
+    await file.writeAsBytes(bytes, flush: true);
+    return file;
+  }
+
   Future<File?> createDietPdf(int id) async {
-    LoadingDialog.openDialog();
     ResponseModel<String> pdfString = await _pdfServices.getDietPdf(id);
+    LoadingDialog.openDialog();
     if (pdfString.isSuccess) {
       Directory appDocDir = await getApplicationDocumentsDirectory();
       var targetPath = appDocDir.path;
       var targetFileName = "example_pdf_file";
       var generatedPdfFile = await FlutterHtmlToPdf.convertFromHtmlContent(
           pdfString.body!, targetPath, targetFileName);
-      LoadingDialog.closeDialog();
+      final bytes = File(generatedPdfFile.path).readAsBytesSync();
+      bool permissionReady = await checkPermission();
+      if (permissionReady) {
+        await prepareSaveDir();
+        File openFile = await storeFile(bytes, targetFileName);
+        OpenFile.open(openFile.path);
+      }
       return generatedPdfFile;
     }
     LoadingDialog.closeDialog();

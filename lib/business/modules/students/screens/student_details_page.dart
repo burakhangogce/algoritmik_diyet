@@ -1,6 +1,7 @@
 import 'package:algoritmik_diyet/business/models/students/students_output_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../main.dart';
@@ -30,7 +31,7 @@ class _StudentDetailsPageState extends State<StudentDetailsPage> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           args.studentName,

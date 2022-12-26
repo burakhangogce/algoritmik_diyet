@@ -11,7 +11,6 @@ import '../../../commons/utils/second_icon_font.dart';
 import '../../../commons/utils/validations.dart';
 import '../../../commons/widgets/duo_tone_font_Awesome_icon.dart';
 import '../../../commons/widgets/textformfields/general_text_form_field.dart';
-import '../../../commons/widgets/title/text_icon_title.dart';
 import '../../../models/diet/diet_model_input.dart';
 
 class DietAddSecond extends StatelessWidget {
@@ -370,7 +369,7 @@ class DietAddSecond extends StatelessWidget {
     return showModalBottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      context: NavigationService.navigatorKey.currentContext!,
+      context: NavigationService.instance!.navigatorKey.currentContext!,
       builder: (context) {
         return Container(
           decoration: const BoxDecoration(

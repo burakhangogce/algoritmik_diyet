@@ -3,8 +3,10 @@ import 'package:algoritmik_diyet/business/commons/widgets/dialogs/loading_dialog
 import 'package:algoritmik_diyet/business/commons/widgets/textformfields/general_text_form_field.dart';
 import 'package:algoritmik_diyet/business/models/recipe/recipe_input_model.dart';
 import 'package:algoritmik_diyet/business/modules/recipe/controller/recipe_controller.dart';
+import 'package:algoritmik_diyet/core/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../constants/api_path.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
 import '../../../../main.dart';
@@ -17,15 +19,13 @@ class AddRecipePage extends StatelessWidget {
   const AddRecipePage({super.key});
   @override
   Widget build(BuildContext context) {
-    var controller = Provider.of<RecipeController>(context, listen: false);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => navigatorKey.currentState!.pop(),
         ),
         title: Text(
           "Tarif Oluştur",
@@ -120,8 +120,7 @@ class AddRecipePage extends StatelessWidget {
                             recipeDesc: controller.descRecipeCont.text);
                         controller.addRecipe(recipeInputModel);
                         LoadingDialog.closeDialog();
-
-                        Navigator.pop(context);
+                        NavigationService.of(context).pop();
                       },
                       text: "Tarif Ekle",
                       textStyle: AppTheme.notoSansMed18White,

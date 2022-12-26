@@ -5,8 +5,6 @@ import '../../../core/mixins/service_mixin.dart';
 import '../../models/change_password_input_model.dart';
 import '../../models/event_output_model.dart';
 import '../../models/login/firebase_login_input_model.dart';
-import '../../models/login_input_model.dart';
-import '../../models/login_output_model.dart';
 import '../../models/response/response_model.dart';
 import '../../models/user_info_model.dart';
 
@@ -15,13 +13,11 @@ class IdentityServices extends AlgoritmikServiceBase with ServiceMixin {
     url = settingService.getRegisterUrl();
     path = 'account';
   }
-
   // Future login(LoginInputModel request) async {
   //   Map<String, dynamic> loginMap = await postMapAsync<Map<String, dynamic>>(
   //       getUri('').toString(), createHeaders(), request.toJson(), null);
   //   return loginMap;
   // }
-
   Future<ResponseModel<FirebaseLoginOutputModel>> login(
       FirebaseLoginInputModel request) async {
     ResponseModel<dynamic> response = await postMapAsync<Map<String, dynamic>>(

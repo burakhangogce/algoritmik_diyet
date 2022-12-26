@@ -1,9 +1,8 @@
 import 'package:algoritmik_diyet/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import '../../../constants/api_path.dart';
 import '../../../constants/app_color.dart';
-import '../../../main.dart';
 import '../widgets/duo_tone_font_Awesome_icon.dart';
 import '../widgets/main_elevated_button.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../constants/api_path.dart';
 import '../../../../../../constants/app_color.dart';
 import '../../../../../../constants/app_theme.dart';
 import '../../../../../../constants/localization.dart';
@@ -177,7 +178,7 @@ class DrawTitle extends StatelessWidget {
                 ),
                 IconButton(
                     onPressed: () {
-                      Navigator.of(context).pop();
+                      navigatorKey.currentState!.pop();
                     },
                     icon: Image.asset('assets/images/Cikis_beyaz.png')),
               ],

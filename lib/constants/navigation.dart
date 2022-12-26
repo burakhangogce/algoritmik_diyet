@@ -65,14 +65,24 @@ Route<dynamic>? getNavigationRoute(RouteSettings settings) {
         ),
       );
     case clientDetailPage:
-      return RouteManager.getRoute(
-          settings: settings,
-          builder: (context) => ClientDetailPage(
-                clientModel: settings.arguments as MyClientsOutputModel,
-              ));
+      return RouteManager.getMaterialRoute(
+        settings: settings,
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => ClientController(),
+          child: ClientDetailPage(
+            clientModel: settings.arguments as MyClientsOutputModel,
+          ),
+        ),
+      );
+
     case clientCreatePage:
-      return RouteManager.getRoute(
-          settings: settings, builder: (context) => const ClientCreatePage());
+      return RouteManager.getMaterialRoute(
+        settings: settings,
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => ClientController(),
+          child: const ClientCreatePage(),
+        ),
+      );
     case clientDietMenuUpdatePage:
       return RouteManager.getRoute(
           settings: settings,
@@ -136,8 +146,13 @@ Route<dynamic>? getNavigationRoute(RouteSettings settings) {
         ),
       );
     case addRecipePage:
-      return RouteManager.getRoute(
-          settings: settings, builder: (context) => const AddRecipePage());
+      return RouteManager.getMaterialRoute(
+        settings: settings,
+        builder: (context) => ChangeNotifierProvider(
+          create: (_) => RecipeController(),
+          child: const AddRecipePage(),
+        ),
+      );
   }
   return null;
 }

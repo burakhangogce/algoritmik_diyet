@@ -1,5 +1,6 @@
 import 'package:algoritmik_diyet/business/commons/utils/second_icon_font.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/duo_tone_font_awesome_icon.dart';
+import 'package:algoritmik_diyet/constants/api_path.dart';
 import 'package:algoritmik_diyet/constants/app_color.dart';
 import 'package:algoritmik_diyet/constants/app_theme.dart';
 import 'package:algoritmik_diyet/main.dart';
@@ -142,7 +143,7 @@ class _HomePageState extends State<HomePage>
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/creatediet');
+                    navigatorKey.currentState!.pushNamed(dietPage);
                   },
                   child: Container(
                     height: pageHeight * 0.1,

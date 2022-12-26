@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../constants/app_color.dart';
 import '../../../../constants/app_theme.dart';
+import '../../../../core/services/navigation_service.dart';
 import '../../../../main.dart';
 import '../../../commons/utils/icon_font.dart';
 import '../../../commons/utils/second_icon_font.dart';
@@ -85,7 +86,7 @@ class DietMenuWidget extends StatelessWidget {
                       onPressed: () {
                         controller
                             .setSelectedDietMenu(dietMenuModel.dietMenuId);
-                        navigatorKey.currentState!.pushNamed(
+                        NavigationService.of(context).pushNamed(
                             clientDietMenuUpdatePage,
                             arguments: dietMenuModel);
                       },

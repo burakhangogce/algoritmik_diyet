@@ -4,6 +4,7 @@ import 'package:algoritmik_diyet/business/modules/diet/screens/diet_add_second.d
 import 'package:algoritmik_diyet/business/modules/diet/screens/diet_add_third.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../../constants/app_color.dart';
 import '../../../../main.dart';
 import '../../../commons/widgets/headers/main_pager_header.dart';
 
@@ -52,6 +53,7 @@ class _DietPageState extends State<DietPage> {
     var controller = Provider.of<DietController>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: softBackgroundColor,
       body: Stack(
         fit: StackFit.expand,
         children: [

@@ -1,5 +1,6 @@
 import 'package:algoritmik_diyet/business/modules/diet/controller/diet_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../../constants/app_color.dart';
@@ -28,51 +29,154 @@ class DietAddSecond extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                children: [
-                  DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.calendaredit,
-                      firstColor: firstIconColor,
-                      iconSize: 17,
-                      secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.calendaredit),
-                  TextButton(
-                    onPressed: () {
-                      controller.onJumpPage(0);
-                      controller.clearDiet();
-                    },
-                    style: AppTheme.textButtonStyle,
-                    child: const Text(
-                      "Tarih",
-                      style: AppTheme.notoSansMed14PrimaryText,
-                    ),
+              GestureDetector(
+                onTap: () {
+                  controller.onJumpPage(0);
+                  controller.clearDiet();
+                },
+                child: SizedBox(
+                  height: pageHeight * 0.1,
+                  width: pageWidht * 0.20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 1, color: fistBorderColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            color: background2Color),
+                        child: DuoToneFontAwesomeIcon(
+                            iconSource: IconFont.calendaredit,
+                            firstColor: firstIconColor,
+                            iconSize: 20,
+                            secondColor: secondIconColor,
+                            iconSecondSource: SecondIconFont.calendaredit),
+                      ),
+                      const Center(
+                          child: Text(
+                        "Güncelle",
+                        style: AppTheme.notoSansMed10PrimaryText,
+                      )),
+                    ],
                   ),
-                ],
+                ),
               ),
-              Row(
-                children: [
-                  DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.applecrate,
-                      firstColor: firstIconColor,
-                      iconSize: 17,
-                      secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.applecrate),
-                  TextButton(
-                    onPressed: () {
-                      controller.onNextPage(context);
-                    },
-                    style: AppTheme.textButtonStyle,
-                    child: const Text(
-                      "Oluştur",
-                      style: AppTheme.notoSansMed14PrimaryText,
-                    ),
+              GestureDetector(
+                onTap: () {
+                  controller.onNextPage(context);
+                },
+                child: SizedBox(
+                  height: pageHeight * 0.1,
+                  width: pageWidht * 0.20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 1, color: fistBorderColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            color: background2Color),
+                        child: DuoToneFontAwesomeIcon(
+                            iconSource: IconFont.applecrate,
+                            firstColor: firstIconColor,
+                            iconSize: 20,
+                            secondColor: secondIconColor,
+                            iconSecondSource: SecondIconFont.applecrate),
+                      ),
+                      const Center(
+                          child: Text(
+                        "Oluştur",
+                        style: AppTheme.notoSansMed10PrimaryText,
+                      )),
+                    ],
                   ),
-                ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  showAddDietSheet(controller);
+                },
+                child: SizedBox(
+                  height: pageHeight * 0.1,
+                  width: pageWidht * 0.20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 1, color: fistBorderColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            color: background2Color),
+                        child: DuoToneFontAwesomeIcon(
+                            iconSource: IconFont.utensilsalt,
+                            firstColor: firstIconColor,
+                            iconSize: 20,
+                            secondColor: secondIconColor,
+                            iconSecondSource: SecondIconFont.utensilsalt),
+                      ),
+                      const Center(
+                          child: Text(
+                        "Ekle",
+                        style: AppTheme.notoSansMed10PrimaryText,
+                      )),
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  controller.pasteDietMenu(controller.selectedDietDate);
+                },
+                child: SizedBox(
+                  height: pageHeight * 0.1,
+                  width: pageWidht * 0.20,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                            border:
+                                Border.all(width: 1, color: fistBorderColor),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            color: background2Color),
+                        child: DuoToneFontAwesomeIcon(
+                            iconSource: IconFont.paste,
+                            firstColor: firstIconColor,
+                            iconSize: 20,
+                            secondColor: secondIconColor,
+                            iconSecondSource: SecondIconFont.paste),
+                      ),
+                      const Center(
+                          child: Text(
+                        "Yapıştır",
+                        style: AppTheme.notoSansMed10PrimaryText,
+                      )),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
+          const SizedBox(
+            height: 20,
+          ),
           SizedBox(
-            height: 45,
+            height: 70,
             width: pageWidht * 0.9,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -84,27 +188,30 @@ class DietAddSecond extends StatelessWidget {
                     onTap: () {
                       controller.setSelectedDietDate(index);
                     },
-                    child: Container(
-                      width: 40,
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: firstIconColor,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15.0)),
-                          color: index == controller.selectedDietDate
-                              ? Colors.grey.shade300
-                              : Colors.transparent),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20),
                       child: Column(
                         children: [
                           Text(
                             controller.selectedDateList[index].day.toString(),
-                            style: AppTheme.notoSansMed12PrimaryText,
+                            style: AppTheme.notoSansMed18PrimaryText,
                           ),
                           Text(
-                              DateFormat('EE')
+                              DateFormat('EE', 'tr')
                                   .format(controller.selectedDateList[index]),
-                              style: AppTheme.notoSansMed12Primary2Text),
+                              style: AppTheme.notoSansMed14Primary2Text),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          index == controller.selectedDietDate
+                              ? Container(
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: primaryColor),
+                                  width: 10,
+                                  height: 10,
+                                )
+                              : Container(),
                         ],
                       ),
                     ),
@@ -116,52 +223,6 @@ class DietAddSecond extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(
-                children: [
-                  DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.utensilsalt,
-                      firstColor: firstIconColor,
-                      iconSize: 17,
-                      secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.utensilsalt),
-                  TextButton(
-                    onPressed: () {
-                      //controller.addSetDietDetailWidget(controller.selectedDietDate);
-                      showAddDietSheet(controller);
-                    },
-                    style: AppTheme.textButtonStyle,
-                    child: const Text(
-                      "Ekle",
-                      style: AppTheme.notoSansMed14PrimaryText,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  DuoToneFontAwesomeIcon(
-                      iconSource: IconFont.paste,
-                      firstColor: firstIconColor,
-                      iconSize: 17,
-                      secondColor: secondIconColor,
-                      iconSecondSource: SecondIconFont.paste),
-                  TextButton(
-                    onPressed: () {
-                      controller.pasteDietMenu(controller.selectedDietDate);
-                    },
-                    style: AppTheme.textButtonStyle,
-                    child: const Text(
-                      "Yapıştır",
-                      style: AppTheme.notoSansMed14PrimaryText,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
           controller.dietMap.isNotEmpty &&
                   controller.dietMap.containsKey(
                       controller.selectedDateList[controller.selectedDietDate])
@@ -170,6 +231,7 @@ class DietAddSecond extends StatelessWidget {
                     key: formKey,
                     child: ListView.builder(
                       physics: const AlwaysScrollableScrollPhysics(),
+                      padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       itemCount: controller
                           .dietMap[controller
@@ -188,163 +250,168 @@ class DietAddSecond extends StatelessWidget {
                                             .selectedDateList[
                                         controller.selectedDietDate]]![index]);
                               },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: firstIconColor,
+                              child: Slidable(
+                                endActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      flex: 2,
+                                      onPressed: (context) =>
+                                          controller.deleteDietMenu(index),
+                                      backgroundColor: secondIconColor,
+                                      foregroundColor: primaryColor,
+                                      icon: Icons.delete,
+                                      label: 'Sil',
                                     ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(15.0)),
-                                    color: Colors.transparent),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(
-                                        height: 20,
+                                    SlidableAction(
+                                      flex: 2,
+                                      onPressed: (context) =>
+                                          controller.copyDietMenu(index),
+                                      backgroundColor: secondIconColor,
+                                      foregroundColor: primaryColor,
+                                      icon: Icons.copy,
+                                      label: 'Kopyala',
+                                    ),
+                                  ],
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: firstIconColor,
                                       ),
-                                      Column(
-                                        children: [
-                                          Center(
-                                            child: DuoToneFontAwesomeIcon(
-                                                iconSource:
-                                                    IconFont.utensilsalt,
-                                                firstColor: firstIconColor,
-                                                iconSize: 40,
-                                                secondColor: secondIconColor,
-                                                iconSecondSource:
-                                                    SecondIconFont.utensilsalt),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(15.0)),
+                                      color: Colors.transparent),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 15,
+                                                        horizontal: 15),
+                                                child: Center(
+                                                  child: DuoToneFontAwesomeIcon(
+                                                      iconSource:
+                                                          IconFont.utensilsalt,
+                                                      firstColor:
+                                                          firstIconColor,
+                                                      iconSize: 30,
+                                                      secondColor:
+                                                          secondIconColor,
+                                                      iconSecondSource:
+                                                          SecondIconFont
+                                                              .utensilsalt),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              Flexible(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                          .dietMap[controller
+                                                                  .selectedDateList[
+                                                              controller
+                                                                  .selectedDietDate]]![index]
+                                                          .dietMenuTitle,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 1,
+                                                      style: AppTheme
+                                                          .notoSansMed14PrimaryText,
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(
+                                                      controller
+                                                          .dietMap[controller
+                                                                  .selectedDateList[
+                                                              controller
+                                                                  .selectedDietDate]]![index]
+                                                          .dietMenuDetail,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 2,
+                                                      style: AppTheme
+                                                          .notoSansMed12PrimaryText,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            "19:00 - 19:30",
-                                            style: AppTheme
-                                                .notoSansMed18PrimaryText,
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "Öğün Başlığı",
-                                            style: AppTheme
-                                                .notoSansMed14PrimaryText,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            controller
-                                                .dietMap[
-                                                    controller.selectedDateList[
-                                                        controller
-                                                            .selectedDietDate]]![
-                                                    index]
-                                                .dietMenuTitle,
-                                            style: AppTheme
-                                                .notoSansMed12Primary2Text,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "Öğün Detayı",
-                                            style: AppTheme
-                                                .notoSansMed14PrimaryText,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            controller
-                                                .dietMap[
-                                                    controller.selectedDateList[
-                                                        controller
-                                                            .selectedDietDate]]![
-                                                    index]
-                                                .dietMenuDetail,
-                                            style: AppTheme
-                                                .notoSansMed12Primary2Text,
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          SizedBox(
-                                              width: pageWidht * 0.3,
-                                              child: ElevatedButton(
-                                                onPressed: () {
-                                                  controller
-                                                      .copyDietMenu(index);
-                                                },
-                                                style: AppTheme
-                                                    .elevatedButtonStyle
-                                                    .copyWith(fixedSize:
-                                                        MaterialStateProperty
-                                                            .resolveWith(
-                                                                (states) {
-                                                  if (states.contains(
-                                                      MaterialState.disabled)) {
-                                                    return const Size(5, 5);
-                                                  }
-                                                  return const Size(5, 5);
-                                                })),
-                                                child: const Text("Kopyala"),
-                                              )),
-                                          SizedBox(
-                                            width: pageWidht * 0.3,
-                                            child: OutlinedButton(
-                                              style: OutlinedButton.styleFrom(
-                                                  foregroundColor:
-                                                      loginGradientStartColor,
-                                                  fixedSize: const Size(10, 10),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.0),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(bottom: 5),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  DuoToneFontAwesomeIcon(
+                                                      iconSource:
+                                                          IconFont.firealt,
+                                                      firstColor:
+                                                          firstIconColor,
+                                                      iconSize: 16,
+                                                      secondColor:
+                                                          secondIconColor,
+                                                      iconSecondSource:
+                                                          SecondIconFont
+                                                              .firealt),
+                                                  const SizedBox(
+                                                    width: 5,
                                                   ),
-                                                  side: const BorderSide(
-                                                    width: 1.0,
-                                                    color:
-                                                        loginGradientStartColor,
-                                                    style: BorderStyle.solid,
-                                                  )),
-                                              onPressed: () {
-                                                controller
-                                                    .deleteDietMenu(index);
-                                              },
-                                              child: const Text("İptal Et"),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 15,
-                                      ),
-                                    ],
+                                                  const Text(
+                                                    "??",
+                                                    style: AppTheme
+                                                        .notoSansMed12Primary2Text,
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  DuoToneFontAwesomeIcon(
+                                                      iconSource:
+                                                          IconFont.alarmclock,
+                                                      firstColor:
+                                                          firstIconColor,
+                                                      iconSize: 16,
+                                                      secondColor:
+                                                          secondIconColor,
+                                                      iconSecondSource:
+                                                          SecondIconFont
+                                                              .alarmclock),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  const Text(
+                                                    "19:30 - 20:00",
+                                                    style: AppTheme
+                                                        .notoSansMed12Primary2Text,
+                                                  ),
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

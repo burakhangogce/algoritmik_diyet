@@ -38,7 +38,7 @@ class MainPagerHeader extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 '${pages[index.toInt()]} (${index.toInt() + 1}/${pages.length})',
-                style: AppTheme.notoSansMed18White,
+                style: AppTheme.notoSansMed18PrimaryText,
               ),
             ),
           ),
@@ -48,7 +48,7 @@ class MainPagerHeader extends StatelessWidget {
             },
             child: const Icon(
               Icons.dangerous,
-              color: Colors.white,
+              color: primaryColor,
             ),
           )
         ],
@@ -74,18 +74,19 @@ class MainPagerHeader extends StatelessWidget {
       );
     }
 
-    return CustomPaint(
-      painter: CurvePainter(),
-      child: Padding(
-        padding: padding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            getDesingArea(),
-            const SizedBox(height: 20),
-            getNameArea(context)
-          ],
-        ),
+    return Padding(
+      padding: padding,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          LinearProgressIndicator(
+            value: (index + 1).toDouble() / pages.length.toDouble(),
+            minHeight: 8,
+            semanticsLabel: 'Linear progress indicator',
+          ),
+          const SizedBox(height: 20),
+          getNameArea(context)
+        ],
       ),
     );
   }

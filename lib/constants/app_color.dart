@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 const Color backgroundColor = Color.fromRGBO(250, 250, 250, 1);
 const Color secondBackgroundColor = Color.fromRGBO(253, 253, 253, 1);
 
+const Color softBackgroundColor = Color.fromARGB(255, 238, 238, 238);
+
 const Color primaryColor = Color.fromRGBO(85, 64, 93, 1);
 MaterialColor primaryMaterialColor = primaryColor.toMaterialColor();
 

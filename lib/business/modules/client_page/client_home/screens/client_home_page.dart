@@ -1,12 +1,17 @@
 import 'package:algoritmik_diyet/business/commons/utils/second_icon_font.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/buttons/main_button_group.dart';
 import 'package:algoritmik_diyet/business/commons/widgets/duo_tone_font_awesome_icon.dart';
+import 'package:algoritmik_diyet/business/modules/client_page/client_home/widgets/water_widget.dart';
 import 'package:algoritmik_diyet/constants/app_color.dart';
 import 'package:algoritmik_diyet/constants/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../../../../main.dart';
 import '../../../../commons/utils/icon_font.dart';
+import '../widgets/client_home_info_widget.dart';
+import '../widgets/client_home_menu_widget.dart';
+import '../widgets/client_home_water_target_widget.dart';
 
 class ClientHomePage extends StatefulWidget {
   const ClientHomePage({super.key});
@@ -32,12 +37,14 @@ class _ClientHomePageState extends State<ClientHomePage>
   }
 
   final DateFormat format1 = DateFormat('MMMM');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: ListView(
+          shrinkWrap: true,
           children: [
             const SizedBox(
               height: 10,
@@ -68,129 +75,31 @@ class _ClientHomePageState extends State<ClientHomePage>
                 selectedTextColor: Colors.white,
                 unSelectedTextColor: Colors.black,
                 onchanged: ((index) => {})),
+            const SizedBox(
+              height: 10,
+            ),
             SizedBox(
               height: 100,
-              width: pageWidht * 0.9,
               child: ListView.builder(
                 padding: EdgeInsets.zero,
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemCount: 3,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: softBackgroundColor,
-                          ),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(15.0)),
-                          color: softBackgroundColor),
-                      child: SizedBox(
-                        width: 170,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15, horizontal: 15),
-                                  child: Center(
-                                    child: DuoToneFontAwesomeIcon(
-                                        iconSource: IconFont.utensilsalt,
-                                        firstColor: firstIconColor,
-                                        iconSize: 30,
-                                        secondColor: secondIconColor,
-                                        iconSecondSource:
-                                            SecondIconFont.utensilsalt),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                                Flexible(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "title",
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style:
-                                            AppTheme.notoSansMed14PrimaryText,
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        "detail",
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                        style:
-                                            AppTheme.notoSansMed12PrimaryText,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Row(
-                                    children: [
-                                      DuoToneFontAwesomeIcon(
-                                          iconSource: IconFont.firealt,
-                                          firstColor: firstIconColor,
-                                          iconSize: 16,
-                                          secondColor: secondIconColor,
-                                          iconSecondSource:
-                                              SecondIconFont.firealt),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      const Text(
-                                        "??",
-                                        style:
-                                            AppTheme.notoSansMed12Primary2Text,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      DuoToneFontAwesomeIcon(
-                                          iconSource: IconFont.alarmclock,
-                                          firstColor: firstIconColor,
-                                          iconSize: 16,
-                                          secondColor: secondIconColor,
-                                          iconSecondSource:
-                                              SecondIconFont.alarmclock),
-                                      const SizedBox(
-                                        width: 5,
-                                      ),
-                                      const Text(
-                                        "19:30 - 20:00",
-                                        style:
-                                            AppTheme.notoSansMed12Primary2Text,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                  return ClientHomeMenuWidget(
+                    index: index,
                   );
                 },
               ),
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            const ClientHomeInfoWidget(),
+            const SizedBox(
+              height: 16,
+            ),
+            const ClientHomeWaterTargetWidget()
           ],
         ),
       ),

@@ -347,6 +347,11 @@ class AppTheme {
       fontFamily: "NotoSans",
       fontSize: 12.0,
       fontWeight: FontWeight.w500);
+  static const TextStyle notoSansMed12White = TextStyle(
+      color: Colors.white,
+      fontFamily: "NotoSans",
+      fontSize: 12.0,
+      fontWeight: FontWeight.w500);
 
   static const TextStyle notoSansMed14Primary2Text = TextStyle(
       color: primary2TextColor,

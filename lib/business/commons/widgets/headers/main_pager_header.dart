@@ -55,25 +55,6 @@ class MainPagerHeader extends StatelessWidget {
       );
     }
 
-    Widget getDesingArea() {
-      if (pages.isEmpty) throw Exception("Pages list have to item");
-
-      List<Widget> childs = [];
-      for (int i = 0; i < pages.length; i++) {
-        childs.add(Expanded(
-          child: Container(
-              height: 4, color: index >= i ? firstIconColor : Colors.white),
-        ));
-        if (i + 1 < pages.length) childs.add(SizedBox(width: space));
-      }
-      return Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: childs,
-      );
-    }
-
     return Padding(
       padding: padding,
       child: Column(

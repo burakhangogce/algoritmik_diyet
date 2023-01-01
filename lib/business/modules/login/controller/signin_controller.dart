@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:mobkit_flutter_servicebase/services/secure_storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../main.dart';
-import '../../../../models/change_password_input_model.dart';
-import '../../../../models/event_output_model.dart';
-import '../../../../models/login_info.dart';
-import '../../../../models/login_result.dart';
-import '../../../../models/response/response_model.dart';
-import '../../../../services/data/identity_services.dart';
+import '../../../models/change_password_input_model.dart';
+import '../../../models/event_output_model.dart';
+import '../../../models/login_info.dart';
+import '../../../models/login_result.dart';
+import '../../../models/response/response_model.dart';
+import '../../../services/data/identity_services.dart';
 
 class SigninController extends ChangeNotifier {
   final IdentityServices _identityServices = getIt.get<IdentityServices>();

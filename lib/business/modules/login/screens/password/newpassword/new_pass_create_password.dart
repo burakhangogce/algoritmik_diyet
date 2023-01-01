@@ -5,11 +5,11 @@ import '../../../../../../../constants/app_color.dart';
 import '../../../../../../../constants/app_theme.dart';
 import '../../../../../../../constants/localization.dart';
 import '../../../../../../../main.dart';
-import '../../../../../../commons/utils/validations.dart';
-import '../../../../../../commons/widgets/dialogs/loading_dialog.dart';
-import '../../../../../../commons/widgets/textformfields/password_text_form_field.dart';
-import '../../../../../../models/change_password_input_model.dart';
-import '../../../../../../services/data/identity_services.dart';
+import '../../../../../commons/utils/validations.dart';
+import '../../../../../commons/widgets/dialogs/loading_dialog.dart';
+import '../../../../../commons/widgets/textformfields/password_text_form_field.dart';
+import '../../../../../models/change_password_input_model.dart';
+import '../../../../../services/data/identity_services.dart';
 
 class NewPassCreatePassword extends StatefulWidget {
   const NewPassCreatePassword({Key? key}) : super(key: key);

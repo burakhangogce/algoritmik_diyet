@@ -1,4 +1,4 @@
-import 'package:algoritmik_diyet/business/modules/nutrition_page/onboarding/shared_widgets/boarding_widget.dart';
+import 'package:algoritmik_diyet/business/modules/onboarding/shared_widgets/boarding_widget.dart';
 import 'package:flutter/material.dart';
 
 class BoardingFinished extends StatelessWidget {

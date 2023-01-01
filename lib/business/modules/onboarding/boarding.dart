@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../constants/app_color.dart';
 import '../../../../main.dart';
-import '../../../services/general/setting_service.dart';
+import '../../services/general/setting_service.dart';
 import 'boarding_finished.dart';
 import 'boarding_first.dart';
 import 'boarding_launcher.dart';

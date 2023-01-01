@@ -6,14 +6,13 @@ import '../../../../../constants/app_color.dart';
 import '../../../../../constants/app_theme.dart';
 import '../../../../../constants/localization.dart';
 import '../../../../../main.dart';
-import '../../../../commons/utils/validations.dart';
-import '../../../../commons/widgets/dialogs/loading_dialog.dart';
-import '../../../../commons/widgets/textformfields/general_text_form_field.dart';
-import '../../../../commons/widgets/textformfields/password_text_form_field.dart';
-import '../../../../models/login_result.dart';
+import '../../../commons/utils/validations.dart';
+import '../../../commons/widgets/dialogs/loading_dialog.dart';
+import '../../../commons/widgets/textformfields/general_text_form_field.dart';
+import '../../../commons/widgets/textformfields/password_text_form_field.dart';
+import '../../../models/login_result.dart';
 import '../controller/signin_controller.dart';
 import '../widgets/divider_widget.dart';
-
 
 class SigninView extends StatelessWidget {
   const SigninView({Key? key}) : super(key: key);

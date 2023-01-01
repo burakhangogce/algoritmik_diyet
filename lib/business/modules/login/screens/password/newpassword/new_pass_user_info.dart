@@ -3,8 +3,8 @@ import '../../../../../../../constants/app_color.dart';
 import '../../../../../../../constants/app_theme.dart';
 import '../../../../../../../constants/localization.dart';
 import '../../../../../../../main.dart';
-import '../../../../../../commons/utils/validations.dart';
-import '../../../../../../commons/widgets/textformfields/general_text_form_field.dart';
+import '../../../../../commons/utils/validations.dart';
+import '../../../../../commons/widgets/textformfields/general_text_form_field.dart';
 import '../../../widgets/divider_widget.dart';
 
 class NewPassUserInfo extends StatefulWidget {

@@ -4,13 +4,12 @@ import '../../../../../constants/api_path.dart';
 import '../../../../../constants/app_color.dart';
 import '../../../../../constants/app_theme.dart';
 import '../../../../../constants/localization.dart';
-import '../../../../commons/utils/validations.dart';
-import '../../../../commons/widgets/dialogs/loading_dialog.dart';
-import '../../../../commons/widgets/textformfields/general_text_form_field.dart';
-import '../../../../commons/widgets/textformfields/password_text_form_field.dart';
-import '../../../../models/login_result.dart';
+import '../../../commons/utils/validations.dart';
+import '../../../commons/widgets/dialogs/loading_dialog.dart';
+import '../../../commons/widgets/textformfields/general_text_form_field.dart';
+import '../../../commons/widgets/textformfields/password_text_form_field.dart';
+import '../../../models/login_result.dart';
 import '../controller/signin_controller.dart';
-import '../widgets/snackbar.dart';
 
 class SecondarySignin extends StatelessWidget {
   const SecondarySignin({Key? key}) : super(key: key);

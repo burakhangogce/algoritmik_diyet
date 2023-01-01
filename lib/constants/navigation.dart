@@ -6,7 +6,7 @@ import 'package:algoritmik_diyet/business/modules/nutrition_page/client/screens/
 import 'package:algoritmik_diyet/business/modules/nutrition_page/client/screens/client_diet_menu_update.dart';
 import 'package:algoritmik_diyet/business/modules/nutrition_page/client/screens/client_page.dart';
 import 'package:algoritmik_diyet/business/modules/nutrition_page/client/screens/client_update_diet_page.dart';
-import 'package:algoritmik_diyet/business/modules/nutrition_page/dashboard/dashboard_page.dart';
+import 'package:algoritmik_diyet/business/modules/dashboard/dashboard_page.dart';
 import 'package:algoritmik_diyet/business/modules/nutrition_page/diet/controller/diet_controller.dart';
 import 'package:algoritmik_diyet/business/modules/nutrition_page/diet/screens/diet_add_first.dart';
 import 'package:algoritmik_diyet/business/modules/nutrition_page/diet/screens/diet_add_second.dart';
@@ -20,10 +20,10 @@ import 'package:algoritmik_diyet/business/modules/nutrition_page/recipe/screens/
 import 'package:algoritmik_diyet/constants/route_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../business/modules/nutrition_page/login/controller/signin_controller.dart';
-import '../business/modules/nutrition_page/login/screens/secondary_signin.dart';
-import '../business/modules/nutrition_page/login/screens/signin_view.dart';
-import '../business/modules/nutrition_page/onboarding/boarding.dart';
+import '../business/modules/login/controller/signin_controller.dart';
+import '../business/modules/login/screens/secondary_signin.dart';
+import '../business/modules/login/screens/signin_view.dart';
+import '../business/modules/onboarding/boarding.dart';
 import '../business/modules/nutrition_page/recipe/screens/recipe.dart';
 import '../business/services/general/setting_service.dart';
 import '../main.dart';

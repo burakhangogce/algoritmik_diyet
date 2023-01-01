@@ -89,28 +89,16 @@ class _MainButtonGroupState extends State<MainButtonGroup> {
         backgroundColor: _selectedIndex == index
             ? widget.selectedColor
             : widget.unSelectedColor,
-        fixedSize: const Size.fromHeight(40),
+        fixedSize: const Size.fromHeight(30),
         side: borderSide,
-        shape: index == 0
-            ? const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  topLeft: Radius.circular(15),
-                ),
-              )
-            : index == widget.buttons.length - 1
-                ? const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
-                  )
-                : const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(0),
-                      topRight: Radius.circular(0),
-                    ),
-                  ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            topLeft: Radius.circular(20),
+            bottomRight: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
       );
       return buttonstyle;
     }

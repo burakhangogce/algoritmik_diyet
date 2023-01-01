@@ -102,13 +102,13 @@ class _HomePageState extends State<HomePage>
               height: 16,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    height: pageHeight * 0.1,
-                    width: pageWidht * 0.25,
+                    height: pageHeight * 0.11,
+                    width: pageWidht * 0.28,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -117,8 +117,8 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          height: 35,
-                          width: 35,
+                          height: 42,
+                          width: 42,
                           decoration: BoxDecoration(
                               border:
                                   Border.all(width: 1, color: fistBorderColor),
@@ -128,14 +128,14 @@ class _HomePageState extends State<HomePage>
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.walking,
                               firstColor: firstIconColor,
-                              iconSize: 16,
+                              iconSize: 20,
                               secondColor: secondIconColor,
                               iconSecondSource: SecondIconFont.walking),
                         ),
                         const Center(
                             child: Text(
                           "Danışan",
-                          style: AppTheme.notoSansMed10PrimaryText,
+                          style: AppTheme.notoSansMed12PrimaryText,
                         )),
                       ],
                     ),
@@ -146,8 +146,8 @@ class _HomePageState extends State<HomePage>
                     navigatorKey.currentState!.pushNamed(dietPage);
                   },
                   child: Container(
-                    height: pageHeight * 0.1,
-                    width: pageWidht * 0.25,
+                    height: pageHeight * 0.11,
+                    width: pageWidht * 0.28,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -156,8 +156,8 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          height: 35,
-                          width: 35,
+                          height: 42,
+                          width: 42,
                           decoration: BoxDecoration(
                               border:
                                   Border.all(width: 1, color: fistBorderColor),
@@ -167,14 +167,14 @@ class _HomePageState extends State<HomePage>
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.heartbeat,
                               firstColor: firstIconColor,
-                              iconSize: 16,
+                              iconSize: 20,
                               secondColor: secondIconColor,
                               iconSecondSource: SecondIconFont.heartbeat),
                         ),
                         const Center(
                             child: Text(
                           "Diyet",
-                          style: AppTheme.notoSansMed10PrimaryText,
+                          style: AppTheme.notoSansMed12PrimaryText,
                         )),
                       ],
                     ),
@@ -183,8 +183,8 @@ class _HomePageState extends State<HomePage>
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    height: pageHeight * 0.1,
-                    width: pageWidht * 0.25,
+                    height: pageHeight * 0.11,
+                    width: pageWidht * 0.28,
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: fistBorderColor),
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -193,8 +193,8 @@ class _HomePageState extends State<HomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
-                          height: 35,
-                          width: 35,
+                          height: 42,
+                          width: 42,
                           decoration: BoxDecoration(
                               border:
                                   Border.all(width: 1, color: fistBorderColor),
@@ -204,7 +204,7 @@ class _HomePageState extends State<HomePage>
                           child: DuoToneFontAwesomeIcon(
                               iconSource: IconFont.alarmexclamation,
                               firstColor: firstIconColor,
-                              iconSize: 16,
+                              iconSize: 20,
                               secondColor: secondIconColor,
                               iconSecondSource:
                                   SecondIconFont.alarmexclamation),
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage>
                         const Center(
                             child: Text(
                           "Etkileşim",
-                          style: AppTheme.notoSansMed10PrimaryText,
+                          style: AppTheme.notoSansMed12PrimaryText,
                         )),
                       ],
                     ),

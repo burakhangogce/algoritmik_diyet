@@ -5,8 +5,8 @@ import '../../../../../../../constants/app_color.dart';
 import '../../../../../../../constants/app_theme.dart';
 import '../../../../../../../constants/localization.dart';
 import '../../../../../../../main.dart';
-import '../../../../../../commons/widgets/boxes/message_box.dart';
-import '../../../../../../commons/widgets/painters/curve_painter.dart';
+import '../../../../../commons/widgets/boxes/message_box.dart';
+import '../../../../../commons/widgets/painters/curve_painter.dart';
 import 'new_pass_create_password.dart';
 import 'new_pass_user_info.dart';
 

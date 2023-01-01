@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../commons/widgets/painters/curve_painter.dart';
+import '../../../../commons/widgets/painters/curve_painter.dart';
 
 class RenewPassword extends StatelessWidget {
   const RenewPassword({Key? key}) : super(key: key);

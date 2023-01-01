@@ -81,6 +81,8 @@ class MainPagerHeader extends StatelessWidget {
         children: [
           LinearProgressIndicator(
             value: (index + 1).toDouble() / pages.length.toDouble(),
+            color: primaryColor,
+            backgroundColor: lightGreyColor,
             minHeight: 8,
             semanticsLabel: 'Linear progress indicator',
           ),

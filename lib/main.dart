@@ -23,7 +23,7 @@ double pageWidht =
         .width;
 
 bool isTest = false;
-bool isClient = false;
+bool isClient = true;
 int nutritionistId = 1;
 int clientId = 1;
 TargetPlatform platform =

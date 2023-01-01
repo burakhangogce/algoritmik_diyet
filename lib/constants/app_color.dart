@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 const Color backgroundColor = Color.fromRGBO(250, 250, 250, 1);
 const Color secondBackgroundColor = Color.fromRGBO(253, 253, 253, 1);
 
-const Color softBackgroundColor = Color.fromARGB(255, 238, 238, 238);
+const Color darkBlueColor = Color.fromRGBO(69, 82, 203, 1);
+const Color lightGreyColor = Color.fromRGBO(187, 195, 206, 1);
 
-const Color primaryColor = Color.fromRGBO(85, 64, 93, 1);
+const Color softBackgroundColor = Color.fromRGBO(240, 240, 248, 1);
+
+const Color primaryColor = Color.fromRGBO(69, 82, 203, 1);
 MaterialColor primaryMaterialColor = primaryColor.toMaterialColor();
 
 const Color primaryColor2 = Color.fromARGB(255, 162, 127, 234);
@@ -42,10 +45,10 @@ MaterialColor secondaryTextMaterialColor = secondaryTextColor.toMaterialColor();
 const Color fistBorderColor = Color.fromRGBO(227, 233, 237, 1);
 MaterialColor fistBorderColorMaterialColor = fistBorderColor.toMaterialColor();
 
-const Color firstIconColor = Color.fromRGBO(85, 64, 93, 1);
+const Color firstIconColor = Color.fromRGBO(69, 82, 203, 1);
 MaterialColor firstIconColorMaterialColor = fistBorderColor.toMaterialColor();
 
-const Color secondIconColor = Color.fromARGB(255, 163, 149, 169);
+const Color secondIconColor = Color.fromRGBO(187, 195, 206, 1);
 MaterialColor secondIconColorMaterialColor = fistBorderColor.toMaterialColor();
 
 const Color background2Color = Color.fromRGBO(236, 241, 246, 1);
